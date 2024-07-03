@@ -1,0 +1,23 @@
+# Ignore the virtual environment directory
+venv/
+
+# Python specific ignores
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django specific ignores
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+/media
+/static
+
+# Ignore environment variables files
+.env
+
+# Ignore IDE specific files
+.vscode/
+.idea/
