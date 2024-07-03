@@ -6,6 +6,14 @@ const dotenv = require('dotenv');
 const app = require('express')();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+const cors = require('cors');
+
+cors.options = {
+    //! development only
+    origin: '*'
+}
+
+app.use(cors());
 
 dotenv.config();
 
@@ -38,6 +46,9 @@ io.on('connection', (socket) => {
         io.emit('message', message);
         message = JSON.parse(message);
         console.log(`Message received from ${message[0]}: ${message[1]}`);
+    });
+    socket.on('typing', (user) => {
+        io.emit('typing', user);
     });
 });
 

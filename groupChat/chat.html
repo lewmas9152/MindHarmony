@@ -7,8 +7,9 @@
 </head>
 <body>
     <h1 id="heading">Chat test</h1>
-    <textarea id="chat" cols="30" rows="10"></textarea>
+    <textarea id="chat" cols="30" rows="10" oninput="typing()"></textarea>
     <button onclick="sendMessage()">Send message</button>
+    <p id="typing"></p>
     <p id="messages"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -17,9 +18,9 @@
         socket.on('connect', function() {
             socket.emit('new-user', username);
         });
-        socket.on('info', function(data) {
-            alert('Info: ' + data + "\n");
-        });
+        // socket.on('info', function(data) {
+        //     alert('Info: ' + data + "\n");
+        // });
         socket.on("stat" , function(data){
             document.getElementById("heading").innerText = `Chat test (${data} users online)`;
         });
@@ -27,6 +28,13 @@
             data = JSON.parse(data);
             document.getElementById("messages").innerText+=(`${data[0]}: ${data[1]}\n`);
         });
+        socket.on('typing', function(data) {
+            if(data == username) return;
+            document.getElementById("typing").innerText=(`${data} is typing...\n`);
+            setTimeout(function(){
+                document.getElementById("typing").innerText = '';
+            }, 500);
+        })
         socket.on('disconnect', function() {
             console.log('Disconnected');
         });
@@ -34,6 +42,9 @@
             var message = [username , document.getElementById('chat').value];
             document.getElementById('chat').value = '';
             socket.emit('new-message', JSON.stringify(message));
+        }
+        function typing(){
+            socket.emit('typing', username);
         }
     </script>
 </body>
