@@ -18,7 +18,7 @@
             socket.emit('new-user', username);
         });
         socket.on('info', function(data) {
-            document.getElementById("messages").innerText+=('Info: ' + data + "\n");
+            alert('Info: ' + data + "\n");
         });
         socket.on('message', function(data) {
             data = JSON.parse(data);
