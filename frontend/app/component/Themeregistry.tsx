@@ -62,14 +62,3 @@ export default function ThemeRegistry({
     </CacheProvider>
   );
 }
-
-// app/layout.js
-export default function RootLayout(props) {
-  return (
-    <html lang="en">
-      <body>
-        <ThemeRegistry options={{ key: 'mui' }}>{props.children}</ThemeRegistry>
-      </body>
-    </html>
-  );
-}
