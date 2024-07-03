@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat test</title>
+</head>
+<body>
+    <h1 id="heading">Chat test</h1>
+    <textarea id="chat" cols="30" rows="10" oninput="typing()"></textarea>
+    <button onclick="sendMessage()">Send message</button>
+    <p id="typing"></p>
+    <p id="messages"></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let username = prompt('Enter your username');
+        var socket = io();
+        socket.on('connect', function() {
+            socket.emit('new-user', username);
+        });
+        // socket.on('info', function(data) {
+        //     alert('Info: ' + data + "\n");
+        // });
+        socket.on("stat" , function(data){
+            document.getElementById("heading").innerText = `Chat test (${data} users online)`;
+        });
+        socket.on('message', function(data) {
+            data = JSON.parse(data);
+            document.getElementById("messages").innerText+=(`${data[0]}: ${data[1]}\n`);
+        });
+        socket.on('typing', function(data) {
+            if(data == username) return;
+            document.getElementById("typing").innerText=(`${data} is typing...\n`);
+            setTimeout(function(){
+                document.getElementById("typing").innerText = '';
+            }, 500);
+        })
+        socket.on('disconnect', function() {
+            console.log('Disconnected');
+        });
+        function sendMessage(){
+            var message = [username , document.getElementById('chat').value];
+            document.getElementById('chat').value = '';
+            socket.emit('new-message', JSON.stringify(message));
+        }
+        function typing(){
+            socket.emit('typing', username);
+        }
+    </script>
+</body>
+</html>
