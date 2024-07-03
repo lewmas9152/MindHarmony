@@ -3,6 +3,7 @@ $font-josefin : 'Josefin Sans', sans-serif;
 $font-island : 'Island Moments', cursive;
 $font-ropa : 'Ropa Sans', sans-serif;
 $font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
 @import "colors";
 
 .container {
@@ -21,7 +22,52 @@ $font-jost : 'Jost', sans-serif;
   .image-container {
     width: 100%;
     height: auto;
-  }
+  }.top{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    .logo-cont{
+        display: flex;
+        flex-direction: row;
+        margin-top: 70px;
+.logo-name{
+    h3{
+        font-family: $font-playwrite;
+        font-size: 26px;
+        font-weight: 700;
+        color: $color-light-snow;
+        margin-bottom: 20px;
+        margin-top: 40px;
+        text-align: center;
+        position: absolute;
+        z-index: 3;
+        display: flex;
+    }
+}
+    .logo-container{
+       img{
+        width: 100px;
+        height: 100px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          transform: scale(1.1);
+        }
+  
+    }
+    }
+}
+    position: absolute;
+    z-index: 3;
+    display: flex;
+ 
   .navbar{
     position: absolute;
     z-index: 3;
@@ -36,6 +82,10 @@ $font-jost : 'Jost', sans-serif;
         padding: 1rem;
         margin: 0 auto;
         color: $color-light-snow;
+        font-family: $font-ropa;
+        font-size: 20px;
+        border: 1px solid $nightowl-accent-light;
+        border-radius: 5px;
       }
       
       .nav div {
@@ -47,6 +97,7 @@ $font-jost : 'Jost', sans-serif;
         color: #f56565;
       }
   }
+}
  
   
   .header {

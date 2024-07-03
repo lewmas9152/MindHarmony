@@ -2,6 +2,7 @@ import Link from "next/link";
 import "./sass/Main.scss";
 import Image from "next/image";
 import HeroImage from "./images/2.jpg";
+import logocon from "./images/fluent--brain-circuit-20-filled.svg";
 
 export default function Home() {
   return (
@@ -15,6 +16,22 @@ export default function Home() {
             className="w-full"
           />
         </div>
+        <div className="top">
+          <div className="logo-cont">
+        <div className="logo-container rounded-2xl">
+            <Image
+              src={logocon}
+              alt="Logo"
+              width={200}
+              quality={100}
+              className="object-contain"
+            />
+           
+          </div>
+          <div className="logo-name">
+          <h3>MindHarmony</h3>
+          </div>
+          </div>
         <div className="navbar">
           <nav className=" nav flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-4">
             <Link href="/">
@@ -48,6 +65,7 @@ export default function Home() {
               </div>
             </Link>
           </nav>
+        </div>
         </div>
       </div>
       <div className="header w-full py-8 px-4 sm:px-24">
