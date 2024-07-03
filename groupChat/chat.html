@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat test</title>
+</head>
+<body>
+    <h1>Chat test</h1>
+    <textarea id="chat" cols="30" rows="10"></textarea>
+    <button onclick="sendMessage()">Send message</button>
+    <p id="messages"></p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let username = prompt('Enter your username');
+        var socket = io();
+        socket.on('connect', function() {
+            socket.emit('new-user', username);
+        });
+        socket.on('info', function(data) {
+            document.getElementById("messages").innerText+=('Info: ' + data + "\n");
+        });
+        socket.on('message', function(data) {
+            data = JSON.parse(data);
+            document.getElementById("messages").innerText+=(`${data[0]}: ${data[1]}\n`);
+        });
+        socket.on('disconnect', function() {
+            console.log('Disconnected');
+        });
+        function sendMessage(){
+            var message = [username , document.getElementById('chat').value];
+            socket.emit('new-message', JSON.stringify(message));
+        }
+    </script>
+</body>
+</html>
