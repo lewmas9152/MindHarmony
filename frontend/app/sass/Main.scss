@@ -1,18 +1,35 @@
-.intro-section{
-    background-color: red;
-    padding: 100px 0;
-    text-align: center;
-    width: 100%;
-    h1{
-        font-size: 40px;
-        font-weight: 700;
-        margin-bottom: 20px;
+.container{
+    display: flex;
+    .image-container{
+        width: 100%;
+        position: absolute;
+        z-index: 0;
     }
-    p{
-        font-size: 18px;
-        color: #6c757d;
+    .navbar{
+        width: 100%;
+        position: absolute;
+        z-index: 1;
     }
-    .btn{
-        margin-top: 20px;
+    .header{
+        width: 100%;
+        position: absolute;
+        z-index: 2;
+        top: 30%;
+        right: 20%;
+        h1{
+            font-size: 40px;
+            color: #fff;
+            width: 300px;
+            margin: 20px 0 auto;
+            text-align: left;
+        }
+        h2{
+            font-size: 20px;
+            color: #fff;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
     }
 }
