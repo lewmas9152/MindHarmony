@@ -3,6 +3,7 @@ $font-josefin : 'Josefin Sans', sans-serif;
 $font-island : 'Island Moments', cursive;
 $font-ropa : 'Ropa Sans', sans-serif;
 $font-jost : 'Jost', sans-serif;
+@import "colors";
 
 .container {
     display: flex;
@@ -27,13 +28,14 @@ $font-jost : 'Jost', sans-serif;
     display: flex;
     justify-content: flex-end;
     margin-left: 50%;
+    margin-top: 100px !important;
     .nav {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #38a169;
         padding: 1rem;
         margin: 0 auto;
+        color: $color-light-snow;
       }
       
       .nav div {

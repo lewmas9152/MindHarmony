@@ -16,35 +16,35 @@ export default function Home() {
           />
         </div>
         <div className="navbar">
-          <nav className="bg-green-400 nav flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-4">
+          <nav className=" nav flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-4">
             <Link href="/">
-              <div className="text-gray-800 hover:text-red-500 cursor-pointer">
+              <div className=" hover:text-red-500 cursor-pointer">
                 Home
               </div>
             </Link>
             <Link href="/about">
-              <div className="text-gray-800 hover:text-gray-900 cursor-pointer">
+              <div className=" hover:text-gray-900 cursor-pointer">
                 About
               </div>
             </Link>
             <Link href="/services">
-              <div className="text-gray-800 hover:text-gray-900 cursor-pointer">
+              <div className=" hover:text-gray-900 cursor-pointer">
                 Services
               </div>
             </Link>
             <Link href="/contact">
-              <div className="text-gray-800 hover:text-gray-900 cursor-pointer">
+              <div className=" hover:text-gray-900 cursor-pointer">
                 Contact
               </div>
             </Link>
             <Link href="/login">
-              <div className="text-gray-800 hover:text-gray-900 cursor-pointer">
+              <div className=" hover:text-gray-900 cursor-pointer">
                 Login
               </div>
             </Link>
-            <Link href="/register">
-              <div className="text-gray-800 hover:text-gray-900 cursor-pointer">
-                Register
+            <Link href="/signup">
+              <div className=" hover:text-gray-900 cursor-pointer">
+                Signup
               </div>
             </Link>
           </nav>
