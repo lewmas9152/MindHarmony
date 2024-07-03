@@ -1,41 +1,68 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import *
-
+from django.views.decorators.http import require_POST
+from .models import Chatbot
+import json
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+import openai
+import httpx
 
 load_dotenv()
 
+class GenerateResponse:
+    """
+    Class to generate a response using OpenAI's GPT model.
+    """
+
+    def __init__(self, inputs: str, context: str) -> None:
+        self._context = context
+        self._inputs = inputs
+    
+    async def gpt(self) -> str:
+        api_key = os.getenv("OPENAI_API_KEY")
+
+        headers = {
+            'Authorization': f'Bearer {api_key}',
+            'Content-Type': 'application/json',
+        }
+
+        data = {
+            "model": "gpt-3.5-turbo",
+            "messages": [
+                {"role": "system", "content": f'You are a helpful mental health assistant. Provide {self._context}'},
+                {"role": "user", "content": self._inputs}
+            ],
+            "max_tokens": 150
+        }
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post("https://api.openai.com/v1/chat/completions", headers=headers, json=data)
+            response.raise_for_status()
+            result = response.json()
+            return result['choices'][0]['message']['content'].strip()
+    
 
 @csrf_exempt
-def gpt_response(request):
-    userinput = request.get('userinput')
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("API key not found.")
-
-    client = OpenAI(api_key=api_key)
-
-    class GenerateResponse:
-        """
-        Class to generate a response using OpenAI's GPT model.
-        """
-
-        def __init__(self, userinput) -> None:
-            self._userInput = userinput
+@require_POST
+async def gpt_response(request):
+    try:
+        body = json.loads(request.body)
+        userinput = body.get('input')
         
-        def gpt(self):
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a helpful mental health assistant."},
-                    {"role": "user", "content": self._userInput}
-                ],
-                max_tokens=150
-            )
-            return response.choices[0].message.content.strip()
-    
-    print(userinput)
+        if not userinput:
+            return JsonResponse({"error": "input not provided"}, status=400)
 
+        context = 'short response to the user to continue with the conversation'
+        
+        generate_response = GenerateResponse(userinput, context)
+        gpt_output = await generate_response.gpt()
+
+        return JsonResponse({"response": gpt_output})
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    except httpx.HTTPStatusError as e:
+        return JsonResponse({"error": str(e)}, status=e.response.status_code)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
