@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeRegistry from "./component/Themeregistry";
+import ThemeRegistry from "./component/ThemeRegistry";
 
 export const metadata: Metadata = {
   title: "Next App MUI",
