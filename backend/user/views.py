@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .views import UserProfile
+from .models import UserProfile
 from django.http import HttpResponse
 
 def profile(request):
