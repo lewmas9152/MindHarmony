@@ -52,10 +52,10 @@ export default function Home() {
       </div>
       <div className="header w-full py-8 px-4 sm:px-24">
         <h1 className="text-4xl font-bold text-center text-gray-900">
-          Mental Health Web App
+          MindHarmony - Mental health 
         </h1>
         <div className="max-w-3xl mx-auto mt-4 text-center">
-          <h2>Your pathway to mental wellness with MindHarmony.</h2>
+          <h2>Embark on a journey to mental well-being with MindHarmony</h2>
         </div>
       </div>
 

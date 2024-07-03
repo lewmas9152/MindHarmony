@@ -1,12 +1,5 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Island+Moments&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Ropa+Sans:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-body {
-    @apply bg-gray-100 text-gray-800;
-  }
-  
-  .custom-button {
-    @apply px-4 py-2 bg-green-500 text-white rounded;
-  }
-  

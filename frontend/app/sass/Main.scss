@@ -1,3 +1,9 @@
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+
 .container {
     display: flex;
     flex-direction: column;
@@ -20,12 +26,14 @@
     z-index: 3;
     display: flex;
     justify-content: flex-end;
+    margin-left: 50%;
     .nav {
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: #38a169;
         padding: 1rem;
+        margin: 0 auto;
       }
       
       .nav div {
@@ -43,6 +51,28 @@
     position: absolute;
     z-index: 1;
     color: #ffffff;
+    top: 50%;
+    padding: 20px;
+    text-align: left;
+    right: 40%;
+    background-color: rgba( 0, 0, 0, 0.5);
+    width: 700px;
+    h1{
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+        padding: 0;
+        font-family: $font-rubik;
+        text-align: left;
+    }
+    h2{
+        font-size: 3rem;
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+        font-family: $font-rubik;
+        text-align: left;
+    }
 
   }
   
