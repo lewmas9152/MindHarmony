@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
         let user = users.find(user => user.id === socket.id);
         users = users.filter(user => user.id !== socket.id);
         io.emit('info', `${user.uname} disconnected`);
+        io.emit("stat" , users.length)
         console.log(`${user.uname} disconnected`);
     });
     socket.on("new-user", (user) => {
@@ -31,6 +32,7 @@ io.on('connection', (socket) => {
         console.log(`${user} joined the chat`);
         let newUser = new User(socket.id, user);
         users.push(newUser);
+        io.emit("stat" , users.length)
     })
     socket.on('new-message', (message) => {
         io.emit('message', message);

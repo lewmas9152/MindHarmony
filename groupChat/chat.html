@@ -6,7 +6,7 @@
     <title>Chat test</title>
 </head>
 <body>
-    <h1>Chat test</h1>
+    <h1 id="heading">Chat test</h1>
     <textarea id="chat" cols="30" rows="10"></textarea>
     <button onclick="sendMessage()">Send message</button>
     <p id="messages"></p>
@@ -19,6 +19,9 @@
         });
         socket.on('info', function(data) {
             alert('Info: ' + data + "\n");
+        });
+        socket.on("stat" , function(data){
+            document.getElementById("heading").innerText = `Chat test (${data} users online)`;
         });
         socket.on('message', function(data) {
             data = JSON.parse(data);
