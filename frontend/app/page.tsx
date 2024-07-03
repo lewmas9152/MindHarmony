@@ -32,6 +32,7 @@ export default function Home() {
           <div className="logo-name">
              <h3>MindHarmony</h3>
           </div>
+
           </div>
         <div className="navbar">
           <nav className=" nav flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-4">
@@ -76,6 +77,15 @@ export default function Home() {
         <div className="max-w-3xl mx-auto mt-4 text-center">
           <h2>Embark on a journey to mental well-being with MindHarmony</h2>
         </div>
+        <div className="rectangle bg-noctis-fg h-5 relative top-80 rounded-5 w-500 shadow-lg animate-slide">
+</div>
+<div className="button-container">
+  <button className="mt-6 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-transform duration-300">
+    Learn More
+  </button>
+</div>
+
+
       </div>
 
       <section className="services-section py-12">
