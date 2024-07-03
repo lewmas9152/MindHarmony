@@ -13,7 +13,8 @@ export default function Home() {
             src={HeroImage}
             alt="HeroImage"
             layout="responsive"
-            className="w-full"
+            className="w-full zooming-image"
+
           />
         </div>
         <div className="top">
@@ -29,7 +30,7 @@ export default function Home() {
            
           </div>
           <div className="logo-name">
-          <h3>MindHarmony</h3>
+             <h3>MindHarmony</h3>
           </div>
           </div>
         <div className="navbar">
