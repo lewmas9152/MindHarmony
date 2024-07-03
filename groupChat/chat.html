@@ -29,6 +29,7 @@
         });
         function sendMessage(){
             var message = [username , document.getElementById('chat').value];
+            document.getElementById('chat').value = '';
             socket.emit('new-message', JSON.stringify(message));
         }
     </script>

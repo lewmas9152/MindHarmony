@@ -12,15 +12,25 @@ dotenv.config();
 app.all('/', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
 });
-
+let users = [];
+class User{
+    constructor(id, uname){
+        this.id = id;
+        this.uname = uname;
+    }
+}
 io.on('connection', (socket) => {
     socket.on('disconnect', () => {
-        io.emit('info', 'User disconnected');
-        console.log('User disconnected');
+        let user = users.find(user => user.id === socket.id);
+        users = users.filter(user => user.id !== socket.id);
+        io.emit('info', `${user.uname} disconnected`);
+        console.log(`${user.uname} disconnected`);
     });
     socket.on("new-user", (user) => {
-        io.emit("info", `User ${user} joined the chat`);
-        console.log(`User ${user} joined the chat`);
+        io.emit("info", `${user} joined the chat`);
+        console.log(`${user} joined the chat`);
+        let newUser = new User(socket.id, user);
+        users.push(newUser);
     })
     socket.on('new-message', (message) => {
         io.emit('message', message);
