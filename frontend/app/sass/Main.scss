@@ -22,7 +22,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   }
   
   .image-container {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
   }.top{
     display: flex;
@@ -75,7 +75,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     z-index: 3;
     display: flex;
     justify-content: flex-end;
-    margin-left: 50%;
+    margin-left: 80%;
     margin-top: 100px !important;
     .nav {
         display: flex;

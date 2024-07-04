@@ -8,11 +8,14 @@ export default function Home() {
   return (
     <main className="container">
       <div className="intro-section">
-        <div className="image-container">
+        <div className="image-container flex flex-col items-center bg-red-500 justify-center min-h-screen">
           <Image
             src={HeroImage}
             alt="HeroImage"
             layout="responsive"
+            quality={100}
+            width={1920}
+            height={1080}
             className="w-full zooming-image"
 
           />
@@ -34,8 +37,8 @@ export default function Home() {
           </div>
 
           </div>
-        <div className="navbar">
-          <nav className=" nav flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-4">
+        <div className="ml-11 flex justify-end navbar">
+          <nav className="flex justify-end nav flex flex-col sm:flex-row sm:space-x-4 sm:space-y-0 space-y-4">
             <Link href="/">
               <div className=" hover:text-red-500 cursor-pointer">
                 Home
