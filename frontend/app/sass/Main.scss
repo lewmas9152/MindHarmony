@@ -246,9 +246,13 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       transform: translateX(100%);
     }
   }
+  .service-section{
+    width: 100%;
+      height: 90vh;
+      background-color: darkgrey;
+
     .services-section {
-      width: 100%;
-      height: 80vh;
+      
       .cards{
         display: flex;
         flex-direction:column;
@@ -280,9 +284,31 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
           }
       }
     }
+      }
     .about-section{
-      background-color: $noctis-fg-light;
+      background-color:$noctis-accent-light;
       width: 100%;
+      .about-intro{
+        border: 2px solid rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        width: 90%;
+        height: 270px;
+        .about-image{
+       
+          img{
+            width: 51%;
+            height: 100%;
+            margin-left: -260px;
+            display: flex;
+            justify-content: flex-start;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              transform: scale(1.01);
+            }
+          }
+        }
+      }
     }
     .contact-section{
       width: 100%;
@@ -290,4 +316,22 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     .footer{
       width: 100%;
       background-color: $color-celestial-night;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+ 
+    .unique {
+      animation: bounce 2s infinite;
+      animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-origin: center;
+      width: 485px;
     }

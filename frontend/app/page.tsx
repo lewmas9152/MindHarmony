@@ -261,12 +261,13 @@ export default function Home() {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <h2 className="mb-8 text-3xl font-bold text-center">About Us</h2>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="flex items-center justify-center">
+          <div className="grid grid-cols-1 gap-8 about-intro md:grid-cols-2">
+            <div className="flex items-center justify-center about-image">
               <Image
                 src={about}
                 alt="About Us"
                 width={200}
+                height={280}
                 quality={100}
                 className="object-contain"
               />
@@ -277,11 +278,12 @@ export default function Home() {
                 care and compassion. Our mission is to promote mental wellness,
                 empower individuals, and support personal growth.
               </p>
-              <p className="mt-4">
+              <p className="p-5 mt-4 bg-blue-300  unique rounded-xl">
                 Welcome to a place where your well-being is our priority.
               </p>
             </div>
           </div>
+     
 
           <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-3">
             <div className="p-6 bg-gray-100 rounded-lg shadow-md">
@@ -469,7 +471,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-8 footer">
+      <footer className="py-8 bg-slate-600 footer">
         <div className="max-w-6xl mx-auto text-center">
           <p>© 2023 MindHarmony. All rights reserved.</p>
         </div>
