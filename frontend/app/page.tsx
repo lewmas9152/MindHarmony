@@ -54,7 +54,7 @@ export default function Home() {
                 Services
               </div>
             </Link>
-            <Link href="/contact">
+            <Link href="#contact">
               <div className=" hover:text-gray-900 cursor-pointer">
                 Contact
               </div>
@@ -91,25 +91,77 @@ export default function Home() {
 
       </div>
 
-      <section className="services-section py-12">
-        <h2 className="text-3xl font-bold text-center mb-8">Core Services</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold">Therapy Sessions</h3>
-            <p className="mt-2">
-              Odio cras proin proin sit quis fringilla aliquet. Consectetur
-              elementum viverra egestas egestas nulla ullamcorper varius quam.
-            </p>
-          </div>
-          <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
-            <h3 className="text-xl font-bold">Psychiatric Consultations</h3>
-            <p className="mt-2">
-              Odio cras proin proin sit quis fringilla aliquet. Consectetur
-              elementum viverra egestas egestas nulla ullamcorper varius quam.
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className=" services-section py-12">
+  <h2 className="text-3xl font-bold text-center mb-8">Core Services</h2>
+  <div className="services-section">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-screen-2xl mx-auto">
+    {/* Service Card 1 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Mental Health Appointments with Professionals</h3>
+      <p className="mt-2">
+        At MindHarmony, we provide personalized appointments with mental health professionals to address your specific needs and challenges.
+      </p>
+    </div>
+
+    {/* Service Card 2 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Assessment to Gauge Mental Health Capacity</h3>
+      <p className="mt-2">
+        Our assessments are designed to evaluate your mental health capacity, providing insights and recommendations for your well-being.
+      </p>
+    </div>
+
+    {/* Service Card 3 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Crisis Intervention</h3>
+      <p className="mt-2">
+        Our crisis intervention services offer immediate support and guidance during challenging mental health situations.
+      </p>
+    </div>
+
+    {/* Service Card 4 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Therapy Sessions</h3>
+      <p className="mt-2">
+        We offer both individual and group therapy sessions to help you navigate and manage your mental health challenges effectively.
+      </p>
+    </div>
+
+    {/* Service Card 5 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Wellness Workshops</h3>
+      <p className="mt-2">
+        Join our wellness workshops to learn practical skills and strategies for enhancing your mental well-being and resilience.
+      </p>
+    </div>
+
+    {/* Service Card 6 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Support Groups</h3>
+      <p className="mt-2">
+        Connect with others facing similar challenges through our supportive group sessions, fostering empathy and community.
+      </p>
+    </div>
+
+    {/* Service Card 7 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Online Counseling</h3>
+      <p className="mt-2">
+        Access our professional counseling services online, ensuring convenient and confidential support wherever you are.
+      </p>
+    </div>
+
+    {/* Service Card 8 */}
+    <div className="service-card p-6 bg-gray-100 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold">Mindfulness Training</h3>
+      <p className="mt-2">
+        Learn mindfulness techniques that promote relaxation, stress reduction, and overall mental well-being in our specialized training programs.
+      </p>
+    </div>
+  </div>
+  </div>
+</section>
+
 
       <section className="about-us-section py-12 bg-gray-50">
         <h2 className="text-3xl font-bold text-center mb-8">About Us</h2>

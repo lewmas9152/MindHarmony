@@ -10,6 +10,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
       
   .intro-section {
     width: 100%;
@@ -219,3 +220,46 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       transform: translateX(100%);
     }
   }
+    // .services-section{
+    //   display: grid;
+    //   grid-template-columns: repeat(auto, 1fr);
+    //   margin-left:10% ;  
+    //   column-gap: 50px;
+
+    //   .service-card{
+    //     width: 500px;
+    //     background-color: #f56565;
+    //     height: 300px;
+        
+    //   }
+    
+    // }
+    .services-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusts columns dynamically */
+      gap: 60px; /* Gap between grid items */
+      margin-left: 10%; /* Left margin */
+      margin-right: 10%; /* Right margin */
+    }
+    
+    /* Example styling for service cards */
+    .service-card {
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 500px;
+    }
+    
+    /* Example styling for headings */
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    /* Example styling for paragraphs */
+    .service-card p {
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    
