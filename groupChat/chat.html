@@ -14,7 +14,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let username = prompt('Enter your username');
-        var socket = io();
+        var socket = io("https://mindharmony-sdm1.onrender.com");
         socket.on('connect', function() {
             socket.emit('new-user', username);
         });
