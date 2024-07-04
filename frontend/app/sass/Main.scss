@@ -247,6 +247,8 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     }
   }
     .services-section {
+      width: 100%;
+      height: 80vh;
       .cards{
         display: flex;
         flex-direction:column;
@@ -279,6 +281,13 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       }
     }
     .about-section{
-      background-color: $nightowl-bg-dark;
+      background-color: $noctis-fg-light;
       width: 100%;
+    }
+    .contact-section{
+      width: 100%;
+    }
+    .footer{
+      width: 100%;
+      background-color: $color-celestial-night;
     }
