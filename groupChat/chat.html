@@ -7,14 +7,14 @@
 </head>
 <body>
     <h1 id="heading">Chat test</h1>
+    <p id="typing">Online</p>
     <textarea id="chat" cols="30" rows="10" oninput="typing()"></textarea>
     <button onclick="sendMessage()">Send message</button>
-    <p id="typing"></p>
     <p id="messages"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let username = prompt('Enter your username');
-        var socket = io();
+        var socket = io("https://mindharmony-sdm1.onrender.com");
         socket.on('connect', function() {
             socket.emit('new-user', username);
         });
@@ -32,7 +32,7 @@
             if(data == username) return;
             document.getElementById("typing").innerText=(`${data} is typing...\n`);
             setTimeout(function(){
-                document.getElementById("typing").innerText = '';
+                document.getElementById("typing").innerText = 'Online';
             }, 500);
         })
         socket.on('disconnect', function() {
