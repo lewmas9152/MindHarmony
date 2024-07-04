@@ -386,7 +386,7 @@ export default function Home() {
 
     <footer className="bg-slate-950 footer">
       <div className="container">
-        <p>© 2023 MindHarmony. All rights reserved.</p>
+        <p>©Copyright 2023 MindHarmony. All rights reserved.</p>
       </div>
     </footer>
     </main>
