@@ -5,6 +5,34 @@ $font-ropa : 'Ropa Sans', sans-serif;
 $font-jost : 'Jost', sans-serif;
 $font-playwrite : 'Playwrite IT Moderna', sans-serif;
 @import "colors";
+@mixin card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 500px;
+  border-left: 2px solid $nightowl-info;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  @media (min-width: 640px) {
+    padding: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 2.5rem;
+  }
+}
+
+
+@mixin rows{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .container {
     display: flex;
@@ -76,7 +104,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     z-index: 3;
     display: flex;
     justify-content: flex-end;
-    margin-left: 80%;
+    margin-left: 55%;
     margin-top: 100px !important;
     .nav {
         display: flex;
@@ -166,26 +194,6 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
 
   }
   
-  .services-section,
-  .about-us-section,
-  .mission-section,
-  .conditions-section {
-    background-color: #ffffff;
-  }
-  
-  .service-card,
-  .mission-card,
-  .condition-card {
-    border: 1px solid #cbd5e0;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .service-card:hover,
-  .mission-card:hover,
-  .condition-card:hover {
-    transform: translateY(-10px);
-  }
-  
   .footer {
     background-color: #e2e8f0;
   }
@@ -220,46 +228,18 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       transform: translateX(100%);
     }
   }
-    // .services-section{
-    //   display: grid;
-    //   grid-template-columns: repeat(auto, 1fr);
-    //   margin-left:10% ;  
-    //   column-gap: 50px;
-
-    //   .service-card{
-    //     width: 500px;
-    //     background-color: #f56565;
-    //     height: 300px;
-        
-    //   }
-    
-    // }
     .services-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusts columns dynamically */
-      gap: 60px; /* Gap between grid items */
-      margin-left: 10%; /* Left margin */
-      margin-right: 10%; /* Right margin */
+      .cards{
+        display: flex;
+        flex-direction:column;
+        .row-1{
+          @include rows;
+        }
+        .row-2{
+          @include rows;
+        }
+        .service-card{
+          @include card;
+        }
+      }
     }
-    
-    /* Example styling for service cards */
-    .service-card {
-      padding: 20px;
-      background-color: #f0f0f0;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 500px;
-    }
-    
-    /* Example styling for headings */
-    .service-card h3 {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    
-    /* Example styling for paragraphs */
-    .service-card p {
-      margin-top: 10px;
-      line-height: 1.5;
-    }
-    
