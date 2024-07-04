@@ -11,6 +11,7 @@ import WellnessIcon from "./images/hugeicons--wellness.svg";
 import SupportIcon from "./images/mingcute--group-3-fill.svg";
 import CounselingIcon from "./images/material-symbols--globe-asia-sharp.svg";
 import MindfulnessIcon from "./images/material-symbols--mindfulness-rounded.svg";
+import about from "./images/Image-3.png";
 
 
 
@@ -196,7 +197,7 @@ export default function Home() {
             <Image
             src={SupportIcon}
             alt="Support Icon"
-            width={40}
+            width={60}
             quality={100}
             className="object-contain"
             />
@@ -250,85 +251,67 @@ export default function Home() {
     </div>
   </div>
 </section>
+<section className="py-12 about-section bg-gray-50">
+  <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <h2 className="mb-8 text-3xl font-bold text-center">Welcome to MindHarmony</h2>
 
-      <section className="py-12 about-us-section bg-gray-50">
-        <h2 className="mb-8 text-3xl font-bold text-center">About Us</h2>
-        <div className="max-w-4xl mx-auto">
-          <p className="text-center">Transforming Lives Through Care</p>
-          <p className="mt-4 text-center">
-            Welcome Message from Our CEO Vulputate bibendum erat morbi interdum
-            diam sit. Eu sit dolor vel sodales sed nibh ut. Ac fringilla fames
-            eget a aliquet. Gravida placerat viverra purus sed ac ultricies sem
-            nulla.
-          </p>
-          <p className="mt-4 font-bold text-center">Joseph Doolenan</p>
-          <p className="text-center">CEO, MindHarmony</p>
-        </div>
-      </section>
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div className="flex items-center justify-center">
+       <Image
+       src={about}
+       alt="About Us"
+       width={200}
+       quality={100}
+       className="object-contain"
+       />
+      </div>
+      <div className="flex flex-col justify-center">
+        <p className="text-lg">
+          At MindHarmony, we are dedicated to transforming lives through care
+          and compassion. Our mission is to promote mental wellness, empower
+          individuals, and support personal growth.
+        </p>
+        <p className="mt-4">
+          Welcome to a place where your well-being is our priority.
+        </p>
+      </div>
+    </div>
 
-      <section className="py-12 mission-section">
-        <h2 className="mb-8 text-3xl font-bold text-center">Our Mission</h2>
-        <div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto sm:grid-cols-3">
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md mission-card">
-            <h3 className="text-xl font-bold">Promoting Mental Wellness</h3>
-            <p className="mt-2">
-              Vulputate bibendum erat morbi interdum diam sit. Eu sit dolor vel
-              sodales sed nibh ut. Ac fringilla fames eget a aliquet. Gravida
-              placerat viverra purus sed ac ultricies sem nulla.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md mission-card">
-            <h3 className="text-xl font-bold">Empowering Individuals</h3>
-            <p className="mt-2">
-              Vulputate bibendum erat morbi interdum diam sit. Eu sit dolor vel
-              sodales sed nibh ut. Ac fringilla fames eget a aliquet. Gravida
-              placerat viverra purus sed ac ultricies sem nulla.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md mission-card">
-            <h3 className="text-xl font-bold">Supporting Personal Growth</h3>
-            <p className="mt-2">
-              Vulputate bibendum erat morbi interdum diam sit. Eu sit dolor vel
-              sodales sed nibh ut. Ac fringilla fames eget a aliquet. Gravida
-              placerat viverra purus sed ac ultricies sem nulla.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-3">
+      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <h3 className="text-xl font-bold">Empowering Mental Wellness</h3>
+        <p className="mt-2">
+          At MindHarmony, we strive to empower mental wellness by providing
+          personalized care and support tailored to your unique needs.
+        </p>
+      </div>
+      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <h3 className="text-xl font-bold">Nurturing Personal Growth</h3>
+        <p className="mt-2">
+          We nurture personal growth through compassionate guidance and
+          evidence-based practices that enhance your mental well-being.
+        </p>
+      </div>
+      <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <h3 className="text-xl font-bold">Caring for Mental Health</h3>
+        <p className="mt-2">
+          Our dedicated team is committed to caring for your mental health,
+          offering support and resources to help you thrive in life.
+        </p>
+      </div>
+    </div>
 
-      <section className="py-12 conditions-section bg-gray-50">
-        <h2 className="mb-8 text-3xl font-bold text-center">
-          Conditions We Treat
-        </h2>
-        <div className="grid max-w-4xl grid-cols-1 gap-6 mx-auto sm:grid-cols-3">
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md condition-card">
-            <h3 className="text-xl font-bold">Anxiety Disorders</h3>
-            <p className="mt-2">
-              Vulputate bibendum erat morbi interdum diam sit. Eu sit dolor vel
-              sodales sed nibh ut. Ac fringilla fames eget a aliquet. Gravida
-              placerat viverra purus sed ac ultricies sem nulla.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md condition-card">
-            <h3 className="text-xl font-bold">
-              Post-Traumatic Stress Disorder
-            </h3>
-            <p className="mt-2">
-              Vulputate bibendum erat morbi interdum diam sit. Eu sit dolor vel
-              sodales sed nibh ut. Ac fringilla fames eget a aliquet. Gravida
-              placerat viverra purus sed ac ultricies sem nulla.
-            </p>
-          </div>
-          <div className="p-6 bg-gray-100 rounded-lg shadow-md condition-card">
-            <h3 className="text-xl font-bold">Eating Disorders</h3>
-            <p className="mt-2">
-              Vulputate bibendum erat morbi interdum diam sit. Eu sit dolor vel
-              sodales sed nibh ut. Ac fringilla fames eget a aliquet. Gravida
-              placerat viverra purus sed ac ultricies sem nulla.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="mt-12 text-center">
+      <h2 className="mb-8 text-3xl font-bold">Our Commitment</h2>
+      <p className="text-lg">
+        At MindHarmony, we are committed to creating a safe and supportive
+        environment where you can find healing and hope. Together, we can
+        achieve mental wellness and resilience.
+      </p>
+    </div>
+  </div>
+</section>
+
 
       <footer className="py-8 bg-gray-200 footer">
         <div className="max-w-6xl mx-auto text-center">

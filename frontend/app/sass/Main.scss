@@ -259,6 +259,26 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
         }
         .service-card{
           @include card;
+          .content-div{
+            h3{
+              font-family: $font-rubik;
+              font-size:25px;
+              font-weight: 700;
+              color: $color-dark-graphite;              
+
+            }
+            p{
+              font-family: $font-jost;
+              font-size: 16px;
+              font-weight: 400;
+              color: $color-dark-graphite;
+              text-align: center;
+            }
+          }
           }
       }
+    }
+    .about-section{
+      background-color: $nightowl-bg-dark;
+      width: 100%;
     }
