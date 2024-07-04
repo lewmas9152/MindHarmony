@@ -21,3 +21,4 @@ db.sqlite3
 # Ignore IDE specific files
 .vscode/
 .idea/
+.env
