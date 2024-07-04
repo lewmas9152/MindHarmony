@@ -3,6 +3,16 @@ import "./sass/Main.scss";
 import Image from "next/image";
 import HeroImage from "./images/2.jpg";
 import logocon from "./images/fluent--brain-circuit-20-filled.svg";
+import MentalIcon from "./images/line-md--heart-filled-half.svg";
+import AssessmentIcon from "./images/line-md--clipboard-check-twotone.svg";
+import CrisisIcon from "./images/line-md--alert-square-twotone-loop.svg";
+import TherapyIcon from "./images/ri--psychotherapy-fill.svg";
+import WellnessIcon from "./images/hugeicons--wellness.svg";
+import SupportIcon from "./images/mingcute--group-3-fill.svg";
+import CounselingIcon from "./images/material-symbols--globe-asia-sharp.svg";
+import MindfulnessIcon from "./images/material-symbols--mindfulness-rounded.svg";
+
+
 
 export default function Home() {
   return (
@@ -87,7 +97,13 @@ export default function Home() {
       <div className="row-1">
         <div className="service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+            <Image 
+            src={MentalIcon}
+            alt="Mental Health Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">
@@ -95,14 +111,19 @@ export default function Home() {
             </h3>
             <p className="mt-2">
               At MindHarmony, we provide personalized appointments with mental
-              health professionals to address your specific needs and
-              challenges.
+              health professionals.
             </p>
           </div>
         </div>
         <div className="shadow-md service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+            <Image
+            src={AssessmentIcon}
+            alt="Assessment Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">
@@ -110,14 +131,19 @@ export default function Home() {
             </h3>
             <p className="mt-2">
               Our assessments are designed to evaluate your mental health
-              capacity, providing insights and recommendations for your
-              well-being.
+              capacity, providing insights.
             </p>
           </div>
         </div>
         <div className="shadow-md service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+            <Image
+            src={CrisisIcon}
+            alt="Crisis Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">Crisis Intervention</h3>
@@ -129,7 +155,13 @@ export default function Home() {
         </div>
         <div className="bg-gray-100 rounded-lg shadow-md service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+            <Image
+            src={TherapyIcon}
+            alt="Therapy Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">Therapy Sessions</h3>
@@ -143,7 +175,13 @@ export default function Home() {
       <div className="row-2">
         <div className="shadow-md service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+            <Image
+            src={WellnessIcon}
+            alt="Wellness Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">Wellness Workshops</h3>
@@ -155,7 +193,13 @@ export default function Home() {
         </div>
         <div className="shadow-md service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+            <Image
+            src={SupportIcon}
+            alt="Support Icon"
+            width={40}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">Support Groups</h3>
@@ -167,7 +211,13 @@ export default function Home() {
         </div>
         <div className="shadow-md service-card">
           <div className="image-container">
-            {/* Insert your image here */}
+          <Image 
+            src={CounselingIcon}
+            alt="Counseling Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">Online Counseling</h3>
@@ -178,8 +228,14 @@ export default function Home() {
           </div>
         </div>
         <div className="shadow-md service-card">
-          <div className="image-container">
-            {/* Insert your image here */}
+          <div className="image-container ">
+            <Image
+            src={MindfulnessIcon}
+            alt="Mindfulness Icon"
+            width={60}
+            quality={100}
+            className="object-contain"
+            />
           </div>
           <div className="content-div">
             <h3 className="text-xl font-bold">Mindfulness Training</h3>

@@ -11,10 +11,22 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   padding: 1rem;
   background-color: $color-light-pastel;
   border-radius: 8px;
-  width: 300px;
+  width: 370px;
   max-height: 300px;
   border-left: 6px solid $nightowl-info;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  
+  &:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    background-color:$color-slate-light;
+    border-left: none !important;
+    border-right: 6px solid $noctis-accent;
+    transform: translateY(-1px);
+
+  }
   @media (min-width: 640px) {
     padding: 1.5rem;
   }
@@ -247,6 +259,6 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
         }
         .service-card{
           @include card;
-        }
+          }
       }
     }
