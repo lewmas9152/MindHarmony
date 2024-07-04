@@ -278,7 +278,7 @@ export default function Home() {
                 care and compassion. Our mission is to promote mental wellness,
                 empower individuals, and support personal growth.
               </p>
-              <p className="p-5 mt-4 bg-blue-300  unique rounded-xl">
+              <p className="p-5 mt-4 bg-blue-300 unique rounded-xl">
                 Welcome to a place where your well-being is our priority.
               </p>
             </div>
@@ -322,160 +322,73 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gray-100 contact-section" id="contact">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-3xl font-bold text-center">Contact Us</h2>
-          <form className="grid grid-cols-1 gap-y-6 sm:grid-cols-2">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                required
-                aria-describedby="email-helper-text"
-              />
-              <div id="email-helper-text" className="text-sm text-gray-500">
-                We will never share your email address with anyone else.
-              </div>
-            </div>
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                className="block w-full h-32 px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                rows="4"
-                required
-              ></textarea>
-              <div className="text-sm text-gray-500">
-                We'll keep your message confidential and respond promptly
-              </div>
-            </div>
-          </form>
-          <div className="flex flex-col items-center justify-center mt-8 sm:flex-row sm:justify-between">
-            <button
-              type="submit"
-              className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-500 border border-indigo-500 rounded-md shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:w-auto"
-            >
-              Submit
-            </button>
-            <p className="mt-3 text-sm text-gray-500 sm:mt-0">
-              or <a href="#contact">reach out directly</a>
-            </p>
+      <section className="contact-section" id="contact">
+      <div className="container">
+        <h2>Contact Us</h2>
+        <form>
+          <div>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+            />
           </div>
-          <div className="flex items-center justify-center mt-8 space-x-4">
-            <a
-              href="https://www.facebook.com/mindharmonycounseling/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={FacebookIcon}
-                alt="Facebook Icon"
-                width={30}
-                quality={100}
-                className="object-contain"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/mindharmonycounseling/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={InstagramIcon}
-                alt="Instagram Icon"
-                width={30}
-                quality={100}
-                className="object-contain"
-              />
-            </a>
-            <a
-              href="https://www.twitter.com/mindharmonycounseling/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={TwitterIcon}
-                alt="Twitter Icon"
-                width={30}
-                quality={100}
-                className="object-contain"
-              />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/mindharmonycounseling/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={LinkedInIcon}
-                alt="LinkedIn Icon"
-                width={30}
-                quality={100}
-                className="object-contain"
-              />
-            </a>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-describedby="email-helper-text"
+            />
           </div>
-          <div className="flex flex-col items-center justify-center mt-4 space-y-4 sm:flex-row sm:justify-center sm:mt-8 sm:space-x-8">
-            <a href="tel:123-456-7890" className="flex items-center space-x-2">
-              <Image
-                src={PhoneIcon}
-                alt="Phone Icon"
-                width={30}
-                quality={100}
-                className="object-contain"
-              />
-              <span>(123) 456-7890</span>
-            </a>
-            <a
-              href="mailto:contact@mindharmony.com"
-              className="flex items-center space-x-2"
-            >
-              <Image
-                src={EmailIcon}
-                alt="Email Icon"
-                width={30}
-                quality={100}
-                className="object-contain"
-              />
-              <span>contact@mindharmony.com</span>
-            </a>
+          <div className="sm:col-span-2">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
           </div>
+        </form>
+        <div className="buttons">
+          <button type="submit">Submit</button>
         </div>
-      </section>
+        <div className="social-icons">
+          <a href="https://www.facebook.com/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
+            <Image src={FacebookIcon} alt="Facebook Icon" quality={100} />
+          </a>
+          <a href="https://www.instagram.com/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
+            <Image src={InstagramIcon} alt="Instagram Icon" quality={100} />
+          </a>
+          <a href="https://www.twitter.com/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
+            <Image src={TwitterIcon} alt="Twitter Icon" quality={100} />
+          </a>
+          <a href="https://www.linkedin.com/company/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
+            <Image src={LinkedInIcon} alt="LinkedIn Icon" quality={100} />
+          </a>
+        </div>
+        <div className="contact-info">
+          <a href="tel:123-456-7890">
+            <Image src={PhoneIcon} alt="Phone Icon" quality={100} />
+            <span>(123) 456-7890</span>
+          </a>
+          <a href="mailto:contact@mindharmony.com">
+            <Image src={EmailIcon} alt="Email Icon" quality={100} />
+            <span>contact@mindharmony.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-      <footer className="py-8 bg-slate-600 footer">
-        <div className="max-w-6xl mx-auto text-center">
-          <p>© 2023 MindHarmony. All rights reserved.</p>
-        </div>
-      </footer>
+    <footer className="bg-slate-950 footer">
+      <div className="container">
+        <p>© 2023 MindHarmony. All rights reserved.</p>
+      </div>
+    </footer>
     </main>
   );
 }
