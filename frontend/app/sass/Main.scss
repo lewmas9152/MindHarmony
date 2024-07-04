@@ -9,10 +9,10 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background-color: #fff;
+  background-color: $color-light-pastel;
   border-radius: 8px;
   width: 500px;
-  border-left: 2px solid $nightowl-info;
+  border-left: 6px solid $nightowl-info;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   @media (min-width: 640px) {
     padding: 1.5rem;
@@ -31,7 +31,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
 @mixin rows{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 20px;
 }
 
 .container {
@@ -232,6 +232,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       .cards{
         display: flex;
         flex-direction:column;
+        gap: 20px;
         .row-1{
           @include rows;
         }
