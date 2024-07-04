@@ -1,7 +1,9 @@
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-from .models import Chatbot
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.http import require_POST
+
 import json
 import os
 from dotenv import load_dotenv
@@ -43,26 +45,28 @@ class GenerateResponse:
             return result['choices'][0]['message']['content'].strip()
     
 
-@csrf_exempt
-@require_POST
+# @csrf_exempt
+# @require_POST
+
+@api_view(["GET", "POST"])
 async def gpt_response(request):
     try:
         body = json.loads(request.body)
         userinput = body.get('input')
         
         if not userinput:
-            return JsonResponse({"error": "input not provided"}, status=400)
+            return Response({"error": "input not provided"}, status=400)
 
         context = 'short response to the user to continue with the conversation'
         
         generate_response = GenerateResponse(userinput, context)
         gpt_output = await generate_response.gpt()
 
-        return JsonResponse({"response": gpt_output})
+        return Response({"response": gpt_output})
 
     except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
+        return Response({"error": "Invalid JSON"}, status=400)
     except httpx.HTTPStatusError as e:
-        return JsonResponse({"error": str(e)}, status=e.response.status_code)
+        return Response({"error": str(e)}, status=e.response.status_code)
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+        return Response({"error": str(e)}, status=500)
