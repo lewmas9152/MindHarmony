@@ -21,7 +21,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.all('/', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
 });
 let users = [];
