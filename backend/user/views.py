@@ -7,7 +7,7 @@ from rest_framework import status
 from django.http import Http404
 from .serializers import UserProfileSerializer
 from rest_framework import generics
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 
@@ -47,6 +47,7 @@ class LoginView(APIView):
         else:
             return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 class ProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     def get_object(self,pk):
         try:
             return UserProfile.objects.get(pk=pk)
