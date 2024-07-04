@@ -11,7 +11,8 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   padding: 1rem;
   background-color: $color-light-pastel;
   border-radius: 8px;
-  width: 500px;
+  width: 300px;
+  max-height: 300px;
   border-left: 6px solid $nightowl-info;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   @media (min-width: 640px) {
@@ -32,6 +33,11 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   display: flex;
   flex-direction: row;
   gap: 20px;
+  max-width: 100%;
+  overflow: hidden;
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 }
 
 .container {

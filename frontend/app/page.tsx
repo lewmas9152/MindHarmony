@@ -81,79 +81,119 @@ export default function Home() {
       </div>
 
       <section className="service-section">
-        <h2 className="mb-8 text-3xl font-bold text-center">Core Services</h2>
-        <div className="services-section">
-          <div className="cards max-w-screen-2xl">
-            <div className="row-1">
-            <div className="service-card">
-              <h3 className="text-xl font-bold">
-                Mental Health Appointments with Professionals
-              </h3>
-              <p className="mt-2">
-                At MindHarmony, we provide personalized appointments with mental
-                health professionals to address your specific needs and
-                challenges.
-              </p>
-            </div>
-            <div className="shadow-md service-card">
-              <h3 className="text-xl font-bold">
-                Assessment to Gauge Mental Health Capacity
-              </h3>
-              <p className="mt-2">
-                Our assessments are designed to evaluate your mental health
-                capacity, providing insights and recommendations for your
-                well-being.
-              </p>
-            </div>
-            <div className="shadow-md service-card">
-              <h3 className="text-xl font-bold">Crisis Intervention</h3>
-              <p className="mt-2">
-                Our crisis intervention services offer immediate support and
-                guidance during challenging mental health situations.
-              </p>
-            </div>
-            <div className="bg-gray-100 rounded-lg shadow-md service-card">
-              <h3 className="text-xl font-bold">Therapy Sessions</h3>
-              <p className="mt-2">
-                We offer both individual and group therapy sessions to help you
-                navigate and manage your mental health challenges effectively.
-              </p>
-            </div>
-            </div>
-            <div className="row-2">
-            <div className="shadow-md service-card">
-              <h3 className="text-xl font-bold">Wellness Workshops</h3>
-              <p className="mt-2">
-                Join our wellness workshops to learn practical skills and
-                strategies for enhancing your mental well-being and resilience.
-              </p>
-            </div>
-            <div className="shadow-md service-card">
-              <h3 className="text-xl font-bold">Support Groups</h3>
-              <p className="mt-2">
-                Connect with others facing similar challenges through our
-                supportive group sessions, fostering empathy and community.
-              </p>
-            </div>
-            <div className="shadow-md service-card">
-              <h3 className="text-xl font-bold">Online Counseling</h3>
-              <p className="mt-2">
-                Access our professional counseling services online, ensuring
-                convenient and confidential support wherever you are.
-              </p>
-            </div>
-            <div className="shadow-md service-card">
-              <h3 className="text-xl font-bold">Mindfulness Training</h3>
-              <p className="mt-2">
-                Learn mindfulness techniques that promote relaxation, stress
-                reduction, and overall mental well-being in our specialized
-                training programs.
-              </p>
-            </div>
-            </div>
+  <h2 className="mb-8 text-3xl font-bold text-center">Core Services</h2>
+  <div className="services-section">
+    <div className="cards max-w-screen-2xl">
+      <div className="row-1">
+        <div className="service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">
+              Mental Health Appointments with Professionals
+            </h3>
+            <p className="mt-2">
+              At MindHarmony, we provide personalized appointments with mental
+              health professionals to address your specific needs and
+              challenges.
+            </p>
           </div>
         </div>
-      </section>
+        <div className="shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">
+              Assessment to Gauge Mental Health Capacity
+            </h3>
+            <p className="mt-2">
+              Our assessments are designed to evaluate your mental health
+              capacity, providing insights and recommendations for your
+              well-being.
+            </p>
+          </div>
+        </div>
+        <div className="shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">Crisis Intervention</h3>
+            <p className="mt-2">
+              Our crisis intervention services offer immediate support and
+              guidance during challenging mental health situations.
+            </p>
+          </div>
+        </div>
+        <div className="bg-gray-100 rounded-lg shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">Therapy Sessions</h3>
+            <p className="mt-2">
+              We offer both individual and group therapy sessions to help you
+              navigate and manage your mental health challenges effectively.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="row-2">
+        <div className="shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">Wellness Workshops</h3>
+            <p className="mt-2">
+              Join our wellness workshops to learn practical skills and
+              strategies for enhancing your mental well-being and resilience.
+            </p>
+          </div>
+        </div>
+        <div className="shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">Support Groups</h3>
+            <p className="mt-2">
+              Connect with others facing similar challenges through our
+              supportive group sessions, fostering empathy and community.
+            </p>
+          </div>
+        </div>
+        <div className="shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">Online Counseling</h3>
+            <p className="mt-2">
+              Access our professional counseling services online, ensuring
+              convenient and confidential support wherever you are.
+            </p>
+          </div>
+        </div>
+        <div className="shadow-md service-card">
+          <div className="image-container">
+            {/* Insert your image here */}
+          </div>
+          <div className="content-div">
+            <h3 className="text-xl font-bold">Mindfulness Training</h3>
+            <p className="mt-2">
+              Learn mindfulness techniques that promote relaxation, stress
+              reduction, and overall mental well-being in our specialized
+              training programs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section className="py-12 about-us-section bg-gray-50">
         <h2 className="mb-8 text-3xl font-bold text-center">About Us</h2>
