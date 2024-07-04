@@ -22,7 +22,7 @@ STATUS_CHOICES = (
 
 class Appointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    professional = models.ForeignKey(Professional)
+    professional = models.ForeignKey(Professional, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     appointment_date = models.DateField(default=datetime.now)
     status = models.CharField(
