@@ -9,6 +9,7 @@ from .serializers import UserProfileSerializer
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
 
 
 
@@ -23,9 +24,28 @@ class RegisterView(generics.CreateAPIView):
         user_profile = serializer.save()
         token,created = Token.objects.get_or_create(user=user_profile.user)
         return Response({
-            'user': UserProfileSerializer(user, context=self.get_serializer_context()).data,
+            'user': UserProfileSerializer(user_profile, context=self.get_serializer_context()).data,
             'token': token.key
         }, status=status.HTTP_201_CREATED)
+    
+
+class LoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            token, created = Token.objects.get_or_create(user=user)
+            user_profile = UserProfile.objects.get(user=user)
+            return Response({
+                'token': token.key,
+                'user': UserProfileSerializer(user_profile).data
+            }, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 class ProfileAPIView(APIView):
     def get_object(self,pk):
         try:
