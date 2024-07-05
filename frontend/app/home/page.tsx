@@ -1,11 +1,12 @@
 import React from 'react';
 import Sidenav from '../components/sideNav';
-import "../sass/Home.scss"
+import "../sass/Home.scss";
 import NotificationIcon from "../images/notification.svg";
 import ReminderIcon from "../images/reminder.svg";
 import Image from 'next/image';
 import SearchIcon from "../images/search.svg";
 import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
+import Welcome from "../images/wave.jpg";
 
 const HomePage = () => {
   return (
@@ -71,15 +72,32 @@ const HomePage = () => {
                 <p>JohnDoe@gmail.com</p>
               </div>
             </div>
-
           </div>
           <div className="welcome-message">
-            <h1>Good {
-              new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 18 ? 'Afternoon' : 'Evening'
-            } John! doe
-            </h1>
+            <div className="image-welcome">
+              <Image
+                src={Welcome}
+                alt="Welcome Image"
+                width={1920}
+                height={1080}
+                quality={100}
+                className="object-contain w-full h-full zooming-image"
+              />
+            </div>
+            <div className="message">
+              <h1>Good {
+                new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 18 ? 'Afternoon' : 'Evening'
+              } John Doe!</h1>
+              <p>Welcome to your dashboard. Here, you can manage your appointments, view your notifications, and keep track of your progress.</p>
+            </div>
           </div>
-        
+
+          <div className="stats-container">
+            <div className="stat-box appointments">
+              <h3>Appointments</h3>
+              <p>200</p>
+            </div>
+            </div>
         </div>
       </div>
     </div>

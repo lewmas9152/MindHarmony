@@ -27,6 +27,12 @@ $color-forest-moss: #8a9a5b;
 $color-forest-fir: #4f7942;
 $color-forest-pine: #01796f;
 $color-forest-jungle: #29ab87;
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
 
 .dashboard {
   display: flex;
@@ -99,7 +105,26 @@ $color-forest-jungle: #29ab87;
     }
 
     .welcome-message {
+        display: flex;
+        flex-direction: row;
       padding: 20px;
+      background-color: #fff;
+      .image-welcome{
+        img{
+            width: 200px;
+            height: 200px;
+        }
+      }
+      .message{
+        h1{
+            font-family: $font-jost;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+      }
       h1 {
         font-size: 1.5rem;
       }
