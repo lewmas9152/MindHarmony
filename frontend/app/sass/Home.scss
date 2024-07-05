@@ -37,5 +37,72 @@ $color-forest-jungle: #29ab87;
     .content-container{
         width: 80%;
         background-color: azure;
+        .header{
+            display: flex;
+            flex-direction: row;
+            gap: 150px;
+            height: 150px;
+            padding: 30px;
+            // background: linear-gradient(90deg, $color-celestial-night, $color-dark-charcoal, $color-celestial-blue,$color-dark-midnight);
+            background-color: $color-celestial-night;
+            color: white;
+            .user-profile{
+                display: flex;
+                flex-direction: column;
+                margin-left: 270px;
+                img{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: 2px solid #29ab87;
+                }
+            }
+            .notifications, .reminders{
+                margin-top: 20px;
+                img{
+                    width: 40px;
+                    height: 40px;
+                
+                }
+            }
+            .search-bar{
+                .search-icon{
+                    position: relative;
+                    left: 350px;
+                    top: 40px;
+                }
+                input{
+                    padding: 10px;
+                    border: none;
+                    border-radius: 8px;
+                    width: 400px;
+                    &:focus{
+                        outline: none;
+                    }
+
+                }
+                }
+            .header-title{
+                font-size: 2rem;
+            }
+            .header-actions{
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                button{
+                    padding: 10px;
+                    background-color: $color-celestial-blue;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    &:hover{
+                        background-color: $color-celestial-sky;
+                    }
+                }
+            }
+        }
+    
     }
 }
