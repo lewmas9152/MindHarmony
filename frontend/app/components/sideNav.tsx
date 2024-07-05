@@ -17,7 +17,7 @@ export default function Sidenav(){
                     <Image
                         src={BrainIcon}
                         alt="MindHarmony Logo"
-                        width={50}
+                        width={40}
                         quality={100}
                     />
                 </div>

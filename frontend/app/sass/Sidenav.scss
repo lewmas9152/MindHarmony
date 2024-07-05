@@ -33,10 +33,12 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     flex-direction: column;
     gap: 30px;
     background-color: $nightowl-bg;
-    height: 200vh;
-    color: #fff;
+    height: 100vh;
+    color: $nightowl-fg;
     padding: 10px;
     padding-top: 138px;
+    position: sticky;
+    top: 0;
     .nav-content-container{
         padding-left: 30px;
     }
@@ -44,7 +46,7 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
         display: flex;
         flex-direction: row;
         background-color:#222746;
-        width: 100%;
+        width:100%;
         margin-left: 30px;
         border-top-left-radius: 12px;
         border-bottom-left-radius: 12px;
@@ -53,7 +55,7 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
 
     h1{
         font-family: $font-playwrite;
-        font-size: 2rem;
+        font-size: 20px;
         padding: 10px;
     }
 

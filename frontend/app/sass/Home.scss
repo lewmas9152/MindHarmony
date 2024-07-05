@@ -140,6 +140,8 @@ $col-20: #604f5c;
         display: flex;
         flex-direction: row;
       padding: 20px;
+      position: relative;
+      z-index: 3;
       gap: 20px;
       background-color:$col-2;
       max-height: 200px;
