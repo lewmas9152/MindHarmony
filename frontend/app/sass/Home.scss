@@ -1,0 +1,41 @@
+$color-celestial-blue: #4990e2;
+$color-celestial-sky: #6cb4e2;
+$color-celestial-light: #9cd4e2;
+$color-celestial-dusk: #315d89;
+$color-celestial-night: #1d3a56;
+
+$color-slate-gray: #708090;
+$color-slate-blue: #6a5acd;
+$color-slate-light: #b0c4de;
+$color-slate-dark: #2f4f4f;
+$color-slate-ash: #778899;
+
+$color-dark-charcoal: #36454f;
+$color-dark-onyx: #353839;
+$color-dark-graphite: #474a51;
+$color-dark-midnight: #2c3e50;
+$color-dark-raven: #4b4b4b;
+
+$color-light-ivory: #fffff0;
+$color-light-cream: #fffdd0;
+$color-light-pastel: #e6e6fa;
+$color-light-mint: #f5fffa;
+$color-light-snow: #fffafa;
+
+$color-forest-green: #228b22;
+$color-forest-moss: #8a9a5b;
+$color-forest-fir: #4f7942;
+$color-forest-pine: #01796f;
+$color-forest-jungle: #29ab87;
+
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    .side-bar{
+        width: 20%;
+    }
+    .content-container{
+        width: 80%;
+        background-color: #1d3a56;
+    }
+}

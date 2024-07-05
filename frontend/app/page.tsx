@@ -21,7 +21,7 @@ import PhoneIcon from "./images/line-md--phone-add-twotone.svg";
 
 export default function Home() {
   return (
-    <main className="container">
+    <main className=" w-full container">
       <div className="intro-section">
         <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
           <div className="relative w-full h-full image-container">
