@@ -21,6 +21,16 @@ app.use(cors());
 
 dotenv.config();
 
+app.use((req, res, next) => {
+    let token = req.cookies.token;
+    if (!token) {
+        return res.sendStatus(401);
+    }
+    let user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = user;
+    next();
+})
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
 });
