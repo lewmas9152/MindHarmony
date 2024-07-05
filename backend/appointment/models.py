@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 
 class Professional(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.TextField()
     specialization = models.CharField(max_length=200)
     bio = models.TextField()
     profile = models.ImageField(default='default.jpeg', upload_to='profile_pictures/')
