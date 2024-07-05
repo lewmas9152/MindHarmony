@@ -9,7 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 # Create your views here.
 
 class SessionList(APIView):
-    parser_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         sessions = Sessions.objects.all()
         serializer = SessionsSerializer(sessions, many=True)
@@ -23,7 +23,7 @@ class SessionList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class SessionDetail(APIView):
-    parser_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get_object(self, pk):
         try:
             return Sessions.objects.get(pk=pk)
