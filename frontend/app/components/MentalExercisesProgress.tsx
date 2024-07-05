@@ -58,7 +58,7 @@ const MentalExercisesProgress: React.FC = () => {
   return (
     <div className={styles.mentalExercisesProgress}>
       <h2>My Mental Exercises Progress</h2>
-      <p>View your progress and track your mental exercises here.</p>
+      <p className='mb-5 text-white special-p'>View your progress and track your mental exercises here.</p>
       <div className={styles.exercisesList}>
         {exercises.map((exercise) => (
           <div className={styles.exerciseItem} key={exercise.id}>
@@ -70,7 +70,7 @@ const MentalExercisesProgress: React.FC = () => {
                 text={`${exercise.progress}%`}
                 styles={buildStyles({
                   pathColor: exercise.color,
-                  textColor: '#000',
+                  textColor: '#fff',
                   trailColor: '#d6d6d6',
                 })}
               />

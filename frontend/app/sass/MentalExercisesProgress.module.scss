@@ -18,6 +18,12 @@ $col-17: #1aa66f;
 $col-18: #323553;
 $col-19: #afb5c1;
 $col-20: #604f5c;
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
 
 .mentalExercisesProgress {
     display: flex;
@@ -31,8 +37,11 @@ $col-20: #604f5c;
   
     h2 {
       margin-bottom: 10px;
+      font-size: 23px;
+      font-weight: 700;
+      font-family: $font-rubik;
+      color: #fff;
     }
-  
     .exercisesList {
       display: flex;
       flex-direction: column;
@@ -44,13 +53,13 @@ $col-20: #604f5c;
       background:$col-3;
       padding: 20px;
       border-radius: 10px;
+      border-top: 2px solid $col-17;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-  
       &:hover {
         transform: translateY(-5px);
       }
@@ -58,11 +67,19 @@ $col-20: #604f5c;
       h3 {
         margin-bottom: 5px;
         font-size: 1.5em;
+        font-weight: 700;
+        font-family: $font-rubik;
+        color: #fff;
+        text-align: center;
       }
   
       p {
         margin-bottom: 15px;
         font-size: 1.2em;
+        font-weight: 400;
+        font-family: $font-jost;
+        color: #fff;
+        text-align: center;
       }
   
       .circularProgress {
