@@ -26,7 +26,7 @@ const HomePage = () => {
                   quality={100}
                 />
               </div>
-              <input type="text" placeholder="Search" />
+              <input type="text" placeholder="Search anything here.." />
             </div>
             <div className="notifications">
               <div className="notification-icon">
@@ -72,6 +72,12 @@ const HomePage = () => {
               </div>
             </div>
 
+          </div>
+          <div className="welcome-message">
+            <h1>Good {
+              new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 18 ? 'Afternoon' : 'Evening'
+            } John! doe
+            </h1>
           </div>
         
         </div>
