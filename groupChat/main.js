@@ -3,6 +3,7 @@
  * @author Clint171
  */
 const dotenv = require('dotenv');
+const axios = require('axios');
 const app = require('express')();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
@@ -26,21 +27,42 @@ app.use((req, res, next) => {
     if (!token) {
         return res.sendStatus(401);
     }
-    let user = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = user;
-    next();
+    axios.get(`${process.env.AUTH_URL}/auth/verify`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then((response) => {
+        if (response.status === 200) {
+            req.user = response.data;
+            next();
+        } else {
+            res.sendStatus(401);
+        }
+    }).catch((error) => {
+        res.sendStatus(401);
+    });
 })
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
 });
 let users = [];
+let messages = [];
+
 class User{
     constructor(id, uname){
         this.id = id;
         this.uname = uname;
     }
 }
+
+class Message{
+    constructor(user, message){
+        this.user = user;
+        this.message = message;
+    }
+}
+
 io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         let user = users.find(user => user.id === socket.id);
