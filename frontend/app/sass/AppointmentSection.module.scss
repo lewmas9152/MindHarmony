@@ -1,10 +1,14 @@
+$nightowl-fg: #d6deeb;
+$nightowl-bg-light: #1d3b53;
+$nightowl-info: #21c7a8;
 .appointmentSection {
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: $nightowl-fg;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   max-width: 500px;
   margin: 0 20px auto;
+  margin-top: 50px;
 
   .toggleButtons {
     display: flex;
@@ -55,7 +59,7 @@
           border-radius: 50%;
           width: 60px;
           height: 60px;
-          border: 2px solid red;
+          border: 2px solid #007bff;
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
 
