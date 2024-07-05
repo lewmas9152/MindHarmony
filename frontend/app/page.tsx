@@ -21,7 +21,7 @@ import PhoneIcon from "./images/line-md--phone-add-twotone.svg";
 
 export default function Home() {
   return (
-    <main className=" w-full container">
+    <main className="w-full">
       <div className="intro-section">
         <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
           <div className="relative w-full h-full image-container">
@@ -32,14 +32,14 @@ export default function Home() {
               quality={100}
               width={1920}
               height={1080}
-              className="object-contain w-full h-full zooming-image"
+              className="object-cover w-full h-full"
             />
           </div>
         </div>
 
-        <div className="top">
-          <div className="logo-cont">
-            <div className="logo-container rounded-2xl">
+        <div className="px-4 top sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
+          <div className="flex flex-col items-center logo-cont sm:flex-row sm:justify-between">
+            <div className="mb-4 logo-container rounded-2xl sm:mb-0">
               <Image
                 src={logocon}
                 alt="Logo"
@@ -48,12 +48,12 @@ export default function Home() {
                 className="object-contain"
               />
             </div>
-            <div className="logo-name">
+            <div className="text-center logo-name sm:text-left">
               <h3>MindHarmony</h3>
             </div>
           </div>
-          <div className="flex justify-end ml-11 navbar">
-            <nav className="flex flex-col justify-end space-y-4 nav sm:flex-row sm:space-x-4 sm:space-y-0">
+          <div className="flex justify-center mt-6 navbar">
+            <nav className="flex flex-col items-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
               <Link href="/">
                 <div className="cursor-pointer hover:text-red-500">Home</div>
               </Link>
@@ -61,14 +61,10 @@ export default function Home() {
                 <div className="cursor-pointer hover:text-gray-900">About</div>
               </Link>
               <Link href="/services">
-                <div className="cursor-pointer hover:text-gray-900">
-                  Services
-                </div>
+                <div className="cursor-pointer hover:text-gray-900">Services</div>
               </Link>
               <Link href="#contact">
-                <div className="cursor-pointer hover:text-gray-900">
-                  Contact
-                </div>
+                <div className="cursor-pointer hover:text-gray-900">Contact</div>
               </Link>
               <Link href="/login">
                 <div className="cursor-pointer hover:text-gray-900">Login</div>
@@ -80,315 +76,276 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full px-4 py-8 header sm:px-24">
+      <div className="px-4 py-8 header sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
         <h1 className="text-4xl font-bold text-center text-gray-900">
           MindHarmony - Mental health
         </h1>
         <div className="max-w-3xl mx-auto mt-4 text-center">
           <h2>Embark on a journey to mental well-being with MindHarmony</h2>
         </div>
-        <div className="relative h-5 shadow-lg rectangle bg-noctis-fg top-80 rounded-5 w-500 animate-slide"></div>
-        <div className="button-container">
-          <button className="px-4 py-2 mt-6 font-bold text-white transition-transform duration-300 transform rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline">
+        <div className="relative w-full h-5 mt-12 rounded-lg shadow-lg bg-noctis-fg animate-slide"></div>
+        <div className="flex justify-center mt-6 button-container">
+          <button className="px-4 py-2 font-bold text-white transition-transform duration-300 transform bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline">
             Learn More
           </button>
         </div>
       </div>
 
-      <section className="service-section">
+      <section className="px-4 py-8 service-section sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40">
         <h2 className="mb-8 text-3xl font-bold text-center">Core Services</h2>
-        <div className="services-section">
-          <div className="cards max-w-screen-2xl">
-            <div className="row-1">
-              <div className="service-card">
-                <div className="image-container">
-                  <Image
-                    src={MentalIcon}
-                    alt="Mental Health Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">
-                    Mental Health Appointments with Professionals
-                  </h3>
-                  <p className="mt-2">
-                    At MindHarmony, we provide personalized appointments with
-                    mental health professionals.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={AssessmentIcon}
-                    alt="Assessment Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">
-                    Assessment to Gauge Mental Health Capacity
-                  </h3>
-                  <p className="mt-2">
-                    Our assessments are designed to evaluate your mental health
-                    capacity, providing insights.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={CrisisIcon}
-                    alt="Crisis Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Crisis Intervention</h3>
-                  <p className="mt-2">
-                    Our crisis intervention services offer immediate support and
-                    guidance during challenging mental health situations.
-                  </p>
-                </div>
-              </div>
-              <div className="bg-gray-100 rounded-lg shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={TherapyIcon}
-                    alt="Therapy Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Therapy Sessions</h3>
-                  <p className="mt-2">
-                    We offer both individual and group therapy sessions to help
-                    you navigate and manage your mental health challenges
-                    effectively.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="row-2">
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={WellnessIcon}
-                    alt="Wellness Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Wellness Workshops</h3>
-                  <p className="mt-2">
-                    Join our wellness workshops to learn practical skills and
-                    strategies for enhancing your mental well-being and
-                    resilience.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={SupportIcon}
-                    alt="Support Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Support Groups</h3>
-                  <p className="mt-2">
-                    Connect with others facing similar challenges through our
-                    supportive group sessions, fostering empathy and community.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={CounselingIcon}
-                    alt="Counseling Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Online Counseling</h3>
-                  <p className="mt-2">
-                    Access our professional counseling services online, ensuring
-                    convenient and confidential support wherever you are.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container ">
-                  <Image
-                    src={MindfulnessIcon}
-                    alt="Mindfulness Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Mindfulness Training</h3>
-                  <p className="mt-2">
-                    Learn mindfulness techniques that promote relaxation, stress
-                    reduction, and overall mental well-being in our specialized
-                    training programs.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="py-12 about-section bg-gray-50">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-3xl font-bold text-center">About Us</h2>
-
-          <div className="grid grid-cols-1 gap-8 about-intro md:grid-cols-2">
-            <div className="flex items-center justify-center about-image">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
               <Image
-                src={about}
-                alt="About Us"
-                width={200}
-                height={280}
+                src={MentalIcon}
+                alt="Mental Health Icon"
+                width={60}
                 quality={100}
                 className="object-contain"
               />
             </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-lg">
-                At MindHarmony, we are dedicated to transforming lives through
-                care and compassion. Our mission is to promote mental wellness,
-                empower individuals, and support personal growth.
-              </p>
-              <p className="p-5 mt-4 bg-blue-300 unique rounded-xl">
-                Welcome to a place where your well-being is our priority.
+            <div className="text-center">
+              <h3 className="text-xl font-bold">
+                Mental Health Appointments with Professionals
+              </h3>
+              <p className="mt-2">
+                At MindHarmony, we provide personalized appointments with mental
+                health professionals.
               </p>
             </div>
           </div>
-     
-
-          <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-3">
-            <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold">Empowering Mental Wellness</h3>
-              <p className="mt-2">
-                At MindHarmony, we strive to empower mental wellness by
-                providing personalized care and support tailored to your unique
-                needs.
-              </p>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={AssessmentIcon}
+                alt="Assessment Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
             </div>
-            <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold">Nurturing Personal Growth</h3>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">
+                Assessment to Gauge Mental Health Capacity
+              </h3>
               <p className="mt-2">
-                We nurture personal growth through compassionate guidance and
-                evidence-based practices that enhance your mental well-being.
-              </p>
-            </div>
-            <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold">Caring for Mental Health</h3>
-              <p className="mt-2">
-                Our dedicated team is committed to caring for your mental
-                health, offering support and resources to help you thrive in
-                life.
+                Our assessments are designed to evaluate your mental health
+                capacity, providing insights.
               </p>
             </div>
           </div>
-
-          <div className="mt-12 text-center">
-            <h2 className="mb-8 text-3xl font-bold">Our Commitment</h2>
-            <p className="text-lg">
-              At MindHarmony, we are committed to creating a safe and supportive
-              environment where you can find healing and hope. Together, we can
-              achieve mental wellness and resilience.
-            </p>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={CrisisIcon}
+                alt="Crisis Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">Crisis Intervention</h3>
+              <p className="mt-2">
+                Our crisis intervention services offer immediate support and
+                guidance during challenging mental health situations.
+              </p>
+            </div>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={TherapyIcon}
+                alt="Therapy Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">Therapy Sessions</h3>
+              <p className="mt-2">
+                We offer both individual and group therapy sessions to help you
+                navigate and manage your mental health challenges effectively.
+              </p>
+            </div>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={WellnessIcon}
+                alt="Wellness Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">Wellness Workshops</h3>
+              <p className="mt-2">
+                Join our wellness workshops to learn practical skills and
+                strategies for enhancing your mental well-being and resilience.
+              </p>
+            </div>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={SupportIcon}
+                alt="Support Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">Support Groups</h3>
+              <p className="mt-2">
+                Connect with others facing similar challenges through our
+                supportive and confidential group sessions.
+              </p>
+            </div>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={CounselingIcon}
+                alt="Counseling Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">Counseling Services</h3>
+              <p className="mt-2">
+                Our counseling services offer a safe space to discuss and work
+                through personal challenges with a trained professional.
+              </p>
+            </div>
+          </div>
+          <div className="p-6 bg-white rounded-lg shadow-md service-card">
+            <div className="flex items-center justify-center mb-4 image-container">
+              <Image
+                src={MindfulnessIcon}
+                alt="Mindfulness Icon"
+                width={60}
+                quality={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold">Mindfulness Practices</h3>
+              <p className="mt-2">
+                Explore mindfulness techniques to enhance your mental clarity,
+                focus, and emotional balance.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="contact-section" id="contact">
-      <div className="container">
-        <h2>Contact Us</h2>
-        <form>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
+      <section
+        id="about"
+        className="px-4 py-8 text-center about sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40"
+      >
+        <h2 className="mb-4 text-3xl font-bold">About Us</h2>
+        <div className="flex flex-col items-center justify-center md:flex-row">
+          <div className="mb-4 md:w-1/2 md:pr-8">
+            <p>
+              MindHarmony is a leading platform dedicated to promoting mental
+              health and well-being. Our mission is to provide accessible and
+              effective mental health services to individuals and communities.
+              Our team of experienced professionals is committed to helping you
+              achieve mental harmony and lead a fulfilling life.
+            </p>
+          </div>
+          <div className="md:w-1/2">
+            <Image
+              src={about}
+              alt="About Us Image"
+              width={500}
+              quality={100}
+              className="object-contain rounded-lg shadow-lg"
             />
           </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              aria-describedby="email-helper-text"
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              required
-            ></textarea>
-          </div>
-        </form>
-        <div className="buttons">
-          <button type="submit">Submit</button>
         </div>
-        <div className="social-icons">
-          <a href="https://www.facebook.com/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
-            <Image src={FacebookIcon} alt="Facebook Icon" quality={100} />
-          </a>
-          <a href="https://www.instagram.com/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
-            <Image src={InstagramIcon} alt="Instagram Icon" quality={100} />
-          </a>
-          <a href="https://www.twitter.com/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
-            <Image src={TwitterIcon} alt="Twitter Icon" quality={100} />
-          </a>
-          <a href="https://www.linkedin.com/company/mindharmonycounseling/" target="_blank" rel="noopener noreferrer">
-            <Image src={LinkedInIcon} alt="LinkedIn Icon" quality={100} />
-          </a>
-        </div>
-        <div className="contact-info">
-          <a href="tel:123-456-7890">
-            <Image src={PhoneIcon} alt="Phone Icon" quality={100} />
-            <span>(123) 456-7890</span>
-          </a>
-          <a href="mailto:contact@mindharmony.com">
-            <Image src={EmailIcon} alt="Email Icon" quality={100} />
-            <span>contact@mindharmony.com</span>
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <footer className="bg-slate-950 footer">
-      <div className="container">
-        <p>©Copyright 2023 MindHarmony. All rights reserved.</p>
-      </div>
-    </footer>
+      <section
+        id="contact"
+        className="px-4 py-8 text-center contact sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-40"
+      >
+        <h2 className="mb-4 text-3xl font-bold">Contact Us</h2>
+        <div className="flex flex-col items-center justify-center md:flex-row">
+          <div className="mb-4 md:w-1/2 md:pr-8">
+            <p>
+              We'd love to hear from you! Whether you have questions, need
+              support, or want to learn more about our services, please get in
+              touch with us. You can reach us via email, phone, or through our
+              social media channels.
+            </p>
+          </div>
+          <div className="md:w-1/2">
+            <div className="flex items-center justify-center mt-4 space-x-4 social-icons">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={FacebookIcon}
+                  alt="Facebook Icon"
+                  width={40}
+                  quality={100}
+                  className="transition-transform duration-200 hover:scale-110"
+                />
+              </a>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={TwitterIcon}
+                  alt="Twitter Icon"
+                  width={40}
+                  quality={100}
+                  className="transition-transform duration-200 hover:scale-110"
+                />
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={InstagramIcon}
+                  alt="Instagram Icon"
+                  width={40}
+                  quality={100}
+                  className="transition-transform duration-200 hover:scale-110"
+                />
+              </a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={LinkedInIcon}
+                  alt="LinkedIn Icon"
+                  width={40}
+                  quality={100}
+                  className="transition-transform duration-200 hover:scale-110"
+                />
+              </a>
+              <a href="mailto:support@mindharmony.com">
+                <Image
+                  src={EmailIcon}
+                  alt="Email Icon"
+                  width={40}
+                  quality={100}
+                  className="transition-transform duration-200 hover:scale-110"
+                />
+              </a>
+              <a href="tel:+1234567890">
+                <Image
+                  src={PhoneIcon}
+                  alt="Phone Icon"
+                  width={40}
+                  quality={100}
+                  className="transition-transform duration-200 hover:scale-110"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
