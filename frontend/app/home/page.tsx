@@ -92,12 +92,75 @@ const HomePage = () => {
             </div>
           </div>
 
+          <div className="info-container">
+            <div className="appoint-container">
+              <div className="img-cont">
+                <Image
+                  src={ReminderIcon}
+                  alt="Reminder Icon"
+                  width={60}
+                  height={60}
+                  quality={100}
+                />
+              </div>
+              <div className="content">
+                <h2>Appointments</h2>
+                <p>200</p>
+              </div>
+            </div>
+            <div className="progress">
+              <div className="img-cont">
+                <Image
+                  src={NotificationIcon}
+                  alt="Notification Icon"
+                  width={60}
+                  height={60}
+                  quality={100}
+                />
+              </div>
+              <div className="content">
+                <h2>Progress</h2>
+                <p>85%</p>
+                </div>
+              </div>
+              <div className="therapy-sessions">
+                <div className="img-cont">
+                  <Image
+                    src={ReminderIcon}
+                    alt="Reminder Icon"
+                    width={60}
+                    height={60}
+                    quality={100}
+                  />
+                </div>
+                <div className="content">
+                  <h2>Therapy Sessions Attended</h2>
+                  <p>8</p>
+                </div>
+              </div>
+              <div className="mental-exercises">
+                <div className="img-cont">
+                  <Image
+                    src={ReminderIcon}
+                    alt="Reminder Icon"
+                    width={60}
+                    height={60}
+                    quality={100}
+                  />
+                </div>
+                <div className="content">
+                  <h2>Mental Exercises Completed</h2>
+                  <p>12</p>
+                  </div>
+              </div>
+          </div>
+
+{/* 
           <div className="stats-container">
             <div className="stat-box appointments">
               <h3>Appointments</h3>
-              <p>200</p>
             </div>
-            </div>
+            </div> */}
         </div>
       </div>
     </div>

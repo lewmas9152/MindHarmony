@@ -3,6 +3,7 @@ $color-celestial-sky: #6cb4e2;
 $color-celestial-light: #9cd4e2;
 $color-celestial-dusk: #315d89;
 $color-celestial-night: #1d3a56;
+$nightowl-info: #21c7a8;
 
 $color-slate-gray: #708090;
 $color-slate-blue: #6a5acd;
@@ -21,11 +22,6 @@ $color-light-cream: #fffdd0;
 $color-light-pastel: #e6e6fa;
 $color-light-mint: #f5fffa;
 $color-light-snow: #fffafa;
-
-$color-forest-green: #228b22;
-$color-forest-moss: #8a9a5b;
-$color-forest-fir: #4f7942;
-$color-forest-pine: #01796f;
 $color-forest-jungle: #29ab87;
 $font-rubik : 'Rubik', sans-serif;
 $font-josefin : 'Josefin Sans', sans-serif;
@@ -33,6 +29,18 @@ $font-island : 'Island Moments', cursive;
 $font-ropa : 'Ropa Sans', sans-serif;
 $font-jost : 'Jost', sans-serif;
 $font-playwrite : 'Playwrite IT Moderna', sans-serif;
+
+@mixin info-card{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    background-color:$color-celestial-sky;
+    border-radius: 8px;
+    width: 300px;
+    max-height: 300px;
+    border-left: 6px solid $nightowl-info;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .dashboard {
   display: flex;
@@ -44,7 +52,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
 
   .content-container {
     width: 80%;
-    background-color: azure;
+    background-color: $color-light-pastel;
 
     .header {
       display: flex;
@@ -136,6 +144,24 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
         font-size: 1.5rem;
         text-align: left;
       }
+    }
+    .info-container{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 20px;
+        .appoint-container{
+            @include info-card;
+        }
+        .progress{
+            @include info-card;
+        }
+        .therapy-sessions{
+            @include info-card;
+        }
+        .mental-exercises{
+            @include info-card;
+        }
     }
   }
 }
