@@ -14,6 +14,7 @@ import MentalHealth from '../images/brain.svg';
 import TherapyIcon from "../images/therapy.svg"
 import CountUp from 'react-countup';
 import AppointmentSection from '../components/AppointmentSection';
+import MentalExercisesProgress from '../components/MentalExercisesProgress';
 
 
 const HomePage = () => {
@@ -162,15 +163,14 @@ const HomePage = () => {
                   </div>
               </div>
           </div>
+          <div className="user-mental-data">
               <div className="appointments-container">
                 <AppointmentSection />
               </div>
-{/* 
-          <div className="stats-container">
-            <div className="stat-box appointments">
-              <h3>Appointments</h3>
-            </div>
-            </div> */}
+              <div className="my-mental-exercises-progress">
+                <MentalExercisesProgress />
+              </div>
+              </div>
         </div>
       </div>
     </div>

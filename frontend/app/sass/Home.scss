@@ -281,6 +281,12 @@ $nightowl-border: #1d3b53;
             }
         }
     }
+    .user-mental-data{
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      padding: 20px;
+    }
   }
 }
 
