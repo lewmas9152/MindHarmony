@@ -39,7 +39,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     gap: 20px;
     width: 300px;
     max-height: 300px;
-    height: 100px;
+    height: 102px;
     // border-left: 6px solid $nightowl-info;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -210,13 +210,14 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
                     margin-bottom: 20px;
                     text-align: left;
                     margin-left: 2px;
-                    color:orangered;
+                    color:#addb67;
                 }
             }
 
         }
         .therapy-sessions{
             @include info-card;
+            width: 350px;
             .img-cont{
                 background-color:rgba(93, 40, 142, 0.3);
                 border-radius: 8px;
@@ -242,7 +243,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
                     margin-bottom: 20px;
                     text-align: left;
                     margin-left: 2px;
-                    color:orangered;
+                    color:#8616d2;
                 }
             }
         }
@@ -273,7 +274,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
                     margin-bottom: 20px;
                     text-align: left;
                     margin-left: 2px;
-                    color:orangered;
+                    color:#1378dd;
                 }
             }
         }

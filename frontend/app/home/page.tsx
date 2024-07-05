@@ -123,7 +123,7 @@ const HomePage = () => {
                 />
               </div>
               <div className="content">
-                <h2>Progress Made</h2>
+                <h2>Progress</h2>
                 <p>85%</p>
                 </div>
               </div>
@@ -138,7 +138,7 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="content">
-                  <h2>Therapy sessions</h2>
+                  <h2>Therapy</h2>
                   <p>8</p>
                 </div>
               </div>
@@ -153,7 +153,7 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="content">
-                  <h2>Mental Exercises</h2>
+                  <h2>Mental</h2>
                   <p>12</p>
                   </div>
               </div>
