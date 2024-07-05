@@ -1,0 +1,94 @@
+.appointmentSection {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 20px auto;
+
+  .toggleButtons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &.active {
+        background-color: #0056b3;
+      }
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .appointmentsList {
+    .appointmentRow {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .doctorInfo {
+        display: flex;
+        align-items: center;
+
+        .doctorImage {
+          margin-right: 10px;
+          overflow: hidden;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          border: 2px solid red;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .doctorDetails {
+          p {
+            margin: 0;
+            font-weight: bold;
+          }
+
+          p:first-child {
+            font-size: 1.1rem;
+          }
+
+          p:last-child {
+            color: #666;
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .appointmentDetails {
+        flex: 1;
+        padding-left: 20px;
+
+        p {
+          margin: 5px 0;
+        }
+
+        strong {
+          font-weight: bold;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

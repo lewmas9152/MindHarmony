@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Sidenav from '../components/sideNav';
 import "../sass/Home.scss";
@@ -11,6 +12,9 @@ import AppointmentIcon from "../images/appointment.svg";
 import ProgressIcon from "../images/progress (2).svg";
 import MentalHealth from '../images/brain.svg';
 import TherapyIcon from "../images/therapy.svg"
+import CountUp from 'react-countup';
+import AppointmentSection from '../components/AppointmentSection';
+
 
 const HomePage = () => {
   return (
@@ -109,7 +113,7 @@ const HomePage = () => {
               </div>
               <div className="content">
                 <h2>Appointments</h2>
-                <p>200</p>
+               <p><CountUp end={200} duration={5} /></p>
               </div>
             </div>
             <div className="progress">
@@ -124,7 +128,7 @@ const HomePage = () => {
               </div>
               <div className="content">
                 <h2>Progress</h2>
-                <p>85%</p>
+                <p><CountUp end={85} duration={5} suffix="%" /></p>
                 </div>
               </div>
               <div className="therapy-sessions">
@@ -139,7 +143,7 @@ const HomePage = () => {
                 </div>
                 <div className="content">
                   <h2>Therapy</h2>
-                  <p>8</p>
+                  <p><CountUp end={15} duration={2} /></p>
                 </div>
               </div>
               <div className="mental-exercises">
@@ -154,11 +158,13 @@ const HomePage = () => {
                 </div>
                 <div className="content">
                   <h2>Mental</h2>
-                  <p>12</p>
+                  <p><CountUp end={40} duration={3} /></p>
                   </div>
               </div>
           </div>
-
+              <div className="appointments-container">
+                <AppointmentSection />
+              </div>
 {/* 
           <div className="stats-container">
             <div className="stat-box appointments">
