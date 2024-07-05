@@ -35,26 +35,12 @@ const MentalExercisesProgress: React.FC = () => {
       color: '#5dd39e',
     },
     {
-      id: 4,
-      name: 'Visualization',
-      description: 'Imagine a peaceful scene.',
-      progress: 60,
-      color: '#ff9800',
-    },
-    {
       id: 5,
       name: 'Yoga',
       description: 'Perform gentle yoga stretches.',
       progress: 50,
       color: '#ff5722',
-    },
-    {
-      id: 6,
-      name: 'Journaling',
-      description: 'Write down your thoughts and feelings.',
-      progress: 30,
-      color: '#673ab7',
-    },
+    }
   ]);
 
   useEffect(() => {

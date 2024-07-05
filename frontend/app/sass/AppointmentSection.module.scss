@@ -1,9 +1,26 @@
-$nightowl-fg: #d6deeb;
-$nightowl-bg-light: #1d3b53;
-$nightowl-info: #21c7a8;
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
 .appointmentSection {
   padding: 20px;
-  background-color: $nightowl-fg;
+  background-color:$col-18;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   max-width: 500px;
@@ -16,7 +33,7 @@ $nightowl-info: #21c7a8;
     margin-bottom: 20px;
 
     button {
-      background-color: #007bff;
+      background-color: $col-14;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -25,7 +42,7 @@ $nightowl-info: #21c7a8;
       transition: background-color 0.3s ease;
 
       &.active {
-        background-color: #ec5f67;
+        background-color: $col-17;
       }
 
       &:not(:last-child) {
@@ -38,7 +55,7 @@ $nightowl-info: #21c7a8;
     .appointmentRow {
       display: flex;
       align-items: center;
-      border: 1px solid #ccc;
+      border: 1px solid $col-2;
       padding: 10px;
       margin-bottom: 10px;
       border-radius: 8px;
@@ -59,7 +76,7 @@ $nightowl-info: #21c7a8;
           border-radius: 50%;
           width: 60px;
           height: 60px;
-          border: 2px solid #007bff;
+          border: 3px solid $col-9;
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
 

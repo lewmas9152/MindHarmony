@@ -7,7 +7,7 @@ import ReminderIcon from "../images/reminder.svg";
 import Image from 'next/image';
 import SearchIcon from "../images/search.svg";
 import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
-import Welcome from "../images/wave.jpg";
+import Welcome from "../images/welc.png";
 import AppointmentIcon from "../images/appointment.svg";
 import ProgressIcon from "../images/progress (2).svg";
 import MentalHealth from '../images/brain.svg';
@@ -84,14 +84,15 @@ const HomePage = () => {
           </div>
           <div className="welcome-message">
             <div className="image-welcome">
-              <Image
+            <iframe src="https://lottie.host/embed/78f7a603-9cc6-4213-8698-a595c5ca7005/fENvQNEzhn.json "></iframe>
+              {/* <Image
                 src={Welcome}
                 alt="Welcome Image"
                 width={1920}
                 height={1080}
                 quality={100}
                 className="object-contain w-full h-full zooming-image"
-              />
+              /> */}
             </div>
             <div className="message">
               <h1>Good {

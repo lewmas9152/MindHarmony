@@ -1,10 +1,33 @@
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
+
 .mentalExercisesProgress {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin-top: 50px;
+    background-color:$col-18;
+    border-radius: 8px;
     width: 500px;
-    border: 2px solid #0077be;
   
     h2 {
       margin-bottom: 10px;
@@ -18,7 +41,7 @@
     }
   
     .exerciseItem {
-      background: #fff;
+      background:$col-3;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,8 +66,8 @@
       }
   
       .circularProgress {
-        width: 150px;
-        height: 150px;
+        width: 80px;
+        height: 80px;
       }
     }
   }
