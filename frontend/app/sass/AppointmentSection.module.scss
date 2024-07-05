@@ -55,7 +55,9 @@ $col-20: #604f5c;
     .appointmentRow {
       display: flex;
       align-items: center;
-      border: 1px solid $col-2;
+      background-color: $col-3;
+      border-left: 2px solid $col-17;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       padding: 10px;
       margin-bottom: 10px;
       border-radius: 8px;

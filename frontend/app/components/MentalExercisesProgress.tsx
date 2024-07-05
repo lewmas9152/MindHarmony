@@ -18,28 +18,28 @@ const MentalExercisesProgress: React.FC = () => {
       name: 'Breathing Exercise',
       description: 'Focus on your breath and relax.',
       progress: 70,
-      color: '#3e98c7',
+      color: '#ee6173',
     },
     {
       id: 2,
       name: 'Mindfulness Meditation',
       description: 'Stay in the moment and observe your thoughts.',
       progress: 45,
-      color: '#f54ea2',
+      color: '#1aa66f',
     },
     {
       id: 3,
       name: 'Progressive Muscle Relaxation',
       description: 'Relax your muscles step by step.',
       progress: 80,
-      color: '#5dd39e',
+      color: '#843fed',
     },
     {
       id: 5,
       name: 'Yoga',
       description: 'Perform gentle yoga stretches.',
       progress: 50,
-      color: '#ff5722',
+      color: '#d2a65e',
     }
   ]);
 
@@ -51,7 +51,7 @@ const MentalExercisesProgress: React.FC = () => {
           progress: (exercise.progress + 10) % 100,
         }))
       );
-    }, 1000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -71,7 +71,7 @@ const MentalExercisesProgress: React.FC = () => {
                 styles={buildStyles({
                   pathColor: exercise.color,
                   textColor: '#fff',
-                  trailColor: '#d6d6d6',
+                  trailColor: '#afb5c1',
                 })}
               />
             </div>
