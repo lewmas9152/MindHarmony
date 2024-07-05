@@ -7,6 +7,10 @@ import Image from 'next/image';
 import SearchIcon from "../images/search.svg";
 import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
 import Welcome from "../images/wave.jpg";
+import AppointmentIcon from "../images/appointment.svg";
+import ProgressIcon from "../images/progress (2).svg";
+import MentalHealth from '../images/brain.svg';
+import TherapyIcon from "../images/therapy.svg"
 
 const HomePage = () => {
   return (
@@ -96,7 +100,7 @@ const HomePage = () => {
             <div className="appoint-container">
               <div className="img-cont">
                 <Image
-                  src={ReminderIcon}
+                  src={AppointmentIcon}
                   alt="Reminder Icon"
                   width={60}
                   height={60}
@@ -111,7 +115,7 @@ const HomePage = () => {
             <div className="progress">
               <div className="img-cont">
                 <Image
-                  src={NotificationIcon}
+                  src={ProgressIcon}
                   alt="Notification Icon"
                   width={60}
                   height={60}
@@ -119,14 +123,14 @@ const HomePage = () => {
                 />
               </div>
               <div className="content">
-                <h2>Progress</h2>
+                <h2>Progress Made</h2>
                 <p>85%</p>
                 </div>
               </div>
               <div className="therapy-sessions">
                 <div className="img-cont">
                   <Image
-                    src={ReminderIcon}
+                    src={TherapyIcon}
                     alt="Reminder Icon"
                     width={60}
                     height={60}
@@ -134,14 +138,14 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="content">
-                  <h2>Therapy Sessions Attended</h2>
+                  <h2>Therapy sessions</h2>
                   <p>8</p>
                 </div>
               </div>
               <div className="mental-exercises">
                 <div className="img-cont">
                   <Image
-                    src={ReminderIcon}
+                    src={MentalHealth}
                     alt="Reminder Icon"
                     width={60}
                     height={60}
@@ -149,7 +153,7 @@ const HomePage = () => {
                   />
                 </div>
                 <div className="content">
-                  <h2>Mental Exercises Completed</h2>
+                  <h2>Mental Exercises</h2>
                   <p>12</p>
                   </div>
               </div>
