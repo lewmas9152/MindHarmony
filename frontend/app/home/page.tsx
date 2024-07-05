@@ -10,7 +10,14 @@ const HomePage = () => {
       </div>
       <div className="content-container">
         <div className="content">
-          <h1>Home Page</h1>
+          <div className="header">
+            <div className="search-bar"></div>
+            <div className="notifications"></div>
+            <div className="reminders"></div>
+            <div className="user-profile"></div>
+
+          </div>
+        
         </div>
       </div>
     </div>

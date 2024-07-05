@@ -1,3 +1,9 @@
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
 
 $nightowl-bg: #011627;
 $nightowl-bg-light: #1d3b53;
@@ -20,7 +26,7 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     flex-direction: row;
     gap: 20px;
     padding: 10px;
-    
+
 }
 .navbar{
     display: flex;
@@ -29,6 +35,27 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     background-color: $nightowl-bg;
     height: 100vh;
     color: #fff;
+    padding: 10px;
+    padding-top: 100px;
+    .nav-content-container{
+        padding-left: 30px;
+    }
+    .nav-logo{
+        display: flex;
+        flex-direction: row;
+        background-color:#1d3a56;
+        width: 100%;
+        margin-left: 30px;
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+        padding: 10px;
+    }
+
+    h1{
+        font-family: $font-playwrite;
+        font-size: 2rem;
+        padding: 10px;
+    }
 
     Link{
         color: #d6deeb;
@@ -39,5 +66,20 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
         &:hover{
             background-color: #1d3b53;
         }
+    }
+    .home-container{
+        @include nav-container;
+    }
+    .profile-container{
+        @include nav-container;
+    }
+    .appointments-container{
+        @include nav-container;
+    }
+    .resources-container{
+        @include nav-container;
+    }
+    .groups-container{
+        @include nav-container;
     }
 }

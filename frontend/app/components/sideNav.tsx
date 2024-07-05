@@ -6,10 +6,27 @@ import AppointmentsIcon from "../images/appointments.svg";
 import ResourcesIcon from "../images/resources.svg";
 import GroupsIcon from "../images/groups.svg";
 import Image from "next/image";
+import BrainIcon from "../images/fluent--brain-circuit-20-filled.svg";
 
 export default function Sidenav(){
     return (
-        <div className="navbar">
+        
+        <div className="navbar"> 
+          <div className="nav-logo">
+                <div className="logo-image">
+                    <Image
+                        src={BrainIcon}
+                        alt="MindHarmony Logo"
+                        width={50}
+                        quality={100}
+                    />
+                </div>
+                <div className="logo-content">
+                <h1>MindHarmony</h1>
+                </div>
+            
+            </div>    
+            <div className="nav-content-container"> 
             <div className="home-container">
                 <div className="icon-img">
                     <Image
@@ -80,6 +97,7 @@ export default function Sidenav(){
         <Link href="groups">Support Groups</Link>
         </div>
         </div>
+        </div> 
         </div>
     )
 
