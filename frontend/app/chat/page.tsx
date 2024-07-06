@@ -91,6 +91,9 @@ export default function SupportGroups() {
                         </div>
                     </div>
                 </div>
+                <div className="chat-list">
+                    
+                </div>
             </div>
             <div className="chat-content-container">
                 <div className="content">
