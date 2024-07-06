@@ -1,180 +1,247 @@
-# Group Chat Service
-
-## Usage
-
-### Importing the socket.io library into your frontend
-You can use the following to import socket.io into your project:
-* For HTML
-```
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
-```
-* For NPM
-``` npm
-npm install socket.io-client
-```
-For more details on importing and usage of socket.io, refer to https://socket.io/docs/v4/client-installation/
-
-# Frontend Documentation for WebSocket Group Chat
+# Chat Service Documentation
 
 ## Overview
+This documentation provides a comprehensive guide to the HTTP endpoints and WebSocket events available for the chat service. Additionally, it includes instructions for installing `socket.io` in a Node.js and React environment, setting up authorization, sending requests to the server, and emitting events to the server.
 
-This documentation provides an overview of how to interact with the WebSocket server for the group chat application using Socket.IO on the frontend. It includes details on the events available and example usage.
+## Table of Contents
+- [Chat Service Documentation](#chat-service-documentation)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Node.js](#nodejs)
+    - [React](#react)
+  - [HTTP Endpoints](#http-endpoints)
+    - [GET /](#get-)
+    - [GET /messages](#get-messages)
+  - [WebSocket Events](#websocket-events)
+    - [Connection](#connection)
+    - [Disconnection](#disconnection)
+    - [New Message](#new-message)
+  - [Client-Side Events](#client-side-events)
+    - [Info](#info)
+    - [Stat](#stat)
+    - [Typing](#typing)
+  - [Client-Emitted Events](#client-emitted-events)
+    - [New Message](#new-message-1)
+    - [Typing](#typing-1)
+  - [Authorization](#authorization)
+    - [HTTP Requests](#http-requests)
+    - [WebSocket Setup](#websocket-setup)
+  - [Sending Requests](#sending-requests)
+    - [HTTP Requests](#http-requests-1)
+    - [WebSocket Setup](#websocket-setup-1)
 
-## Connecting to the Server
+## Installation
 
-To connect to the WebSocket server, initialize a Socket.IO client instance:
-
-```javascript
-const socket = io('http://localhost:3000'); //Replace this with the prod url
+### Node.js
+To install `socket.io` in a Node.js environment:
+```bash
+npm install socket.io-client
 ```
 
-Replace `<your-port>` with the port number your server is running on.
+### React
+To install `socket.io` in a React project:
+```bash
+npm install socket.io-client
+```
+Usage:
+```javascript
+import io from 'socket.io-client';
 
-## Events
+const socket = io(process.env.REACT_APP_BACKEND_URL, {
+  extraHeaders: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+});
+```
 
-### Server-Side Events
+## HTTP Endpoints
 
-These events are emitted by the server and can be listened to by the client.
+### GET /
+Redirects to the frontend URL specified in the environment variables.
 
-#### `info`
-- **Description**: Provides informational messages such as user connections and disconnections.
-- **Parameters**: 
-  - `message` (String): The informational message.
+**Request:**
+```http
+GET /
+```
 
-  ```javascript
-  socket.on('info', (message) => {
-      console.log(message);
-      // Display the message in the chat
-  });
-  ```
+**Response:**
+Redirects to `process.env.FRONTEND_URL`.
 
-#### `stat`
-- **Description**: Provides the current number of connected users.
-- **Parameters**: 
-  - `count` (Number): The number of connected users.
+### GET /messages
+Retrieves the list of chat messages. Requires authentication.
 
-  ```javascript
-  socket.on('stat', (count) => {
-      console.log(`Number of users connected: ${count}`);
-      // Update the user count display
-  });
-  ```
+**Request:**
+```http
+GET /messages
+Authorization: Bearer <token>
+```
 
-#### `message`
-- **Description**: Delivers a new chat message.
-- **Parameters**: 
-  - `message` (String): The chat message.
+**Response:**
+```json
+[
+  {
+    "user": {
+      "id": "user_id",
+      "uname": "username"
+    },
+    "message": "message_content"
+  },
+  ...
+]
+```
 
-  ```javascript
-  socket.on('message', (message) => {
-      console.log(`New message: ${message}`);
-      // Display the message in the chat
-  });
-  ```
+## WebSocket Events
 
-#### `typing`
-- **Description**: Indicates that a user is typing.
-- **Parameters**: 
-  - `username` (String): The username of the user who is typing.
+### Connection
+Emitted when a new user connects to the WebSocket server.
 
-  ```javascript
-  socket.on('typing', (username) => {
-      console.log(`${username} is typing...`);
-      // Show typing indicator
-  });
-  ```
+**Event:**
+```javascript
+socket.on('connection', (data) => {
+  console.log(data); // `{user} joined`
+});
+```
 
-### Client-Side Events
+### Disconnection
+Emitted when a user disconnects from the WebSocket server.
 
-These events are emitted by the client to communicate with the server.
+**Event:**
+```javascript
+socket.on('disconnect', (data) => {
+  console.log(data); // `{user} disconnected`
+});
+```
 
-#### `new-user`
-- **Description**: Notifies the server of a new user joining the chat.
-- **Parameters**: 
-  - `username` (String): The username of the new user.
+### New Message
+Emitted when a new message is received.
 
-  ```javascript
-  const username = 'YourUsername';
-  socket.emit('new-user', username);
-  ```
+**Event:**
+```javascript
+socket.on('message', (data) => {
+  const message = JSON.parse(data);
+  console.log(message); // `{user, message}`
+});
+```
 
-#### `new-message`
-- **Description**: Sends a new chat message to the server.
-- **Parameters**: 
-  - `message` (String): The chat message in JSON format.
+## Client-Side Events
 
-  ```javascript
-  const message = JSON.stringify([username, 'Hello, world!']);
-  socket.emit('new-message', message);
-  ```
+### Info
+Emitted to provide information about user connection and disconnection.
 
-#### `typing`
-- **Description**: Notifies the server that the user is typing.
-- **Parameters**: 
-  - `username` (String): The username of the user who is typing.
+**Event:**
+```javascript
+socket.on('info', (data) => {
+  console.log(data); // `{user} joined/disconnected`
+});
+```
 
-  ```javascript
-  socket.emit('typing', username);
-  ```
+### Stat
+Emitted to provide the current number of connected users.
 
-## Example Usage
+**Event:**
+```javascript
+socket.on('stat', (data) => {
+  console.log(`Number of users: ${data}`);
+});
+```
 
-Below is an example of how you can set up the frontend to interact with the WebSocket server:
+### Typing
+Emitted when a user is typing.
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Group Chat</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const socket = io('http://localhost:<your-port>');
-            
-            const username = prompt('Enter your username:');
-            socket.emit('new-user', username);
-            
-            socket.on('info', (message) => {
-                console.log(message);
-                // Display the message in the chat
-            });
+**Event:**
+```javascript
+socket.on('typing', (user) => {
+  console.log(`${user} is typing...`);
+});
+```
 
-            socket.on('stat', (count) => {
-                console.log(`Number of users connected: ${count}`);
-                // Update the user count display
-            });
+## Client-Emitted Events
 
-            socket.on('message', (message) => {
-                console.log(`New message: ${message}`);
-                // Display the message in the chat
-            });
+### New Message
+Emits a new message to the server.
 
-            socket.on('typing', (username) => {
-                console.log(`${username} is typing...`);
-                // Show typing indicator
-            });
+**Event:**
+```javascript
+socket.emit('new-message', 'Your message here');
+```
 
-            const messageInput = document.getElementById('message-input');
-            const sendButton = document.getElementById('send-button');
+### Typing
+Notifies the server that the user is typing.
 
-            messageInput.addEventListener('input', () => {
-                socket.emit('typing', username);
-            });
+**Event:**
+```javascript
+socket.emit('typing');
+```
 
-            sendButton.addEventListener('click', () => {
-                const message = JSON.stringify([username, messageInput.value]);
-                socket.emit('new-message', message);
-                messageInput.value = '';
-            });
-        });
-    </script>
-</head>
-<body>
-    <div id="chat">
-        <!-- Chat messages will be displayed here -->
-    </div>
-    <input type="text" id="message-input" placeholder="Type a message...">
-    <button id="send-button">Send</button>
-</body>
-</html>
+## Authorization
+
+The server uses token-based authentication. The token must be included in the `Authorization` header as `Token <token>` for both HTTP requests and WebSocket connections.
+
+### HTTP Requests
+For HTTP requests, include the token in the `Authorization` header:
+```http
+Authorization: Token <token>
+```
+
+### WebSocket Setup
+For WebSocket connections, include the token in the `extraHeaders` option:
+```javascript
+const socket = io(process.env.BACKEND_URL, {
+  extraHeaders: {
+    Authorization: `Token ${localStorage.getItem('token')}`
+  }
+});
+```
+
+## Sending Requests
+
+### HTTP Requests
+To send an authenticated request to the server:
+
+**Example: Fetching messages**
+```javascript
+fetch(`${process.env.BACKEND_URL}/messages`, {
+  headers: {
+    'Authorization': `Token ${localStorage.getItem('token')}`
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+```
+
+### WebSocket Setup
+To establish a WebSocket connection and handle events:
+
+**Example: Setting up socket connection and listening to events**
+```javascript
+import io from 'socket.io-client';
+
+const socket = io(process.env.BACKEND_URL, {
+  extraHeaders: {
+    Authorization: `Token ${localStorage.getItem('token')}`
+  }
+});
+
+socket.on('info', (data) => {
+  console.log(data); // `{user} joined/disconnected`
+});
+
+socket.on('stat', (data) => {
+  console.log(`Number of users: ${data}`);
+});
+
+socket.on('message', (data) => {
+  const message = JSON.parse(data);
+  console.log(message); // `{user, message}`
+});
+
+socket.on('typing', (user) => {
+  console.log(`${user} is typing...`);
+});
+
+// Emitting events to the server
+socket.emit('new-message', 'Your message here');
+socket.emit('typing', 'username');
 ```
