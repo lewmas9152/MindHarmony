@@ -18,26 +18,32 @@ $col-17: #1aa66f;
 $col-18: #323553;
 $col-19: #afb5c1;
 $col-20: #604f5c;
-
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
 .container {
     display: flex;
     margin: 20px auto;
     gap: 20px;
+    padding: 20px;
 }
 
 .chartWrapper {
     width: 450px;
     height: 400px;
     margin-bottom: 20px;
-    // padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid $col-18;
     border-radius: 8px;
     background-color:$col-13;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     h2{
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 20px;
         margin-bottom: 10px;
+        font-family: $font-rubik;
+        color:$col-19;
+        font-weight:600 ;
     }
     
 }

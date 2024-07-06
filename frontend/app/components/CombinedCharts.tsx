@@ -38,7 +38,6 @@ const CombinedCharts: React.FC = () => {
             <div className={styles.chartWrapper}>
                 <h2>Mood Tracking</h2>
                 <BarChart width={400} height={300} data={moodData}>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
@@ -50,7 +49,6 @@ const CombinedCharts: React.FC = () => {
             <div className={styles.chartWrapper}>
                 <h2>Stress Levels</h2>
                 <BarChart width={400} height={300} data={stressData}>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
@@ -61,7 +59,6 @@ const CombinedCharts: React.FC = () => {
             <div className={styles.chartWrapper}>
                 <h2>Support Group Interaction</h2>
                 <AreaChart width={400} height={300} data={supportGroupData}>
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
