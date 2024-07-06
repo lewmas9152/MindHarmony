@@ -23,7 +23,7 @@ export default function TabsDemo() {
 
         {/* //#region Sign up */}
         <TabsContent value="sign-up">
-          <Card className="w-[380px] max-w-sm shadow-md">
+          <Card className="w-[380px] max-w-sm shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">Sign up</CardTitle>
 
@@ -51,9 +51,14 @@ export default function TabsDemo() {
               <Button className="w-full">Sign up</Button>
               <div className="mt-4 text-center text-sm">
                 Already have an account?{" "}
-                <Link href="#" className="underline">
-                  Sign in
-                </Link>
+                <TabsList>
+                  <TabsTrigger
+                    value="login"
+                    className="underline text-black p-0"
+                  >
+                    Login
+                  </TabsTrigger>
+                </TabsList>
               </div>
             </CardFooter>
           </Card>
@@ -61,7 +66,7 @@ export default function TabsDemo() {
 
         {/* //#region Login */}
         <TabsContent value="login">
-          <Card className="w-[380px] max-w-sm shadow-md">
+          <Card className="w-[380px] max-w-sm shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">Login</CardTitle>
               <CardDescription>
@@ -87,9 +92,17 @@ export default function TabsDemo() {
               <Button className="w-full">Sign in</Button>
               <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <Link href="#" className="underline">
+                {/* <Link href="#" className="underline">
                   Sign up
-                </Link>
+                </Link> */}
+                <TabsList>
+                  <TabsTrigger
+                    value="sign-up"
+                    className="underline text-black p-0"
+                  >
+                    Sign up
+                  </TabsTrigger>
+                </TabsList>
               </div>
             </CardFooter>
           </Card>
