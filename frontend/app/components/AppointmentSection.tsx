@@ -7,12 +7,13 @@ import TherapyIcon from '../images/therapy.svg';
 import CountUp from 'react-countup';
 import styles from '../sass/AppointmentSection.module.scss';
 import DocRaj from "../images/raj.jpg";
-import DocBrown from "../images/brown.webp";
-import DocJohnson from "../images/johnson.jpg";
+import DocBrown from "../images/doc1.jpg";
+import DocJohnson from "../images/user3.jpg";
 import DocWilson from "../images/wilson.jpg";
-import DocWilliams from "../images/williams.jpg";
+import DocWilliams from "../images/user1.jpg";
 import DocKapoor from "../images/kapoor.jpg";
-
+import DocAnderson from "../images/doc2.jpg";
+import Thomas from '../images/dp.jpg';
 interface Doctor {
   image: string;
   name: string;
@@ -114,7 +115,7 @@ const AppointmentSection: React.FC = () => {
       id: 7,
       type: 'Upcoming',
       doctor: {
-        image: DocRaj,
+        image: DocAnderson,
         name: 'Dr. Anderson',
         role: 'Psychologist',
       },
@@ -127,7 +128,7 @@ const AppointmentSection: React.FC = () => {
       id: 8,
       type: 'Missed',
       doctor: {
-        image: DocBrown,
+        image: Thomas,
         name: 'Dr. Thomas',
         role: 'Counselor',
       },

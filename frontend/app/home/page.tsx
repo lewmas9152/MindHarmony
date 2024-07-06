@@ -15,6 +15,7 @@ import TherapyIcon from "../images/therapy.svg"
 import CountUp from 'react-countup';
 import AppointmentSection from '../components/AppointmentSection';
 import MentalExercisesProgress from '../components/MentalExercisesProgress';
+import CombinedCharts from '../components/CombinedCharts';
 
 
 const HomePage = () => {
@@ -163,6 +164,9 @@ const HomePage = () => {
                   <p><CountUp end={40} duration={3} /></p>
                   </div>
               </div>
+          </div>
+          <div className="charts-container">
+            <CombinedCharts />
           </div>
           <div className="user-mental-data">
               <div className="appointments-container">
