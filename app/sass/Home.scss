@@ -1,0 +1,108 @@
+$color-celestial-blue: #4990e2;
+$color-celestial-sky: #6cb4e2;
+$color-celestial-light: #9cd4e2;
+$color-celestial-dusk: #315d89;
+$color-celestial-night: #1d3a56;
+
+$color-slate-gray: #708090;
+$color-slate-blue: #6a5acd;
+$color-slate-light: #b0c4de;
+$color-slate-dark: #2f4f4f;
+$color-slate-ash: #778899;
+
+$color-dark-charcoal: #36454f;
+$color-dark-onyx: #353839;
+$color-dark-graphite: #474a51;
+$color-dark-midnight: #2c3e50;
+$color-dark-raven: #4b4b4b;
+
+$color-light-ivory: #fffff0;
+$color-light-cream: #fffdd0;
+$color-light-pastel: #e6e6fa;
+$color-light-mint: #f5fffa;
+$color-light-snow: #fffafa;
+
+$color-forest-green: #228b22;
+$color-forest-moss: #8a9a5b;
+$color-forest-fir: #4f7942;
+$color-forest-pine: #01796f;
+$color-forest-jungle: #29ab87;
+
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    .side-bar{
+        width: 20%;
+    }
+    .content-container{
+        width: 80%;
+        background-color: azure;
+        .header{
+            display: flex;
+            flex-direction: row;
+            gap: 150px;
+            height: 150px;
+            padding: 30px;
+            // background: linear-gradient(90deg, $color-celestial-night, $color-dark-charcoal, $color-celestial-blue,$color-dark-midnight);
+            background-color: $color-celestial-night;
+            color: white;
+            .user-profile{
+                display: flex;
+                flex-direction: column;
+                margin-left: 270px;
+                img{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: 2px solid #29ab87;
+                }
+            }
+            .notifications, .reminders{
+                margin-top: 20px;
+                img{
+                    width: 40px;
+                    height: 40px;
+                
+                }
+            }
+            .search-bar{
+                .search-icon{
+                    position: relative;
+                    left: 350px;
+                    top: 40px;
+                }
+                input{
+                    padding: 10px;
+                    border: none;
+                    border-radius: 8px;
+                    width: 400px;
+                    &:focus{
+                        outline: none;
+                    }
+
+                }
+                }
+            .header-title{
+                font-size: 2rem;
+            }
+            .header-actions{
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                button{
+                    padding: 10px;
+                    background-color: $color-celestial-blue;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    &:hover{
+                        background-color: $color-celestial-sky;
+                    }
+                }
+            }
+        }
+    
+    }
+}
