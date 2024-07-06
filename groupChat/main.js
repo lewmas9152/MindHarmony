@@ -24,27 +24,27 @@ cors.options = {
 
 app.use(cors());
 app.use(cookieParser());
-app.use((req, res, next) => {
-    let token = req.headers.authorization.split(" ")[1];
-    console.log("token : "+ token);
-    if (!token) {
-        return res.sendStatus(401);
-    }
-    axios.get(`${process.env.AUTH_URL}/auth/verify`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then((response) => {
-        if (response.status === 200) {
-            req.user = response.data;
-            next();
-        } else {
-            res.sendStatus(401);
-        }
-    }).catch((error) => {
-        res.sendStatus(401);
-    });
-})
+// app.use((req, res, next) => {
+//     let token = req.headers.authorization.split(" ")[1];
+//     console.log("token : "+ token);
+//     if (!token) {
+//         return res.sendStatus(401);
+//     }
+//     axios.get(`${process.env.AUTH_URL}/auth/verify`, {
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         }
+//     }).then((response) => {
+//         if (response.status === 200) {
+//             req.user = response.data;
+//             next();
+//         } else {
+//             res.sendStatus(401);
+//         }
+//     }).catch((error) => {
+//         res.sendStatus(401);
+//     });
+// })
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/chat.html');
