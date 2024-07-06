@@ -94,10 +94,10 @@ export default function Sidenav(){
                 />
             </div>
             <div className="nav-item">
-        <Link href="groups">Support Groups</Link>
+        <Link href="chat">Live Chat</Link>
         </div>
         </div>
-        </div> 
+        </div>
         </div>
     )
 

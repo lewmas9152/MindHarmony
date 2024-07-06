@@ -2,9 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date, datetime
 
+from random import randint
+
 
 class Professional(models.Model):
     name = models.TextField(default='John Doe')
+    prof_id = models.IntegerField(auto_created=True, default=randint(0, 100))
     specialization = models.CharField(max_length=200)
     bio = models.TextField()
     profile = models.ImageField(default='default.jpeg', upload_to='profile_pictures/')
