@@ -53,12 +53,13 @@ async function auth(req , res , next){
     if(!token) return res.status(401);
     const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Token ${token}`
         }
     });
     if(response.status !== 200) return res.status(401);
 
     req.user = response.body;
+    next();
 }
 
 // Middleware for socket to verify the token
@@ -69,9 +70,9 @@ io.use(async (socket, next) => {
             return next(new Error('Authentication error'));
         }
         
-        const response = await axios.get(`${process.env.AUTH_URL}/auth/verify`, {
+        const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Token ${token}`
             }
         });
 
@@ -89,8 +90,9 @@ io.use(async (socket, next) => {
 io.on('connection', (socket) => {
     const user = new User(socket.id, socket.user.username);
     users.push(user);
-    io.emit('info', `${user.uname} joined the chat`);
+    io.emit('info', `${user.uname} joined`);
     io.emit('stat', users.length);
+    console.log(`${user.uname} joined`)
     
     socket.on('disconnect', () => {
         users = users.filter(u => u.id !== socket.id);
@@ -103,7 +105,7 @@ io.on('connection', (socket) => {
         const newMessage = new Message(socket.user.username, message);
         messages.push(newMessage);
         io.emit('message', JSON.stringify(newMessage));
-        console.log(`Message received from ${socket.user.username}: ${message}`);
+        console.log(`Message from ${socket.user.username}: ${message}`);
     });
 
     socket.on('typing', (user) => {
@@ -114,4 +116,5 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
     console.log('Server started on port: ' + process.env.PORT);
     console.log('Frontend url:' + process.env.FRONTEND_URL);
+    console.log('Auth url: ' + process.env.AUTH_URL);
 });
