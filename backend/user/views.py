@@ -19,8 +19,10 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 def UserDetails(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
+    if user_profile is None:
+        return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
     serializer = UserProfileSerializer(user_profile)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
     
 
    

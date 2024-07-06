@@ -18,29 +18,31 @@ $col-17: #1aa66f;
 $col-18: #323553;
 $col-19: #afb5c1;
 $col-20: #604f5c;
-$font-rubik : 'Rubik', sans-serif;
-$font-josefin : 'Josefin Sans', sans-serif;
-$font-island : 'Island Moments', cursive;
-$font-ropa : 'Ropa Sans', sans-serif;
-$font-jost : 'Jost', sans-serif;
-$font-playwrite : 'Playwrite IT Moderna', sans-serif;
-@mixin chat-container{
+$font-rubik: 'Rubik', sans-serif;
+$font-josefin: 'Josefin Sans', sans-serif;
+$font-island: 'Island Moments', cursive;
+$font-ropa: 'Ropa Sans', sans-serif;
+$font-jost: 'Jost', sans-serif;
+$font-playwrite: 'Playwrite IT Moderna', sans-serif;
+
+@mixin chat-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    &:hover{
+    &:hover {
         background-color: #b9c1cf;
         width: 100%;
         border-left: 2px solid $col-7;
     }
 }
+
 .container {
     display: grid;
-    grid-template-columns: 9% 30% 90%;
+    grid-template-columns: 10% 30% 60%;
     width: 100%;
     height: 100vh;
-    margin: 0; 
+    margin: 0;
     padding: 0;
 }
 
@@ -48,25 +50,25 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     position: sticky;
     top: 0;
     height: 100vh;
-    background-color: $col-3;
-    .nav-logo{
+    background-color: $col-13;
+    .nav-logo {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 10%;
         background-color: $col-4;
-        img{
+        img {
             width: 50px;
             height: 50px;
         }
-    } 
-    .nav-container{
+    }
+    .nav-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 50px;
         padding: 20px;
-        .nav-item{
+        .nav-item {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -74,36 +76,95 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
             background-color: $col-4;
             border-radius: 10px;
             cursor: pointer;
-            img{
+            img {
                 width: 30px;
                 height: 30px;
             }
-            p{
+            p {
                 font-family: $font-josefin;
                 font-size: 20px;
                 color: $col-2;
                 margin-left: 10px;
             }
         }
-        .chats-container{
+        .chats-container {
             @include chat-container;
         }
-        .group-container{
+        .group-container {
             @include chat-container;
         }
-        .user-container{
-            @include chat-container;        
+        .user-container {
+            @include chat-container;
         }
-
     }
-
 }
 
 .content-container {
     background-color: $col-5;
+    .top {
+        width: 200px;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        height: 10%;
+        padding: 20px;
+        input {
+            border: none;
+            border-radius: 2px;
+            height: 30px;
+        }
+        button {
+            border: none;
+            border-radius: 2px;
+            background-color: #518beb;
+            color: white;
+            font-family: $font-josefin;
+            font-size: 13px;
+            padding: 10px;
+            height: 30px;
+            cursor: pointer;
+        }
+    }
+    .active-users {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h2 {
+            font-family: $font-rubik;
+            font-size: 20px;
+            color: $col-1;
+            text-align: center;
+        }
+        .active {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            .user-profile {
+                position: relative;
+                margin-top: 20px;
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: 2px solid $col-6;
+                }
+                .online-status {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 12px;
+                    height: 12px;
+                    background-color: #35e229;
+                    border-radius: 50%;
+                    border: 2px solid $col-5;
+                }
+            }
+        }
+    }
 }
 
 .chat-content-container {
     background-color: #518beb;
 }
-
