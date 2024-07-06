@@ -49,6 +49,7 @@ app.get("/messages", auth , (req , res)=>{
 
 // middleware for express authentication
 async function auth(req , res , next){
+    if(!req.headers.authorization) return res.status(401).send("Unauthorized");
     let token = req.headers.authorization.split(" ")[1];
     if(!token) return res.status(401);
     const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
