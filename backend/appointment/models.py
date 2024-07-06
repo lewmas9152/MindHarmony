@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 
 class Professional(models.Model):
-    name = models.TextField()
+    name = models.TextField(default='John Doe')
     specialization = models.CharField(max_length=200)
     bio = models.TextField()
     profile = models.ImageField(default='default.jpeg', upload_to='profile_pictures/')

@@ -10,9 +10,20 @@ from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from rest_framework.decorators import authentication_classes, permission_classes,api_view
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication, SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def UserDetails(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    serializer = UserProfileSerializer(user_profile)
+    return Response(serializer.data)
+    
 
-
+   
 
 class UserDetailView(APIView):
     permission_classes = [IsAuthenticated]
