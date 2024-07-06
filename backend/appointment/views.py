@@ -31,4 +31,22 @@ def spec_appointment(request, username):
     user = User.objects.filter(username=username)
     data = {}
     if user:
-        data = Pro
+        appointment = Appointment.objects.filter(user=user)
+        if appointment:
+            data = AppointmentSerializer(appointment).data
+            return Response(data)
+        else:
+            return Response({'Message': f'User {username} has no appointments'})
+    else:
+        return Response({'Message': f'User {username} does not exist'})
+
+@api_view(["POST"])
+def post_appointment(request):
+    appointment = request.data
+    serialized = AppointmentSerializer(data=appointment)
+
+    if serialized.is_valid():
+        serialized.save()
+        return Response(serialized.data)
+    else:
+        return Response({'Message': 'Invalid json request'})
