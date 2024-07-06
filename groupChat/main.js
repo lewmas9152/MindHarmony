@@ -4,8 +4,12 @@
  */
 const dotenv = require('dotenv');
 const axios = require('axios');
+const cookieParser = require('cookie-parser');
 const app = require('express')();
 const server = require('http').Server(app);
+
+dotenv.config();
+
 const io = require('socket.io')(server, {
     cors: {
         origin: "*", // development only
@@ -19,9 +23,7 @@ cors.options = {
 }
 
 app.use(cors());
-
-dotenv.config();
-
+app.use(cookieParser());
 app.use((req, res, next) => {
     let token = req.cookies.token;
     if (!token) {
