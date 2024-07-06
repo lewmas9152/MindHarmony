@@ -7,13 +7,15 @@ import ReminderIcon from "../images/reminder.svg";
 import Image from 'next/image';
 import SearchIcon from "../images/search.svg";
 import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
-import Welcome from "../images/wave.jpg";
+import Welcome from "../images/welc.png";
 import AppointmentIcon from "../images/appointment.svg";
 import ProgressIcon from "../images/progress (2).svg";
 import MentalHealth from '../images/brain.svg';
 import TherapyIcon from "../images/therapy.svg"
 import CountUp from 'react-countup';
 import AppointmentSection from '../components/AppointmentSection';
+import MentalExercisesProgress from '../components/MentalExercisesProgress';
+import CombinedCharts from '../components/CombinedCharts';
 
 
 const HomePage = () => {
@@ -83,14 +85,15 @@ const HomePage = () => {
           </div>
           <div className="welcome-message">
             <div className="image-welcome">
-              <Image
+            <iframe src="https://lottie.host/embed/78f7a603-9cc6-4213-8698-a595c5ca7005/fENvQNEzhn.json "></iframe>
+              {/* <Image
                 src={Welcome}
                 alt="Welcome Image"
                 width={1920}
                 height={1080}
                 quality={100}
                 className="object-contain w-full h-full zooming-image"
-              />
+              /> */}
             </div>
             <div className="message">
               <h1>Good {
@@ -162,15 +165,17 @@ const HomePage = () => {
                   </div>
               </div>
           </div>
+          <div className="charts-container">
+            <CombinedCharts />
+          </div>
+          <div className="user-mental-data">
               <div className="appointments-container">
                 <AppointmentSection />
               </div>
-{/* 
-          <div className="stats-container">
-            <div className="stat-box appointments">
-              <h3>Appointments</h3>
-            </div>
-            </div> */}
+              <div className="my-mental-exercises-progress">
+                <MentalExercisesProgress />
+              </div>
+              </div>
         </div>
       </div>
     </div>

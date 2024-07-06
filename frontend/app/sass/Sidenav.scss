@@ -26,25 +26,39 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     flex-direction: row;
     gap: 20px;
     padding: 10px;
-
+    &:hover {
+        background-color: $nightowl-hover;
+        width: 100%;
+        border-left:3px solid #c792ea;
+    }
+    &.active {
+        background-color: rgba($nightowl-accent-light, 0.3); 
+        border-left: 5px solid $nightowl-accent;
+        padding-left: 5px; 
+    }
 }
 .navbar{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     background-color: $nightowl-bg;
-    height: 200vh;
-    color: #fff;
+    height: 100vh;
+    color: $nightowl-fg;
     padding: 10px;
-    padding-top: 150px;
+    padding-top: 138px;
+    position: sticky;
+    top: 0;
     .nav-content-container{
+        display: flex;
+        flex-direction: column;
         padding-left: 30px;
+        gap: 30px;
     }
     .nav-logo{
         display: flex;
         flex-direction: row;
-        background-color:#1d3a56;
-        width: 100%;
+        background-color:#222746;
+        width:100%;
         margin-left: 30px;
         border-top-left-radius: 12px;
         border-bottom-left-radius: 12px;
@@ -53,7 +67,7 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
 
     h1{
         font-family: $font-playwrite;
-        font-size: 2rem;
+        font-size: 20px;
         padding: 10px;
     }
 
@@ -82,4 +96,6 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     .groups-container{
         @include nav-container;
     }
+}
+.nav-item {
 }
