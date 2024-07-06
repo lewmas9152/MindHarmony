@@ -3,13 +3,25 @@ import ChatIcon from "../images/chatscon.svg";
 import Image from "next/image";
 import UserIcon from "../images/user.svg";
 import Groupcon from "../images/groupcon.svg";
+import ChatLogo from "../images/chat2.png";
 import "../sass/Chats.scss";
 
 export default function SupportGroups(){
     return (
         <div className="container">
             <div className="nav-bar">
-                <nav>
+                <div className="nav-logo">
+                    <div className="img-logo">
+                        <Image
+                        src={ChatLogo}
+                        alt="logo"
+                        width={40}
+                        quality={100}
+                        />
+
+                    </div>
+                </div>
+                <nav className="nav-container">
                     <div className="chats-container">
                         <div className="image-cont">
                             <Image
@@ -21,7 +33,8 @@ export default function SupportGroups(){
                             />
                         </div>
                         <div className="chat-item">
-                            <Link href="/chats">Chats</Link>
+                            <Link href="/chat/chats">Chats</Link>
+                        </div>
                         </div>
                         <div className="group-container">
                             <div className="image-cont">
@@ -34,7 +47,7 @@ export default function SupportGroups(){
                                 />
                             </div>
                             <div className="group-item">
-                                <Link href="/groups">Groups</Link>
+                                <Link href="/chat/groups">Groups</Link>
                             </div>
                         </div>
                         <div className="user-container">
@@ -48,16 +61,13 @@ export default function SupportGroups(){
                                 />
                             </div>
                             <div className="user-item">
-                                <Link href="/users">Users</Link>
+                                <Link href="/chat/users">Users</Link>
                             </div>
                         </div>
-                    </div>
-            <Link href="/groups"></Link>
-            <Link href="/users"></Link>
             </nav>
             </div>
             <div className="content-container">
-                <h1>Chats</h1>
+                <h1>All Chats</h1>
             </div>
             <div className="chat-content-container">
                 <div className="content">
