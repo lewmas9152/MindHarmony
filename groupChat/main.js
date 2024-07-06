@@ -25,7 +25,8 @@ cors.options = {
 app.use(cors());
 app.use(cookieParser());
 app.use((req, res, next) => {
-    let token = req.cookies.token;
+    let token = req.headers.authorization.split(" ")[1];
+    console.log("token : "+ token);
     if (!token) {
         return res.sendStatus(401);
     }
