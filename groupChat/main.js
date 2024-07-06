@@ -108,8 +108,8 @@ io.on('connection', (socket) => {
         console.log(`Message from ${socket.user.username}: ${message}`);
     });
 
-    socket.on('typing', (user) => {
-        io.emit('typing', user);
+    socket.on('typing', () => {
+        io.emit('typing', socket.user.username);
     });
 });
 
