@@ -1,0 +1,23 @@
+### Test Login Endpoint
+POST http://127.0.0.1:8000/login/
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin123"
+}
+
+### Test Signup Endpoint
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+{
+    "username": "newuser5",
+    "password": "newpassword",
+    "email": "newuser@example.com"
+}
+
+### Test Test Endpoint
+GET  http://127.0.0.1:8000/user/user-details/
+Content-Type: application/json
+Authorization: Token 6de919c8b1ac1da643b326fb037856c4e77b8c7b
