@@ -21,23 +21,23 @@ import "../sass/Chats.scss";
 
 export default function ChatApp() {
     const [users, setUsers] = useState([
-        { id: 1, name: "John Doe", avatar: User1, online: true, lastMessage: "Hey, how's it going?", typing: false },
-        { id: 2, name: "Jane Doe", avatar: User2, online: true, lastMessage: "Can we meet tomorrow?", typing: true },
-        { id: 3, name: "Alice Smith", avatar: User3, online: false, lastMessage: "Thanks for your help!", typing: false },
-        { id: 4, name: "Bob Johnson", avatar: User4, online: true, lastMessage: "I'll check and get back to you.", typing: false },
-        { id: 5, name: "Eve Williams", avatar: User5, online: false, lastMessage: "See you next week!", typing: false },
-        { id: 6, name: "Charlie Brown", avatar: User6, online: true, lastMessage: "Let's catch up soon!", typing: false },
-        { id: 7, name: "Diana Prince", avatar: User7, online: true, lastMessage: "How about lunch?", typing: true },
-        { id: 8, name: "Frank Castle", avatar: User8, online: false, lastMessage: "Project deadline extended.", typing: false },
-        { id: 9, name: "Grace Hopper", avatar: User9, online: true, lastMessage: "New bug found in the system.", typing: false },
-        { id: 10, name: "Hank Pym", avatar: User10, online: true, lastMessage: "Innovative ideas for the next sprint!", typing: true },
+        { id: 1, name: "Alex (Anxiety)", avatar: User1, online: true, lastMessage: "Feeling anxious about work today.", typing: false },
+        { id: 2, name: "Dr. Sarah (Therapist)", avatar: User2, online: true, lastMessage: "Remember your coping strategies.", typing: true },
+        { id: 3, name: "Mike (Depression)", avatar: User3, online: false, lastMessage: "Had a good day today!", typing: false },
+        { id: 4, name: "Emma (PTSD)", avatar: User4, online: true, lastMessage: "Struggling with flashbacks.", typing: false },
+        { id: 5, name: "Dr. James (Psychiatrist)", avatar: User5, online: false, lastMessage: "How's the new medication working?", typing: false },
+        { id: 6, name: "Lily (Bipolar)", avatar: User6, online: true, lastMessage: "Feeling more stable this week.", typing: false },
+        { id: 7, name: "Tom (OCD)", avatar: User7, online: true, lastMessage: "Trying exposure therapy.", typing: true },
+        { id: 8, name: "Sophie (Eating Disorder)", avatar: User8, online: false, lastMessage: "Nervous about meal plan.", typing: false },
+        { id: 9, name: "Ryan (Addiction Recovery)", avatar: User9, online: true, lastMessage: "30 days sober today!", typing: false },
+        { id: 10, name: "Mia (Social Anxiety)", avatar: User10, online: true, lastMessage: "Practiced self-affirmations today.", typing: true },
     ]);
 
     const [groups, setGroups] = useState([
-        { id: 1, name: "General", members: [1, 2, 3, 4, 5], lastMessage: "Welcome everyone!", typing: [2, 4] },
-        { id: 2, name: "Development", members: [1, 2, 4, 6, 8], lastMessage: "New project kickoff tomorrow", typing: [1] },
-        { id: 3, name: "Marketing", members: [2, 3, 5, 7, 9], lastMessage: "Campaign ideas needed", typing: [] },
-        { id: 4, name: "Design", members: [1, 3, 4, 8, 10], lastMessage: "New logo draft", typing: [3, 10] },
+        { id: 1, name: "Anxiety Support", members: [1, 2, 3, 4, 5], lastMessage: "Welcome to our safe space!", typing: [2, 4] },
+        { id: 2, name: "Depression Management", members: [1, 2, 3, 6, 8], lastMessage: "Sharing coping strategies", typing: [1] },
+        { id: 3, name: "PTSD Support", members: [2, 3, 4, 7, 9], lastMessage: "Grounding techniques discussion", typing: [] },
+        { id: 4, name: "General Mental Health", members: [1, 3, 5, 8, 10], lastMessage: "Weekly check-in: How are we doing?", typing: [3, 10] },
     ]);
 
     const [selectedChat, setSelectedChat] = useState(null);
@@ -84,33 +84,33 @@ export default function ChatApp() {
         if ('members' in chat) {
             // It's a group chat
             setMessages([
-                { id: 1, sender: 2, text: "Hello everyone!", timestamp: new Date(Date.now() - 100000) },
-                { id: 2, sender: 4, text: "Hi there! What's the agenda for today?", timestamp: new Date(Date.now() - 80000) },
-                { id: 3, sender: 1, text: "We need to discuss the new feature.", timestamp: new Date(Date.now() - 60000) },
-                { id: 4, sender: 3, text: "I have some ideas to share.", timestamp: new Date(Date.now() - 40000) },
+                { id: 1, sender: 2, text: "Welcome everyone. How are you all feeling today?", timestamp: new Date(Date.now() - 100000) },
+                { id: 4, text: "I've been having a tough week with my anxiety.", timestamp: new Date(Date.now() - 80000) },
+                { id: 1, text: "I'm here if anyone needs to talk. We're all in this together.", timestamp: new Date(Date.now() - 60000) },
+                { id: 3, text: "Thanks for the support. It means a lot to have this group.", timestamp: new Date(Date.now() - 40000) },
             ]);
         } else {
             // It's a one-on-one chat
             if (selectedChat) {
-                const chat = selectedChat as { id: number, avatar: string }; // Update the type of selectedChat
+                const chat = selectedChat as { id: number, avatar: string };
                 setMessages([
-                    { id: 1, sender: chat.id, text: "Hello!", timestamp: new Date(Date.now() - 100000) },
-                    { id: 2, sender: "currentUser", text: "Hi there!", timestamp: new Date(Date.now() - 80_000) },
-                    { id: 3, sender: chat.id, text: "How are you doing?", timestamp: new Date(Date.now() - 60000) },
-                    { id: 4, sender: "currentUser", text: "I'm good, thanks! How about you?", timestamp: new Date(Date.now() - 40000) },
+                    { id: 1, sender: chat.id, text: "Hi there. How are you feeling today?", timestamp: new Date(Date.now() - 100000) },
+                    { id: 2, sender: "currentUser", text: "I'm struggling a bit with my symptoms.", timestamp: new Date(Date.now() - 80000) },
+                    { id: 3, sender: chat.id, text: "I'm sorry to hear that. Can you tell me more about what's going on?", timestamp: new Date(Date.now() - 60000) },
+                    { id: 4, sender: "currentUser", text: "I've been feeling more anxious than usual and it's affecting my sleep.", timestamp: new Date(Date.now() - 40000) },
                 ]);
             }
         }
     }
 
     function handleCreateGroup() {
-        const groupName = prompt("Enter group name:");
+        const groupName = prompt("Enter support group name:");
         if (groupName) {
             const newGroup = {
                 id: groups.length + 1,
                 name: groupName,
                 members: [1],
-                lastMessage: "Group created",
+                lastMessage: "Support group created",
                 typing: [],
             };
             setGroups([...groups, newGroup]);
@@ -122,7 +122,7 @@ export default function ChatApp() {
     }
 
     function handleAddUserToGroup(groupId) {
-        const userId = prompt("Enter user ID to add:");
+        const userId = prompt("Enter user ID to add to the support group:");
         if (userId) {
             setGroups(groups.map(group => {
                 if (group.id === groupId && !group.members.includes(Number(userId))) {
@@ -183,7 +183,7 @@ export default function ChatApp() {
             <div className="content-container">
                 <div className="top">
                     <div className="top-content">
-                        <h1>{activeTab === "chats" ? "All Chats" : activeTab === "groups" ? "Groups" : "Users"}</h1>
+                        <h1>{activeTab === "chats" ? "All Chats" : activeTab === "groups" ? "Support Groups" : "Community Members"}</h1>
                     </div>
                     <div className="search-bar">
                         <input type="text" placeholder="Search" />
@@ -218,7 +218,7 @@ export default function ChatApp() {
                 )}
                 {activeTab === "groups" && (
                     <div className="groups-list">
-                        <button className="create-group" onClick={handleCreateGroup}>Create New Group</button>
+                        <button className="create-group" onClick={handleCreateGroup}>Create New Support Group</button>
                         {groups.map((group) => (
                             <div key={group.id} className={`group-item ${selectedChat?.id === group.id ? 'active' : ''}`}>
                                 <div className="group-icon" onClick={() => handleChatSelect(group)}>
@@ -240,7 +240,7 @@ export default function ChatApp() {
                                     )}
                                 </div>
                                 <div className="group-actions">
-                                    <button className="add-user" onClick={() => handleAddUserToGroup(group.id)}>Add User</button>
+                                    <button className="add-user" onClick={() => handleAddUserToGroup(group.id)}>Add Member</button>
                                     <button className="delete-group" onClick={() => handleDeleteGroup(group.id)}>Delete</button>
                                 </div>
                             </div>
@@ -284,7 +284,7 @@ export default function ChatApp() {
                                 <h2>{selectedChat.name}</h2>
                                 {'members' in selectedChat ? (
                                     <div className="group-members">{selectedChat.members.length} members</div>
-                                    ) : (
+                                ) : (
                                     <div className={`user-status ${selectedChat.online ? 'online' : 'offline'}`}>
                                         {selectedChat.online ? 'Online' : 'Offline'}
                                     </div>
