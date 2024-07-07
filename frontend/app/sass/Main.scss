@@ -28,15 +28,15 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
 
   }
   @media (min-width: 640px) {
-    padding: 1.5rem;
+    // padding: 1.5rem;
   }
   
   @media (min-width: 768px) {
-    padding: 2rem;
+    // padding: 2rem;
   }
   
   @media (min-width: 1024px) {
-    padding: 2.5rem;
+    // padding: 2.5rem;
   }
 }
 
@@ -50,27 +50,10 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   @media (max-width: 640px) {
     flex-direction: column;
   }
-}
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-  .intro-section {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    z-index: 0;
-
-    
-  
-  }
-  
   .image-container {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
+
   }.top{
     display: flex;
     width: 100%;
@@ -124,6 +107,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     justify-content: flex-end;
     margin-left: 55%;
     margin-top: 100px !important;
+    font-family: $font-rubik;
     .nav {
         display: flex;
         justify-content: center;
@@ -133,7 +117,6 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
         color: $color-light-snow;
         font-family: $font-ropa;
         font-size: 20px;
-        border: 1px solid $nightowl-accent-light;
         border-radius: 5px;
       }
       
@@ -147,6 +130,13 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       }
   }
 }
+.cont{
+  .nav-menu{
+    font-family: $font-josefin;
+    background-color: red;
+  }
+}
+
  
   
   .header {
@@ -157,6 +147,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     top: 40%;
     padding: 20px;
     text-align: left;
+    border: none;
     right: 50%;
     width: 600px;
     .button-container{
@@ -329,7 +320,7 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
       animation: bounce 2s infinite;
       animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
       transform-origin: center;
-      width: 485px;
+      // width: 485px;
     }
     .contact-section {
       background-color: #f3f4f6;
