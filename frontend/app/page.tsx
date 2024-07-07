@@ -23,28 +23,33 @@ import { Button } from "./components/ui/button";
 export default function Home() {
   const [aboutRef, aboutInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   const [contactRef, contactInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   const [servicesRef, servicesInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   return (
     <main className="w-full space-y-4 ">
-      <div
-        className="relative h-screen bg-center bg-cover zooming-image"
-        style={{ backgroundImage: `url(/2.jpg)` }}
-      >
+      <div className="relative h-screen bg-center bg-cover image-container">
+        <div
+          className="absolute inset-0 header zooming-image"
+          style={{
+            backgroundImage: `url(/2.jpg)`,
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
+        />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="absolute inset-0 flex flex-col border border-red-300">
-          <div className="flex items-center justify-between space-x-2 text-white border border-green-400 logo-cont">
+        <div className="absolute inset-0 flex flex-col ">
+          <div className="flex items-center justify-between space-x-2 text-white logo-cont">
             <div className="flex flex-col items-center ">
               <div className="logo-container rounded-xl ">
                 <Image
@@ -56,48 +61,41 @@ export default function Home() {
                 />
               </div>
               <div className="logo-name">
-                <h3 className="text-2xl font-bold">MindHarmony</h3>
+                <h3 className="p-1 text-2xl font-bold ">MindHarmony</h3>
               </div>
             </div>
-
-              <nav
-                // initial={{ y: 30 }}
-                // animate={{ y: 0 }}
-                // transition={{ duration: 0.3 }}
-                className="flex flex-col justify-end space-y-4 text-white bg-red-300 nav sm:flex-row sm:space-x-8 sm:space-y-0 sm:text-lg md:text-xl lg:text-2xl"
-              >
-                <Link href="/">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Home
+          <div className="nav-menu">
+            <nav className="flex justify-end mr-10 space-x-6 text-sm text-white nav-bar font-rubik sm:text-base">
+              {[
+                "Home",
+                "About",
+                "Services",
+                "Contact",
+                "Sign In | Sign Up"
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : item === "Sign In | Sign Up"
+                      ? "/auth"
+                      : `#${item.toLowerCase()}`
+                  }
+                >
+                  <div className="relative overflow-hidden cursor-pointer group">
+                    <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                      {item}
+                    </span>
+                    <span className="absolute top-0 left-0 inline-block text-red-400 transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
+                      {item}
+                    </span>
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-red-400 transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
                   </div>
                 </Link>
-                <Link href="#about">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    About
-                  </div>
-                </Link>
-                <Link href="#services">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Services
-                  </div>
-                </Link>
-                <Link href="#contact">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Contact
-                  </div>
-                </Link>
-                <Link href="/auth">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Sign In | Sign Up
-                  </div>
-                </Link>
-                {/* <Link href="/auth">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Signup
-                  </div>
-                </Link> */}
-              </nav>
-
+              ))}
+            </nav>
+            </div>
           </div>
           <motion.div
             initial={{ opacity: 0 }}
@@ -160,7 +158,6 @@ export default function Home() {
               </Card>
             ))}
           </div>
-          
         </motion.div>
       </section>
 

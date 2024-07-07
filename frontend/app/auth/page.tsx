@@ -1,4 +1,5 @@
 import { Button } from "../components/ui/button";
+import "../sass/Auth.scss";
 import {
   Card,
   CardContent,
@@ -12,7 +13,8 @@ import { Label } from "../components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 export default function TabsDemo() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen container-main">
+      <div className="overlay"></div>
       <Tabs defaultValue="sign-up">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
@@ -96,7 +98,7 @@ export default function TabsDemo() {
                 <TabsList>
                   <TabsTrigger
                     value="sign-up"
-                    className="p-0 text-black underline"
+                    className="p-0 text-green-400 underline"
                   >
                     Sign up
                   </TabsTrigger>
