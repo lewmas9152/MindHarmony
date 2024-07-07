@@ -44,23 +44,28 @@ app.get('/', (req, res) => {
 });
 
 app.get("/messages", auth , (req , res)=>{
+    console.log(req.user);
     res.send(messages);
 });
 
 // middleware for express authentication
 async function auth(req , res , next){
     if(!req.headers.authorization) return res.status(401).send("Unauthorized");
-    let token = req.headers.authorization.split(" ")[1];
+    var token = req.headers.authorization.split(" ")[1];
     if(!token) return res.status(401);
-    const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
-        headers: {
-            Authorization: `Token ${token}`
-        }
-    });
-    if(response.status !== 200) return res.status(401);
-
-    req.user = response.body;
-    next();
+    let response;
+    try {
+        axios.get(`${process.env.AUTH_URL}/user/user-details`, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        }).then((res)=>{
+            req.user = res.data.user;
+        next();
+        }).catch((err)=>{return res.status(401)});
+    } catch (error) {
+        return res.status(401);
+    }
 }
 
 // Middleware for socket to verify the token
@@ -71,14 +76,18 @@ io.use(async (socket, next) => {
             return next(new Error('Authentication error'));
         }
         
-        const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
-            headers: {
-                Authorization: `Token ${token}`
-            }
-        });
+        try {
+            const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
+                headers: {
+                    Authorization: `Token ${token}`
+                }
+            });     
+        } catch (error) {
+            return next(new Error('Authentication error'));
+        }
 
         if (response.status === 200) {
-            socket.user = response.data;
+            socket.user = response.data.user;
             next();
         } else {
             next(new Error('Authentication error'));
