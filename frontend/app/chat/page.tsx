@@ -4,7 +4,7 @@ import Image from "next/image";
 import ChatIcon from "../images/chatscon.svg";
 import UserIcon from "../images/user.svg";
 import Groupcon from "../images/groupcon.svg";
-import ChatLogo from "../images/chat2.png";
+import ChatLogo from "../images/chat1.svg";
 import User1 from "../images/avatar-1.jpg";
 import User2 from "../images/avatar-2.jpg";
 import User3 from "../images/avatar-3.jpg";
