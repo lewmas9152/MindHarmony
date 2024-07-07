@@ -18,21 +18,20 @@ import InstagramIcon from "./images/line-md--instagram.svg";
 import LinkedInIcon from "./images/line-md--linkedin.svg";
 import EmailIcon from "./images/line-md--email-twotone-alt.svg";
 import PhoneIcon from "./images/line-md--phone-add-twotone.svg";
-// import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
   return (
-    <main className=" w-full">
+    <main className="w-full ">
        
       <div
-        className="relative h-screen bg-cover bg-center zooming-image"
+        className="relative h-screen bg-center bg-cover zooming-image"
         style={{ backgroundImage: `url(/2.jpg)` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute inset-0 flex flex-col border border-red-300">
-          <div className="logo-cont text-white border border-green-400 flex items-center justify-between space-x-2">
-            <div className=" flex flex-col items-center">
+          <div className="flex items-center justify-between space-x-2 text-white border border-green-400 logo-cont">
+            <div className="flex flex-col items-center ">
               <div className="logo-container rounded-xl ">
                 <Image
                   src={logocon}
@@ -47,8 +46,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex justify-end navbar border border-cyan-300 rounded p-4">
-              <nav className="flex flex-col justify-end space-y-4 nav text-cyan-300  sm:flex-row sm:space-x-8 sm:space-y-0 sm:text-lg md:text-xl lg:text-2xl">
+            <div className="flex justify-end p-4 border rounded navbar border-cyan-300">
+              <nav className="flex flex-col justify-end space-y-4 nav text-cyan-300 sm:flex-row sm:space-x-8 sm:space-y-0 sm:text-lg md:text-xl lg:text-2xl">
                 <Link href="/">
                   <div className="cursor-pointer hover:text-white hover:underline">
                     Home
@@ -82,7 +81,7 @@ export default function Home() {
               </nav>
             </div>
           </div>
-          <div className="w-full px-4 py-8 header sm:px-24  flex flex-col flex-grow justify-center items-center">
+          <div className="flex flex-col items-center justify-center flex-grow w-full px-4 py-8 header sm:px-24">
             <h1 className="text-4xl font-bold text-center text-gray-300">
               MindHarmony - Mental health
             </h1>
@@ -91,9 +90,9 @@ export default function Home() {
             </div>
             <div className="relative h-5 shadow-lg rectangle bg-noctis-fg top-80 rounded-5 w-500 animate-slide"></div>
             <div className="">
-              <button className="flex   justify-center items-center px-8 py-3 text-xl mt-6 font-bold text-white border border-white transition-transform duration-300 transform rounded-3xl hover:border-none hover:bg-slate-900   focus:outline-none focus:shadow-outline">
+              <button className="flex items-center justify-center px-8 py-3 mt-6 text-xl font-bold text-white transition-transform duration-300 transform border border-white rounded-3xl hover:border-none hover:bg-slate-900 focus:outline-none focus:shadow-outline">
                 <span>Learn More</span>
-              <ChevronDownIcon className="size-8 text-white"/>
+              <ChevronDownIcon className="text-white size-8"/>
               </button>
             </div>
           </div>
