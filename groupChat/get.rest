@@ -1,6 +1,0 @@
-GET http://localhost:3000/messages
-authorization: Token 28c153400a14e6cc46aca087cd43206d56cb2d1c
-
-
-# GET https://backend-bjhk.onrender.com/user/user-details
-# authorization: Token 28c153400a14e6cc46aca087cd43206d56cb2d1c
