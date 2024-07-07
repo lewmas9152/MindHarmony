@@ -50,7 +50,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute inset-0 flex flex-col ">
           <div className="flex items-center justify-between space-x-2 text-white logo-cont">
-            <div className="flex flex-col items-center ">
+            <div className="flex flex-col items-center cont ">
               <div className="logo-container rounded-xl ">
                 <Image
                   src={logocon}
@@ -65,7 +65,7 @@ export default function Home() {
               </div>
             </div>
           <div className="nav-menu">
-            <nav className="flex justify-end mr-10 space-x-6 text-sm text-white nav-bar font-rubik sm:text-base">
+            <nav className="flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
               {[
                 "Home",
                 "About",
@@ -137,7 +137,7 @@ export default function Home() {
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#40e0d0] transition-opacity duration-300 ease-in-out group-hover:opacity-0"></div>
 
                 {/* Right border */}
-                <div className="absolute right-0 top-0 bottom-0 w-1 bg-[#1d3b53] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-1 bg-[#1f9978] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></div>
                 <div className="relative z-10 transition-all duration-300 ease-in-out group-hover:translate-x-1">
                   <CardHeader>
                     <Image
