@@ -46,7 +46,7 @@ export default function ChatApp() {
     const [error, setError] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const [activeTab, setActiveTab] = useState("chats");
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState('dark');
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
     useEffect(() => {
