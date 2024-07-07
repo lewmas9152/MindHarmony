@@ -301,7 +301,7 @@ export default function ChatApp() {
                                     <Image src={users.find(u => u.id === message.sender).avatar} alt={`User ${message.sender}`} width={30} height={30} quality={100} />
                                 </div>
                             )}
-                            <div className="message-content" style={{backgroundColor: `hsl(${message.sender * 20}, 70%, 80%)`}}>
+                            <div className="message-content" style={{backgroundColor: `hsl(${message.sender * 267},53%, 58%)`}}>
                                 {'members' in selectedChat && message.sender !== 'currentUser' && (
                                     <div className="message-sender">{users.find(u => u.id === message.sender).name}</div>
                                 )}

@@ -47,8 +47,8 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   --nav-bg-color: #f0f0f0;
   --nav-active-color: #e0e0e0;
   --chat-bg-color: #f9f9f9;
-  --message-bg-user: #dcf8c6;
-  --message-bg-other: #ffffff;
+  --message-bg-user:#e6e6fa;
+  --message-bg-other: #843fed;
   --input-bg-color: #ffffff;
   --border-color: #dddddd;
   --toggle-bg: #cccccc;
@@ -61,12 +61,58 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   --nav-bg-color: #2a2a2a;
   --nav-active-color: #3a3a3a;
   --chat-bg-color: #222222;
-  --message-bg-user: #056162;
+  --message-bg-user: #e6e6fa;
   --message-bg-other: #262d31;
   --input-bg-color: #323739;
   --border-color: #444444;
   --toggle-bg: #4cd964;
   --toggle-circle: #ffffff;
+}
+@mixin chat-bubble{
+
+  background: #ddd;
+  display: inline-block;
+  padding: 15px;
+  position: relative;
+  margin-left: 15px;
+  height:100px;
+  width:400px;
+  :before
+{
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  border-top: 7px solid transparent;
+  border-right: 15px solid #21c7a8;
+  border-bottom: 7px solid transparent;
+}
+
+}
+@mixin chat-bubble-right {
+  background: #007bff;
+  color:$col-13;
+  font-family: $font-jost;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  margin-right: 15px; 
+  height: 100px;
+  width: 300px; 
+  text-align: left; 
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 7px solid transparent;
+    border-left: 15px solid #e6e6fa; 
+    border-bottom: 7px solid transparent;
+  }
 }
 
 body {
@@ -266,17 +312,13 @@ body {
 
     .message-content {
       background-color: var(--message-bg-user);
-      border-top-left-radius: 200px;
-      border-bottom-left-radius: 200px;
-      border-top-right-radius: 200px;
+      @include chat-bubble-right;
     }
   }
 
   &.other .message-content {
     background-color: var(--message-bg-other);
-    border-top-right-radius: 200px;
-    border-bottom-right-radius: 200px;
-    border-top-left-radius: 200px;
+    @include chat-bubble;
   }
 }
 
