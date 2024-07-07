@@ -1,16 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import "./sass/Main.scss";
 import Image from "next/image";
 import HeroImage from "./images/2.jpg";
 import logocon from "./images/fluent--brain-circuit-20-filled.svg";
-import MentalIcon from "./images/line-md--heart-filled-half.svg";
-import AssessmentIcon from "./images/line-md--clipboard-check-twotone.svg";
-import CrisisIcon from "./images/line-md--alert-square-twotone-loop.svg";
-import TherapyIcon from "./images/ri--psychotherapy-fill.svg";
-import WellnessIcon from "./images/hugeicons--wellness.svg";
-import SupportIcon from "./images/mingcute--group-3-fill.svg";
-import CounselingIcon from "./images/material-symbols--globe-asia-sharp.svg";
-import MindfulnessIcon from "./images/material-symbols--mindfulness-rounded.svg";
+
 import about from "./images/Image-3.png";
 import FacebookIcon from "./images/line-md--facebook.svg";
 import TwitterIcon from "./images/line-md--twitter-x.svg";
@@ -19,11 +14,30 @@ import LinkedInIcon from "./images/line-md--linkedin.svg";
 import EmailIcon from "./images/line-md--email-twotone-alt.svg";
 import PhoneIcon from "./images/line-md--phone-add-twotone.svg";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
+import { services } from "@/lib/services";
+import { Button } from "./components/ui/button";
 
 export default function Home() {
+  const [aboutRef, aboutInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [contactRef, contactInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const [servicesRef, servicesInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <main className="w-full ">
-       
+    <main className="w-full space-y-4 ">
       <div
         className="relative h-screen bg-center bg-cover zooming-image"
         style={{ backgroundImage: `url(/2.jpg)` }}
@@ -46,19 +60,23 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex justify-end p-4 border rounded navbar border-cyan-300">
-              <nav className="flex flex-col justify-end space-y-4 nav text-cyan-300 sm:flex-row sm:space-x-8 sm:space-y-0 sm:text-lg md:text-xl lg:text-2xl">
+              <nav
+                // initial={{ y: 30 }}
+                // animate={{ y: 0 }}
+                // transition={{ duration: 0.3 }}
+                className="flex flex-col justify-end space-y-4 text-white bg-red-300 nav sm:flex-row sm:space-x-8 sm:space-y-0 sm:text-lg md:text-xl lg:text-2xl"
+              >
                 <Link href="/">
                   <div className="cursor-pointer hover:text-white hover:underline">
                     Home
                   </div>
                 </Link>
-                <Link href="/about">
+                <Link href="#about">
                   <div className="cursor-pointer hover:text-white hover:underline">
                     About
                   </div>
                 </Link>
-                <Link href="/services">
+                <Link href="#services">
                   <div className="cursor-pointer hover:text-white hover:underline">
                     Services
                   </div>
@@ -70,18 +88,23 @@ export default function Home() {
                 </Link>
                 <Link href="/auth">
                   <div className="cursor-pointer hover:text-white hover:underline">
-                    Login
+                    Sign In | Sign Up
                   </div>
                 </Link>
-                <Link href="/auth">
+                {/* <Link href="/auth">
                   <div className="cursor-pointer hover:text-white hover:underline">
                     Signup
                   </div>
-                </Link>
+                </Link> */}
               </nav>
-            </div>
+
           </div>
-          <div className="flex flex-col items-center justify-center flex-grow w-full px-4 py-8 header sm:px-24">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center flex-grow w-full px-4 py-8 header sm:px-24"
+          >
             <h1 className="text-4xl font-bold text-center text-gray-300">
               MindHarmony - Mental health
             </h1>
@@ -90,220 +113,96 @@ export default function Home() {
             </div>
             <div className="relative h-5 shadow-lg rectangle bg-noctis-fg top-80 rounded-5 w-500 animate-slide"></div>
             <div className="">
-              <button className="flex items-center justify-center px-8 py-3 mt-6 text-xl font-bold text-white transition-transform duration-300 transform border border-white rounded-3xl hover:border-none hover:bg-slate-900 focus:outline-none focus:shadow-outline">
+              <button className="flex items-center justify-center px-8 py-3 mt-6 text-xl font-bold text-white transition-transform duration-300 transform border border-white rounded-3xl hover:border-white hover:bg-black focus:outline-none focus:shadow-outline">
                 <span>Learn More</span>
-              <ChevronDownIcon className="text-white size-8"/>
+                <ChevronDownIcon className="text-white size-8" />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* <div className="w-full px-4 py-8 header sm:px-24">
-        <h1 className="text-4xl font-bold text-center text-gray-900">
-          MindHarmony - Mental health
-        </h1>
-        <div className="max-w-3xl mx-auto mt-4 text-center">
-          <h2>Embark on a journey to mental well-being with MindHarmony</h2>
-        </div>
-        <div className="relative h-5 shadow-lg rectangle bg-noctis-fg top-80 rounded-5 w-500 animate-slide"></div>
-        <div className="button-container">
-          <button className="px-4 py-2 mt-6 font-bold text-white transition-transform duration-300 transform rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline">
-            Learn More
-          </button>
-        </div>
-      </div> */}
+      <section className="px-3 pt-5" ref={servicesRef}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={servicesInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="mb-8 text-3xl font-bold text-center">Core Services</h2>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-wrap">
+            {services.map((service) => (
+              <Card
+                className="relative overflow-hidden shadow-md aspect-auto group"
+                key={service.id}
+              >
+                {/* <div className="absolute top-0 bottom-0 left-0 w-1 transition-all duration-300 ease-in-out bg-green-500 group-hover:left-full group-hover:-ml-1 group-hover:bg-blue-500"></div> */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#40e0d0] transition-opacity duration-300 ease-in-out group-hover:opacity-0"></div>
 
-      <section className="service-section">
-        <h2 className="mb-8 text-3xl font-bold text-center">Core Services</h2>
-        <div className="services-section">
-          <div className="cards max-w-screen-2xl">
-            <div className="row-1">
-              <div className="service-card">
-                <div className="image-container">
-                  <Image
-                    src={MentalIcon}
-                    alt="Mental Health Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
+                {/* Right border */}
+                <div className="absolute right-0 top-0 bottom-0 w-1 bg-[#1d3b53] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></div>
+                <div className="relative z-10 transition-all duration-300 ease-in-out group-hover:translate-x-1">
+                  <CardHeader>
+                    <Image
+                      src={service.icon}
+                      alt={`${service.imageAlt}`}
+                      width={60}
+                      quality={100}
+                      className="object-contain"
+                    />
+                    <CardTitle className="text-xl font-bold">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mt-2">{service.details}</p>
+                  </CardContent>
                 </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">
-                    Mental Health Appointments with Professionals
-                  </h3>
-                  <p className="mt-2">
-                    At MindHarmony, we provide personalized appointments with
-                    mental health professionals.
-                  </p>
-                </div>
-              </div>
-              <Link href={"/assessment"} className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={AssessmentIcon}
-                    alt="Assessment Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">
-                    Assessment to Gauge Mental Health Capacity
-                  </h3>
-                  <p className="mt-2">
-                    Our assessments are designed to evaluate your mental health
-                    capacity, providing insights.
-                  </p>
-                </div>
-              </Link>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={CrisisIcon}
-                    alt="Crisis Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Crisis Intervention</h3>
-                  <p className="mt-2">
-                    Our crisis intervention services offer immediate support and
-                    guidance during challenging mental health situations.
-                  </p>
-                </div>
-              </div>
-              <div className="bg-gray-100 rounded-lg shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={TherapyIcon}
-                    alt="Therapy Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Therapy Sessions</h3>
-                  <p className="mt-2">
-                    We offer both individual and group therapy sessions to help
-                    you navigate and manage your mental health challenges
-                    effectively.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="row-2">
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={WellnessIcon}
-                    alt="Wellness Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Wellness Workshops</h3>
-                  <p className="mt-2">
-                    Join our wellness workshops to learn practical skills and
-                    strategies for enhancing your mental well-being and
-                    resilience.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={SupportIcon}
-                    alt="Support Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Support Groups</h3>
-                  <p className="mt-2">
-                    Connect with others facing similar challenges through our
-                    supportive group sessions, fostering empathy and community.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container">
-                  <Image
-                    src={CounselingIcon}
-                    alt="Counseling Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Online Counseling</h3>
-                  <p className="mt-2">
-                    Access our professional counseling services online, ensuring
-                    convenient and confidential support wherever you are.
-                  </p>
-                </div>
-              </div>
-              <div className="shadow-md service-card">
-                <div className="image-container ">
-                  <Image
-                    src={MindfulnessIcon}
-                    alt="Mindfulness Icon"
-                    width={60}
-                    quality={100}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="content-div">
-                  <h3 className="text-xl font-bold">Mindfulness Training</h3>
-                  <p className="mt-2">
-                    Learn mindfulness techniques that promote relaxation, stress
-                    reduction, and overall mental well-being in our specialized
-                    training programs.
-                  </p>
-                </div>
-              </div>
-            </div>
+              </Card>
+            ))}
           </div>
-        </div>
+          
+        </motion.div>
       </section>
-      <section className="py-12 about-section bg-gray-50">
-        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+      <section
+        id="about"
+        ref={aboutRef}
+        // className="py-12 about-section bg-gray-50"
+        className="pt-5 "
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={aboutInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          // className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"
+          // className="bg-green-300"
+        >
           <h2 className="mb-8 text-3xl font-bold text-center">About Us</h2>
 
-          <div className="grid grid-cols-1 gap-8 about-intro md:grid-cols-2">
-            <div className="flex items-center justify-center about-image">
-              <Image
-                src={about}
-                alt="About Us"
-                width={200}
-                height={280}
-                quality={100}
-                className="object-contain"
-              />
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-lg">
+          <div className="flex flex-col items-center justify-center sm:px-4 sm:flex-row ">
+            {/* <div className="flex items-center justify-center about-image"> */}
+            <Image
+              src={about}
+              alt="About Us"
+              width={200}
+              height={280}
+              quality={100}
+              className="object-contain"
+            />
+
+            <div className="flex flex-col items-center justify-center text-center sm:text-left sm:px-3">
+              <p className="text-lg ">
                 At MindHarmony, we are dedicated to transforming lives through
                 care and compassion. Our mission is to promote mental wellness,
                 empower individuals, and support personal growth.
               </p>
-              <p className="p-5 mt-4 bg-blue-300 unique rounded-xl">
-                Welcome to a place where your well-being is our priority.
+              <p className="p-5 mt-4 border border-slate-600 unique rounded-3xl">
+                Welcome to a place where your well-being is our priority
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 px-2 mt-12 md:grid-cols-3 sm:px-3 md:px-4">
             <div className="p-6 bg-gray-100 rounded-lg shadow-md">
               <h3 className="text-xl font-bold">Empowering Mental Wellness</h3>
               <p className="mt-2">
@@ -337,11 +236,16 @@ export default function Home() {
               achieve mental wellness and resilience.
             </p>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      <section className="contact-section" id="contact">
-        <div className="container">
+      <section className="contact-section" id="contact" ref={contactRef}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={contactInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="container"
+        >
           <h2>Contact Us</h2>
           <form>
             <div>
@@ -367,10 +271,12 @@ export default function Home() {
                 required
               ></textarea>
             </div>
+
+            <Button type="submit" className="bg-[#40e0d0]  w-full">
+              Submit
+            </Button>
           </form>
-          <div className="buttons">
-            <button type="submit">Submit</button>
-          </div>
+
           <div className="social-icons">
             <a
               href="https://www.facebook.com/mindharmonycounseling/"
@@ -411,12 +317,12 @@ export default function Home() {
               <span>contact@mindharmony.com</span>
             </a>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <footer className="bg-slate-950 footer">
         <div className="container">
-          <p>©Copyright 2023 MindHarmony. All rights reserved.</p>
+          <p>©Copyright 2024 MindHarmony. All rights reserved.</p>
         </div>
       </footer>
     </main>
