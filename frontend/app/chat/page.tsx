@@ -4,7 +4,7 @@ import Image from "next/image";
 import ChatIcon from "../images/chatscon.svg";
 import UserIcon from "../images/user.svg";
 import Groupcon from "../images/groupcon.svg";
-import ChatLogo from "../images/chat1.svg";
+import ChatLogo from "../images/chat3.svg";
 import User1 from "../images/avatar-1.jpg";
 import User2 from "../images/avatar-2.jpg";
 import User3 from "../images/avatar-3.jpg";
@@ -91,12 +91,15 @@ export default function ChatApp() {
             ]);
         } else {
             // It's a one-on-one chat
-            setMessages([
-                { id: 1, sender: chat.id, text: "Hello!", timestamp: new Date(Date.now() - 100000) },
-                { id: 2, sender: "currentUser", text: "Hi there!", timestamp: new Date(Date.now() - 80000) },
-                { id: 3, sender: chat.id, text: "How are you doing?", timestamp: new Date(Date.now() - 60000) },
-                { id: 4, sender: "currentUser", text: "I'm good, thanks! How about you?", timestamp: new Date(Date.now() - 40000) },
-            ]);
+            if (selectedChat) {
+                const chat = selectedChat as { id: number, avatar: string }; // Update the type of selectedChat
+                setMessages([
+                    { id: 1, sender: chat.id, text: "Hello!", timestamp: new Date(Date.now() - 100000) },
+                    { id: 2, sender: "currentUser", text: "Hi there!", timestamp: new Date(Date.now() - 80_000) },
+                    { id: 3, sender: chat.id, text: "How are you doing?", timestamp: new Date(Date.now() - 60000) },
+                    { id: 4, sender: "currentUser", text: "I'm good, thanks! How about you?", timestamp: new Date(Date.now() - 40000) },
+                ]);
+            }
         }
     }
 
