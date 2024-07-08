@@ -23,17 +23,17 @@ import { Button } from "./components/ui/button";
 export default function Home() {
   const [aboutRef, aboutInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const [contactRef, contactInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   const [servicesRef, servicesInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.1,
   });
 
   return (
@@ -44,7 +44,7 @@ export default function Home() {
           style={{
             backgroundImage: `url(/2.jpg)`,
             backgroundPosition: "center",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
           }}
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -64,37 +64,37 @@ export default function Home() {
                 <h3 className="p-1 text-2xl font-bold ">MindHarmony</h3>
               </div>
             </div>
-          <div className="nav-menu">
-            <nav className="flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
-              {[
-                "Home",
-                "About",
-                "Services",
-                "Contact",
-                "Sign In | Sign Up"
-              ].map((item, index) => (
-                <Link
-                  key={index}
-                  href={
-                    item === "Home"
-                      ? "/"
-                      : item === "Sign In | Sign Up"
-                      ? "/auth"
-                      : `#${item.toLowerCase()}`
-                  }
-                >
-                  <div className="relative overflow-hidden cursor-pointer group">
-                    <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-                      {item}
-                    </span>
-                    <span className="absolute top-0 left-0 inline-block text-red-400 transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
-                      {item}
-                    </span>
-                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-red-400 transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
-                  </div>
-                </Link>
-              ))}
-            </nav>
+            <div className="nav-menu">
+              <nav className="flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
+                {[
+                  "Home",
+                  "About",
+                  "Services",
+                  "Contact",
+                  "Sign In | Sign Up",
+                ].map((item, index) => (
+                  <Link
+                    key={index}
+                    href={
+                      item === "Home"
+                        ? "/"
+                        : item === "Sign In | Sign Up"
+                        ? "/auth"
+                        : `#${item.toLowerCase()}`
+                    }
+                  >
+                    <div className="relative overflow-hidden cursor-pointer group">
+                      <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                        {item}
+                      </span>
+                      <span className="absolute top-0 left-0 inline-block text-red-400 transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
+                        {item}
+                      </span>
+                      <span className="absolute bottom-0 left-0 h-0.5 w-full bg-red-400 transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
+                    </div>
+                  </Link>
+                ))}
+              </nav>
             </div>
           </div>
           <motion.div
