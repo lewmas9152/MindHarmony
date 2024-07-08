@@ -18,6 +18,7 @@ import User10 from "../images/avatar-11.jpg";
 import SendIcon from "../images/send.svg";
 import ThemeIcon from "../images/theme.svg";
 import "../sass/Chats.scss";
+import io from 'socket.io-client';
 
 export default function ChatApp() {
   const [users, setUsers] = useState([
@@ -133,6 +134,21 @@ export default function ChatApp() {
       typing: [3, 10]
     }
   ]);
+
+  const socket= io('https://groupchat-zg7d.onrender.com/',{
+    auth:{
+      token:"667c164b7b527576b0d0dccc1c37b587713b5853"
+    }
+  } )
+  
+  fetch('https://groupchat-zg7d.onrender.com/', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Token 667c164b7b527576b0d0dccc1c37b587713b5853`
+    }
+  })
+  .then (response => response.json())
+  .then (data => console.log(data))
 
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
