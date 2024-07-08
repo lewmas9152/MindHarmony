@@ -33,18 +33,23 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         
-        # Create the user
-        user_serializer = UserSerializer(data=user_data)
-        user_serializer.is_valid(raise_exception=True)
-        user = user_serializer.save()
+        # Create or update the user
+        user, created = User.objects.get_or_create(username=user_data['username'], defaults=user_data)
+        if not created:
+            # If user already exists, update the user details if needed
+            for attr, value in user_data.items():
+                setattr(user, attr, value)
+            user.set_password(user_data['password'])  # Explicitly set the password
+            user.save()
 
-        try:
-        # Create the user profile
-             user_profile = UserProfile.objects.create(user=user, **validated_data)
-        except IntegrityError:
-            raise serializers.ValidationError({'error': 'User profile already exists'})
+        # Create or update the user profile
+        profile, created = UserProfile.objects.get_or_create(user=user, defaults=validated_data)
+        if not created:
+            for attr, value in validated_data.items():
+                setattr(profile, attr, value)
+            profile.save()
         
-        return user_profile
+        return profile
 
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', None)
