@@ -55,7 +55,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'error': 'User profile already exists'})
         
         return user_profile
-        return user_profile
 
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', None)

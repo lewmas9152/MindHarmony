@@ -109,5 +109,14 @@ class ProfileAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class logoutView(APIView):
+    authentication_classes =  [TokenAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self,request):
+        request.user.auth_token.delete()
+        return Response(status=status.HTTP_200_OK)
 
     
