@@ -13,6 +13,9 @@ from django.contrib.auth import authenticate
 from rest_framework.decorators import authentication_classes, permission_classes,api_view
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from django.contrib.auth.models import User
+import logging
+
+logger = logging.getLogger(__name__)
 
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication, SessionAuthentication])
@@ -41,6 +44,7 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
     def create(self,request,*args,**kwargs):
+        logger.info(f"Registration attempt with data: {request.data}")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user_profile = serializer.save()

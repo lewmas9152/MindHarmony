@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 from rest_framework.authtoken.models import Token
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

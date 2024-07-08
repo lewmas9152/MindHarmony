@@ -2,7 +2,10 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import UserProfile
 from rest_framework.authtoken.models import Token
-from django.db.utils import IntegrityError
+from django.db import transaction, IntegrityError
+import logging
+
+logger = logging.getLogger(__name__)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,14 +14,19 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True, 'required': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data['email']
-        )
-        user.set_password(validated_data['password'])
-        user.save()
-        Token.objects.get_or_create(user=user)  # Generate the token here
-        return user
+        try:
+            with transaction.atomic():
+                user = User.objects.create_user(
+                    username=validated_data['username'],
+                    email=validated_data['email']
+                )
+                user.set_password(validated_data['password'])
+                user.save()
+                Token.objects.get_or_create(user=user)  # Generate the token here
+                return user
+        except IntegrityError as e:
+            logger.error(f"Integrity error while creating user: {e}")
+            raise serializers.ValidationError({'error': 'A user with this username or email already exists.'})
 
 class UserProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -33,23 +41,20 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         
-        # Create or update the user
-        user, created = User.objects.get_or_create(username=user_data['username'], defaults=user_data)
-        if not created:
-            # If user already exists, update the user details if needed
-            for attr, value in user_data.items():
-                setattr(user, attr, value)
-            user.set_password(user_data['password'])  # Explicitly set the password
-            user.save()
+        # Create the user
+        user_serializer = UserSerializer(data=user_data)
+        user_serializer.is_valid(raise_exception=True)
+        user = user_serializer.save()
 
-        # Create or update the user profile
-        profile, created = UserProfile.objects.get_or_create(user=user, defaults=validated_data)
-        if not created:
-            for attr, value in validated_data.items():
-                setattr(profile, attr, value)
-            profile.save()
+        try:
+        # Create the user profile
+            with transaction.atomic():
+                user_profile = UserProfile.objects.create(user=user, **validated_data)
+        except IntegrityError as e:
+            logger.error(f"Integrity error while creating user profile: {e}")
+            raise serializers.ValidationError({'error': 'User profile already exists'})
         
-        return profile
+        return user_profile
 
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', None)
