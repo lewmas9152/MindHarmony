@@ -38,8 +38,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
         user_serializer.is_valid(raise_exception=True)
         user = user_serializer.save()
 
+        try:
         # Create the user profile
-        user_profile = UserProfile.objects.create(user=user, **validated_data)
+             user_profile = UserProfile.objects.create(user=user, **validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({'error': 'User profile already exists'})
         
         return user_profile
 
