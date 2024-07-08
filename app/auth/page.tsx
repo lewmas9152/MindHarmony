@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import "../sass/Auth.scss";
 import {
   Card,
   CardContent,

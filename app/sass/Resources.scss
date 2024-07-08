@@ -1,0 +1,173 @@
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
+@mixin card-tool{
+    display: flex;
+    width: 400px;
+    border-left: 2px solid $col-7;
+    height:250px;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color:$col-18;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    &:hover{
+        animation: all 3s ease-in-out;
+        transform:scale(1.05);
+    }
+    .tool-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h3{
+            font-family: $font-rubik;
+            font-size: 20px;
+            font-weight: 700;
+            color: $col-18;
+        }
+        p{
+            font-family: $font-rubik;
+            font-size: 16px;
+            color:#000;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+    }
+   
+    
+}
+
+.content-container{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    
+    .sidebar{
+        position: sticky;
+        width: 20%;
+    }
+    .content{
+        width: 80%;
+        background-color: $col-1;
+        .stress-management-container{
+            .tools{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+                padding: 20px;
+                .mindfulness{
+                    @include card-tool;
+                    background: url("../images/vector.jpg");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                .cbt{
+                    @include card-tool;
+                    background: url("../images/vector2.jpg");
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+                .mindful-eating{
+                    @include card-tool;
+                }
+                .self-care{
+                    @include card-tool;
+                }
+            }
+        }
+    }
+}
+.mental-health-articles {
+    margin-bottom: 40px;
+  
+    .articles-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+  
+      .article {
+        flex-basis: calc(25% - 15px);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 5px;
+          margin-bottom: 10px;
+        }
+  
+        h3 {
+          font-size: 1.2em;
+          margin-bottom: 10px;
+        }
+  
+        p {
+          font-size: 0.9em;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+  .videos {
+    margin-bottom: 40px;
+  
+    .videos-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+  
+      .video {
+        flex-basis: calc(25% - 15px);
+  
+        .video-thumbnail {
+          border-radius: 10px;
+          overflow: hidden;
+          margin-bottom: 10px;
+  
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+  
+        h3 {
+          font-size: 1em;
+        }
+      }
+    }
+  }

@@ -1,11 +1,22 @@
+"use client"
 import React from 'react';
 import Sidenav from '../components/sideNav';
-import "../sass/Home.scss"
+import "../sass/Home.scss";
 import NotificationIcon from "../images/notification.svg";
 import ReminderIcon from "../images/reminder.svg";
 import Image from 'next/image';
 import SearchIcon from "../images/search.svg";
 import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
+import Welcome from "../images/welc.png";
+import AppointmentIcon from "../images/appointment.svg";
+import ProgressIcon from "../images/progress (2).svg";
+import MentalHealth from '../images/brain.svg';
+import TherapyIcon from "../images/therapy.svg"
+import CountUp from 'react-countup';
+import AppointmentSection from '../components/AppointmentSection';
+import MentalExercisesProgress from '../components/MentalExercisesProgress';
+import CombinedCharts from '../components/CombinedCharts';
+
 
 const HomePage = () => {
   return (
@@ -71,15 +82,100 @@ const HomePage = () => {
                 <p>JohnDoe@gmail.com</p>
               </div>
             </div>
-
           </div>
           <div className="welcome-message">
-            <h1>Good {
-              new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 18 ? 'Afternoon' : 'Evening'
-            } John! doe
-            </h1>
+            <div className="image-welcome">
+            <iframe src="https://lottie.host/embed/78f7a603-9cc6-4213-8698-a595c5ca7005/fENvQNEzhn.json "></iframe>
+              {/* <Image
+                src={Welcome}
+                alt="Welcome Image"
+                width={1920}
+                height={1080}
+                quality={100}
+                className="object-contain w-full h-full zooming-image"
+              /> */}
+            </div>
+            <div className="message">
+              <h1>Good {
+                new Date().getHours() < 12 ? 'Morning' : new Date().getHours() < 18 ? 'Afternoon' : 'Evening'
+              } John Doe!</h1>
+              <p>Welcome to your dashboard. Here, you can manage your appointments, view your notifications, and keep track of your progress.</p>
+            </div>
           </div>
-        
+
+          <div className="info-container">
+            <div className="appoint-container">
+              <div className="img-cont">
+                <Image
+                  src={AppointmentIcon}
+                  alt="Reminder Icon"
+                  width={60}
+                  height={60}
+                  quality={100}
+                />
+              </div>
+              <div className="content">
+                <h2>Appointments</h2>
+               <p><CountUp end={200} duration={5} /></p>
+              </div>
+            </div>
+            <div className="progress">
+              <div className="img-cont">
+                <Image
+                  src={ProgressIcon}
+                  alt="Notification Icon"
+                  width={60}
+                  height={60}
+                  quality={100}
+                />
+              </div>
+              <div className="content">
+                <h2>Progress</h2>
+                <p><CountUp end={85} duration={5} suffix="%" /></p>
+                </div>
+              </div>
+              <div className="therapy-sessions">
+                <div className="img-cont">
+                  <Image
+                    src={TherapyIcon}
+                    alt="Reminder Icon"
+                    width={60}
+                    height={60}
+                    quality={100}
+                  />
+                </div>
+                <div className="content">
+                  <h2>Therapy</h2>
+                  <p><CountUp end={15} duration={2} /></p>
+                </div>
+              </div>
+              <div className="mental-exercises">
+                <div className="img-cont">
+                  <Image
+                    src={MentalHealth}
+                    alt="Reminder Icon"
+                    width={60}
+                    height={60}
+                    quality={100}
+                  />
+                </div>
+                <div className="content">
+                  <h2>Mental</h2>
+                  <p><CountUp end={40} duration={3} /></p>
+                  </div>
+              </div>
+          </div>
+          <div className="charts-container">
+            <CombinedCharts />
+          </div>
+          <div className="user-mental-data">
+              <div className="appointments-container">
+                <AppointmentSection />
+              </div>
+              <div className="my-mental-exercises-progress">
+                <MentalExercisesProgress />
+              </div>
+              </div>
         </div>
       </div>
     </div>

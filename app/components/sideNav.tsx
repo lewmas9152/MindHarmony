@@ -17,7 +17,7 @@ export default function Sidenav(){
                     <Image
                         src={BrainIcon}
                         alt="MindHarmony Logo"
-                        width={50}
+                        width={40}
                         quality={100}
                     />
                 </div>
@@ -94,10 +94,10 @@ export default function Sidenav(){
                 />
             </div>
             <div className="nav-item">
-        <Link href="groups">Support Groups</Link>
+        <Link href="chat">Live Chat</Link>
         </div>
         </div>
-        </div> 
+        </div>
         </div>
     )
 

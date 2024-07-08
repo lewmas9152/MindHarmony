@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+"use client"
+
+>>>>>>> 03c7001adb52311137aafdaedadc3a3f220af472
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
@@ -11,7 +16,11 @@ import {
 } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
+<<<<<<< HEAD
 import { Label } from "@/components/ui/label"
+=======
+import { Label } from "./label"
+>>>>>>> 03c7001adb52311137aafdaedadc3a3f220af472
 
 const Form = FormProvider
 
@@ -133,7 +142,11 @@ const FormDescription = React.forwardRef<
     <p
       ref={ref}
       id={formDescriptionId}
+<<<<<<< HEAD
       className={cn("text-sm text-slate-500 dark:text-slate-400", className)}
+=======
+      className={cn("text-[0.8rem] text-slate-500 dark:text-slate-400", className)}
+>>>>>>> 03c7001adb52311137aafdaedadc3a3f220af472
       {...props}
     />
   )
@@ -155,7 +168,11 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
+<<<<<<< HEAD
       className={cn("text-sm font-medium text-red-500 dark:text-red-900", className)}
+=======
+      className={cn("text-[0.8rem] font-medium text-red-500 dark:text-red-900", className)}
+>>>>>>> 03c7001adb52311137aafdaedadc3a3f220af472
       {...props}
     >
       {body}

@@ -16,36 +16,41 @@ import PhoneIcon from "./images/line-md--phone-add-twotone.svg";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { services } from "@/lib/services";
-import { Button } from "@/components/ui/button";
+import { Button } from "./components/ui/button";
 
 export default function Home() {
   const [aboutRef, aboutInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   const [contactRef, contactInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   const [servicesRef, servicesInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   return (
-    <main className=" w-full space-y-4  ">
-      <div
-        className="relative h-screen bg-cover bg-center zooming-image"
-        style={{ backgroundImage: `url(/2.jpg)` }}
-      >
+    <main className="w-full space-y-4 ">
+      <div className="relative h-screen bg-center bg-cover image-container">
+        <div
+          className="absolute inset-0 header zooming-image"
+          style={{
+            backgroundImage: `url(/2.jpg)`,
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
+        />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="absolute inset-0 flex flex-col border border-red-300">
-          <div className="logo-cont text-white border border-green-400 flex items-center justify-between space-x-2">
-            <div className=" flex flex-col items-center">
+        <div className="absolute inset-0 flex flex-col ">
+          <div className="flex items-center justify-between space-x-2 text-white logo-cont">
+            <div className="flex flex-col items-center cont ">
               <div className="logo-container rounded-xl ">
                 <Image
                   src={logocon}
@@ -56,54 +61,47 @@ export default function Home() {
                 />
               </div>
               <div className="logo-name">
-                <h3 className="text-2xl font-bold">MindHarmony</h3>
+                <h3 className="p-1 text-2xl font-bold ">MindHarmony</h3>
               </div>
             </div>
-
-              <nav
-                // initial={{ y: 30 }}
-                // animate={{ y: 0 }}
-                // transition={{ duration: 0.3 }}
-                className="flex flex-col justify-end bg-red-300 space-y-4 nav text-white sm:flex-row sm:space-x-8 sm:space-y-0 sm:text-lg md:text-xl lg:text-2xl"
-              >
-                <Link href="/">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Home
+          <div className="nav-menu">
+            <nav className="flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
+              {[
+                "Home",
+                "About",
+                "Services",
+                "Contact",
+                "Sign In | Sign Up"
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : item === "Sign In | Sign Up"
+                      ? "/auth"
+                      : `#${item.toLowerCase()}`
+                  }
+                >
+                  <div className="relative overflow-hidden cursor-pointer group">
+                    <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                      {item}
+                    </span>
+                    <span className="absolute top-0 left-0 inline-block text-red-400 transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
+                      {item}
+                    </span>
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-red-400 transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
                   </div>
                 </Link>
-                <Link href="#about">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    About
-                  </div>
-                </Link>
-                <Link href="#services">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Services
-                  </div>
-                </Link>
-                <Link href="#contact">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Contact
-                  </div>
-                </Link>
-                <Link href="/auth">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Sign In | Sign Up
-                  </div>
-                </Link>
-                {/* <Link href="/auth">
-                  <div className="cursor-pointer hover:text-white hover:underline">
-                    Signup
-                  </div>
-                </Link> */}
-              </nav>
-
+              ))}
+            </nav>
+            </div>
           </div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-full px-4 py-8 header sm:px-24  flex flex-col flex-grow justify-center items-center"
+            className="flex flex-col items-center justify-center flex-grow w-full px-4 py-8 header sm:px-24"
           >
             <h1 className="text-4xl font-bold text-center text-gray-300">
               MindHarmony - Mental health
@@ -113,33 +111,33 @@ export default function Home() {
             </div>
             <div className="relative h-5 shadow-lg rectangle bg-noctis-fg top-80 rounded-5 w-500 animate-slide"></div>
             <div className="">
-              <button className="flex   justify-center items-center px-8 py-3 text-xl mt-6 font-bold text-white border border-white transition-transform duration-300 transform rounded-3xl hover:border-white hover:bg-black   focus:outline-none focus:shadow-outline">
+              <button className="flex items-center justify-center px-8 py-3 mt-6 text-xl font-bold text-white transition-transform duration-300 transform border border-white rounded-3xl hover:border-white hover:bg-black focus:outline-none focus:shadow-outline">
                 <span>Learn More</span>
-                <ChevronDownIcon className="size-8 text-white" />
+                <ChevronDownIcon className="text-white size-8" />
               </button>
             </div>
           </motion.div>
         </div>
       </div>
 
-      <section className="pt-5 px-3" ref={servicesRef}>
+      <section className="px-3 pt-5" ref={servicesRef}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={servicesInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5 }}
         >
           <h2 className="mb-8 text-3xl font-bold text-center">Core Services</h2>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-wrap">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-wrap">
             {services.map((service) => (
               <Card
-                className="aspect-auto shadow-md  relative overflow-hidden group"
+                className="relative overflow-hidden shadow-md aspect-auto group"
                 key={service.id}
               >
-                {/* <div className="absolute left-0 top-0 bottom-0 w-1 bg-green-500 transition-all duration-300 ease-in-out group-hover:left-full group-hover:-ml-1 group-hover:bg-blue-500"></div> */}
+                {/* <div className="absolute top-0 bottom-0 left-0 w-1 transition-all duration-300 ease-in-out bg-green-500 group-hover:left-full group-hover:-ml-1 group-hover:bg-blue-500"></div> */}
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#40e0d0] transition-opacity duration-300 ease-in-out group-hover:opacity-0"></div>
 
                 {/* Right border */}
-                <div className="absolute right-0 top-0 bottom-0 w-1 bg-[#1d3b53] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-1 bg-[#1f9978] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></div>
                 <div className="relative z-10 transition-all duration-300 ease-in-out group-hover:translate-x-1">
                   <CardHeader>
                     <Image
@@ -160,7 +158,6 @@ export default function Home() {
               </Card>
             ))}
           </div>
-          
         </motion.div>
       </section>
 
@@ -168,7 +165,7 @@ export default function Home() {
         id="about"
         ref={aboutRef}
         // className="py-12 about-section bg-gray-50"
-        className="  pt-5"
+        className="pt-5 "
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -179,7 +176,7 @@ export default function Home() {
         >
           <h2 className="mb-8 text-3xl font-bold text-center">About Us</h2>
 
-          <div className="flex flex-col justify-center items-center sm:px-4 sm:flex-row ">
+          <div className="flex flex-col items-center justify-center sm:px-4 sm:flex-row ">
             {/* <div className="flex items-center justify-center about-image"> */}
             <Image
               src={about}
@@ -190,7 +187,7 @@ export default function Home() {
               className="object-contain"
             />
 
-            <div className="flex flex-col text-center sm:text-left sm:px-3 justify-center items-center">
+            <div className="flex flex-col items-center justify-center text-center sm:text-left sm:px-3">
               <p className="text-lg ">
                 At MindHarmony, we are dedicated to transforming lives through
                 care and compassion. Our mission is to promote mental wellness,
@@ -202,7 +199,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-3 px-2 sm:px-3 md:px-4">
+          <div className="grid grid-cols-1 gap-8 px-2 mt-12 md:grid-cols-3 sm:px-3 md:px-4">
             <div className="p-6 bg-gray-100 rounded-lg shadow-md">
               <h3 className="text-xl font-bold">Empowering Mental Wellness</h3>
               <p className="mt-2">
