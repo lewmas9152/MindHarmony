@@ -32,6 +32,7 @@ $col-20: #604f5c;
   align-items: center;
   height: 138px;
   padding: 10px 20px;
+  animation: fadeIn 0.5s ease-out;
   background-color: #011627;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   @media (max-width: 768px) {
@@ -182,7 +183,6 @@ $col-20: #604f5c;
     }
   }
 }
-// Add these keyframes at the top of your file if not already present
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -301,13 +301,6 @@ $col-20: #604f5c;
       }
     }
   }
-  
-  // Add these styles if you want to animate the entire header
-  .header {
-    animation: fadeIn 0.5s ease-out;
-  }
-  
-  // You can add these styles to enhance the overall look of the header
   .notifications, .reminders {
     .notificationIcon, .reminderIcon {
       transition: transform 0.3s ease;
