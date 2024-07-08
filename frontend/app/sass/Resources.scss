@@ -1,4 +1,3 @@
-
 $font-rubik : 'Rubik', sans-serif;
 $font-josefin : 'Josefin Sans', sans-serif;
 $font-island : 'Island Moments', cursive;
@@ -29,11 +28,10 @@ $col-20: #604f5c;
 
 $primary-color: #4a90e2;
 $secondary-color: #f5a623;
-$background-color: #f8f9fa;
-$text-color: #333;
+$background-color: $col-1;
+$text-color: $col-2;
 $border-radius: 8px;
 
-// Mixins
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -41,7 +39,7 @@ $border-radius: 8px;
 }
 
 @mixin card-style {
-  background-color: white;
+  background-color: $col-18;
   border-radius: $border-radius;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -52,54 +50,48 @@ $border-radius: 8px;
   }
 }
 
-// Main container
 .container {
   max-width: 1920px;
   margin: 0 auto;
   padding: 2rem;
   background-color: $background-color;
+  color: $text-color;
+  font-family: $font-rubik;
 }
 
 .content-container {
   display: flex;
   gap: 2rem;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 }
 
 .sidebar {
   flex: 0 0 250px;
-
-  @media (max-width: 768px) {
-    flex: 1;
-  }
 }
 
 .content {
   flex: 1;
+
+  h1 {
+    font-size: 2.5rem;
+    color: $primary-color;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: $font-josefin;
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: $secondary-color;
+    margin-bottom: 1.5rem;
+    font-family: $font-jost;
+  }
+
+  section {
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease-out;
+  }
 }
 
-h1 {
-  font-size: 2.5rem;
-  color: $primary-color;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2rem;
-  color: $secondary-color;
-  margin-bottom: 1.5rem;
-}
-
-// Sections
-section {
-  margin-bottom: 3rem;
-}
-
-// Mood Tracker
 .mood-tracker-anger-management {
   @include card-style;
   padding: 2rem;
@@ -110,11 +102,10 @@ section {
   }
 }
 
-// Mental Health Articles
 .mental-health-articles {
   .articles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 
@@ -122,6 +113,7 @@ section {
     @include card-style;
     padding: 1rem;
     text-align: center;
+    animation: slideIn 0.5s ease-out;
 
     img {
       width: 100%;
@@ -132,57 +124,68 @@ section {
     h3 {
       font-size: 1.2rem;
       margin: 1rem 0;
+      color: $col-9;
     }
 
     p {
       font-size: 0.9rem;
       margin-bottom: 1rem;
+      color: $col-5;
     }
   }
 }
 
-// Videos
 .videos {
   .videos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
   .video {
     @include card-style;
     text-align: center;
+    animation: slideIn 0.5s ease-out;
 
     .video-thumbnail {
       position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; // 16:9 aspect ratio
       overflow: hidden;
       border-radius: $border-radius $border-radius 0 0;
 
-      &::after {
-        content: '▶';
+      img {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 3rem;
-        color: white;
-        opacity: 0.8;
-        transition: opacity 0.3s ease;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
-      &:hover::after {
-        opacity: 1;
+      button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
       }
     }
 
     h3 {
       font-size: 1.2rem;
       margin: 1rem;
+      color: $col-9;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 0 0 $border-radius $border-radius;
     }
   }
 }
 
-// Stress Reduction Tools
 .stress-reduction-tools {
   @include card-style;
   padding: 2rem;
@@ -192,28 +195,26 @@ section {
     .timer {
       font-size: 3rem;
       margin: 1rem 0;
+      color: $col-7;
     }
   }
 }
 
-// Stress Management
 .stress-management-container {
   .tools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 
-  .mindfulness,
-  .cbt,
-  .mindful-eating,
-  .self-care {
+  .tool {
     @include card-style;
     position: relative;
     overflow: hidden;
-    height: 300px;
+    height: 200px;
+    animation: slideIn 0.5s ease-out;
 
-    .overlay {
+    .tool-background {
       position: absolute;
       top: 0;
       left: 0;
@@ -221,7 +222,16 @@ section {
       height: 100%;
       background-size: cover;
       background-position: center;
-      opacity: 0.3;
+      transition: transform 0.3s ease;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
       transition: opacity 0.3s ease;
     }
 
@@ -235,29 +245,44 @@ section {
       justify-content: space-between;
     }
 
-    &:hover .overlay {
-      opacity: 0.5;
+    &:hover {
+      .tool-background {
+        transform: scale(1.1);
+      }
+
+      .overlay {
+        opacity: 0.7;
+      }
     }
-  }
 
-  .mindfulness .overlay {
-    background-image: url('/images/mindfulness.jpg');
-  }
+    h3 {
+      font-size: 1.2rem;
+      color: $col-9;
+    }
 
-  .cbt .overlay {
-    background-image: url('/images/cbt.jpg');
-  }
-
-  .mindful-eating .overlay {
-    background-image: url('/images/mindful-eating.jpg');
-  }
-
-  .self-care .overlay {
-    background-image: url('/images/self-care.jpg');
+    p {
+      font-size: 0.9rem;
+      color: $col-5;
+    }
   }
 }
 
-// Animations
+.journal, .support-groups, .crisis-helpline {
+  @include card-style;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  h2 {
+    color: $col-9;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $col-5;
+    margin-bottom: 1rem;
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -268,20 +293,6 @@ section {
   to { transform: translateY(0); opacity: 1; }
 }
 
-section {
-  animation: fadeIn 1s ease-out;
-}
-
-.article,
-.video,
-.mindfulness,
-.cbt,
-.mindful-eating,
-.self-care {
-  animation: slideIn 0.5s ease-out;
-}
-
-// Responsive design
 @media (max-width: 1280px) {
   .container {
     padding: 1rem;
@@ -296,10 +307,71 @@ section {
   }
 }
 
+@media (max-width: 1024px) {
+  .content-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .mental-health-articles .articles-container,
+  .videos .videos-container,
+  .stress-management-container .tools {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
-  .articles-container,
-  .videos-container,
-  .tools {
+  .content-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .mental-health-articles .articles-container,
+  .videos .videos-container,
+  .stress-management-container .tools {
     grid-template-columns: 1fr;
+  }
+}
+.journal {
+  .journal-container {
+    margin-top: 1rem;
+
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid $col-5;
+      border-radius: $border-radius;
+      background-color: $col-13;
+      color: $col-2;
+    }
+
+    .journal-entries {
+      margin-top: 1rem;
+
+      h3 {
+        color: $col-9;
+        margin-bottom: 0.5rem;
+      }
+
+      .journal-entry {
+        background-color: $col-18;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: $border-radius;
+
+        p {
+          color: $col-2;
+        }
+      }
+    }
   }
 }
