@@ -75,14 +75,12 @@ io.use(async (socket, next) => {
     if (!token) {
         return next(new Error('Authentication error'));
     }
-    console.log(`token: "${token}"`);
     try {
         axios.get(`${process.env.AUTH_URL}/user/user-details`, {
             headers: {
                 Authorization: `Token ${token}`
             }
         }).then((response)=>{
-            console.log("Response received");
             socket.user = response.data.user;
             next();
         }).catch((err)=>{return next(new Error('Authentication error'))});
@@ -92,7 +90,6 @@ io.use(async (socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('New connection:' + socket.user);
     const user = new User(socket.id, socket.user.username);
     users.push(user);
     io.emit('info', `${user.uname} joined`);
@@ -110,12 +107,10 @@ io.on('connection', (socket) => {
         const newMessage = new Message(socket.user.username, message);
         messages.push(newMessage);
         io.emit('message', JSON.stringify(newMessage));
-        console.log(`Message from ${socket.user.username}: ${message}`);
     });
 
     socket.on('typing', () => {
         io.except(socket.id).emit('typing', socket.user.username);
-        console.log(`${socket.user.username} is typing...`);
     });
 });
 
