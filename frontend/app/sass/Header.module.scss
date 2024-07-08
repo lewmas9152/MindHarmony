@@ -28,7 +28,7 @@ $col-20: #604f5c;
 
 .header {
   display: flex;
-  gap: 120px;
+  justify-content: space-between;
   align-items: center;
   height: 138px;
   padding: 10px 20px;

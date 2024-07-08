@@ -83,6 +83,7 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     }
     .home-container{
         @include nav-container;
+        
     }
     .profile-container{
         @include nav-container;
