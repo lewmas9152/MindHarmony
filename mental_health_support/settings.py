@@ -8,10 +8,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-30+(5=tp&_qpu(s%=&ao$sr))54rud#_fflg$ds7qn6h=oil@4'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'mental_health_support.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd5at6p9cjc748h',
-        'USER': 'ub5gecfv31lukp',
-        'PASSWORD': 'p11ed29d720b86e7bfc298ea5b5e4946eb93aa7883074d3bbe0b1f2512f19d650',
-        'HOST': 'caij57unh724n3.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432',
         
     }

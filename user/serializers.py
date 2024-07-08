@@ -33,28 +33,25 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         
-        # Create or update the user
-        user, created = User.objects.get_or_create(username=user_data['username'], defaults=user_data)
-        if not created:
-            # If user already exists, update the user details if needed
-            for attr, value in user_data.items():
-                setattr(user, attr, value)
-            user.set_password(user_data['password'])  # Explicitly set the password
-            user.save()
+        # Create the user
+        user_serializer = UserSerializer(data=user_data)
+        user_serializer.is_valid(raise_exception=True)
+        user = user_serializer.save()
 
-        # Create or update the user profile
-        profile, created = UserProfile.objects.get_or_create(user=user, defaults=validated_data)
-        if not created:
-            for attr, value in validated_data.items():
-                setattr(profile, attr, value)
-            profile.save()
+        # Create the user profile
+        user_profile = UserProfile.objects.create(user=user, **validated_data)
         
-        return profile
+        return user_profile
 
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', None)
         if user_data:
-            user_serializer = UserSerializer(instance.user, data=user_data)
-            if user_serializer.is_valid():
-                user_serializer.save()
-        return super().update(instance, validated_data)
+            user_serializer = UserSerializer(instance.user, data=user_data, partial=True)
+            user_serializer.is_valid(raise_exception=True)
+            user_serializer.save()
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        return instance
