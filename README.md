@@ -1,277 +1,86 @@
+# Mental Health Assistant Chatbot
 
-# MINDHARMONY   API 
+This repository contains an Express.js application that serves as a mental health assistant chatbot. It utilizes OpenAI's GPT-3.5-turbo model to provide helpful responses to user inputs related to mental health.
 
-## Overview
-This documentation provides an overview of the endpoints available in the MINDHARMONY  API. The API includes functionality for user registration, login, profile management, and session management.
+## Table of Contents
 
-## Endpoints
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Environment Variables](#environment-variables)
+- [License](#license)
 
-### User Endpoints
+## Installation
 
-#### Register
-- **URL:** `/register/`
-- **Method:** `POST`
-- **Description:** Register a new user.
-- **Request Body:**
-  ```json
-  {
-    "username": "string",
-    "password": "string",
-    "email": "string"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "user": {
-      "id": "integer",
-      "username": "string",
-      "email": "string",
-      "profile": {
-        "id": "integer",
-        "bio": "string",
-        "location": "string"
-      }
-    },
-    "token": "string"
-  }
-  ```
+To get started, clone this repository and install the necessary dependencies:
 
-#### Login
-- **URL:** `/login/`
-- **Method:** `POST`
-- **Description:** Login a user and return a token.
-- **Request Body:**
-  ```json
-  {
-    "username": "string",
-    "password": "string"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "token": "string",
-    "user": {
-      "id": "integer",
-      "username": "string",
-      "email": "string",
-      "profile": {
-        "id": "integer",
-        "bio": "string",
-        "location": "string"
-      }
-    }
-  }
-  ```
-
-#### User Details
-- **URL:** `/user-details/`
-- **Method:** `GET`
-- **Description:** Retrieve the details of the authenticated user.
-- **Headers:**
-  ```http
-  Authorization: Token your_token_here
-  ```
-- **Response:**
-  ```json
-  {
-    "id": "integer",
-    "username": "string",
-    "email": "string",
-    "profile": {
-      "id": "integer",
-      "bio": "string",
-      "location": "string"
-    }
-  }
-  ```
-
-#### Profile
-- **URL:** `/profile/<int:pk>/`
-- **Methods:** `GET`, `PUT`
-- **Description:** Retrieve or update a user's profile.
-- **Headers:**
-  ```http
-  Authorization: Token your_token_here
-  ```
-- **GET Response:**
-  ```json
-  {
-    "id": "integer",
-    "bio": "string",
-    "location": "string",
-    "user": {
-      "id": "integer",
-      "username": "string",
-      "email": "string"
-    }
-  }
-  ```
-- **PUT Request Body:**
-  ```json
-  {
-    "bio": "string",
-    "location": "string"
-  }
-  ```
-- **PUT Response:**
-  ```json
-  {
-    "id": "integer",
-    "bio": "string",
-    "location": "string",
-    "user": {
-      "id": "integer",
-      "username": "string",
-      "email": "string"
-    }
-  }
-  ```
-
-### Session Endpoints
-
-#### Session List
-- **URL:** `/session/`
-- **Methods:** `GET`, `POST`
-- **Description:** Retrieve a list of sessions or create a new session.
-- **Headers:**
-  ```http
-  Authorization: Token your_token_here
-  ```
-- **GET Response:**
-  ```json
-  [
-    {
-      "id": "integer",
-      "name": "string",
-      "date": "string",
-      "duration": "integer"
-    }
-  ]
-  ```
-- **POST Request Body:**
-  ```json
-  {
-    "name": "string",
-    "date": "string",
-    "duration": "integer"
-  }
-  ```
-- **POST Response:**
-  ```json
-  {
-    "id": "integer",
-    "name": "string",
-    "date": "string",
-    "duration": "integer"
-  }
-  ```
-
-#### Session Detail
-- **URL:** `/session/<int:pk>/`
-- **Methods:** `GET`, `PUT`, `DELETE`
-- **Description:** Retrieve, update, or delete a session.
-- **Headers:**
-  ```http
-  Authorization: Token your_token_here
-  ```
-- **GET Response:**
-  ```json
-  {
-    "id": "integer",
-    "name": "string",
-    "date": "string",
-    "duration": "integer"
-  }
-  ```
-- **PUT Request Body:**
-  ```json
-  {
-    "name": "string",
-    "date": "string",
-    "duration": "integer"
-  }
-  ```
-- **PUT Response:**
-  ```json
-  {
-    "id": "integer",
-    "name": "string",
-    "date": "string",
-    "duration": "integer"
-  }
-  ```
-- **DELETE Response:**
-  ```http
-  HTTP 204 No Content
-  ```
-
-## Authentication
-- **Token Authentication:** Add the token in the `Authorization` header as shown below:
-  ```http
-  Authorization: Token your_token_here
-  ```
-
-## Error Handling
-- **400 Bad Request:** The request was invalid or cannot be served. Check the request parameters.
-- **401 Unauthorized:** Authentication credentials were missing or incorrect.
-- **403 Forbidden:** The request is understood, but it has been refused or access is not allowed.
-- **404 Not Found:** The requested resource could not be found.
-
-## Example Curl Commands
-
-### Register a new user
-```sh
-curl -X POST http://your_domain.com/register/   -H "Content-Type: application/json"   -d '{
-        "username": "exampleuser",
-        "password": "examplepassword",
-        "email": "user@example.com"
-      }'
+```bash
+git clone https://github.com/lewmas/mindharmony.git
+cd mindharmony/chatbot
+npm install
 ```
 
-### Login
-```sh
-curl -X POST http://your_domain.com/login/   -H "Content-Type: application/json"   -d '{
-        "username": "exampleuser",
-        "password": "examplepassword"
-      }'
+## Usage
+
+Before running the application, ensure you have your OpenAI API key set up in the environment variables. Create a `.env` file in the root directory of your project and add your API key:
+
+```plaintext
+API_KEY=your_openai_api_key
 ```
 
-### Get User Details
-```sh
-curl -X GET http://your_domain.com/user-details/   -H "Authorization: Token your_token_here"
+To start the application, run:
+
+```bash
+npm start
 ```
 
-### Get All Sessions
-```sh
-curl -X GET http://your_domain.com/session/   -H "Authorization: Token your_token_here"
-```
+This will start the server on the default port (usually 3000).
 
-### Create a Session
-```sh
-curl -X POST http://your_domain.com/session/   -H "Authorization: Token your_token_here"   -H "Content-Type: application/json"   -d '{
-        "name": "Session 1",
-        "date": "2024-07-06",
-        "duration": 60
-      }'
-```
+## API Endpoints
 
-### Get Session Detail
-```sh
-curl -X GET http://your_domain.com/session/1/   -H "Authorization: Token your_token_here"
-```
+### POST /chat
 
-### Update Session
-```sh
-curl -X PUT http://your_domain.com/session/1/   -H "Authorization: Token your_token_here"   -H "Content-Type: application/json"   -d '{
-        "name": "Updated Session",
-        "date": "2024-07-07",
-        "duration": 90
-      }'
-```
+This endpoint processes user input and returns a response from the OpenAI GPT-3.5-turbo model.
 
-### Delete Session
-```sh
-curl -X DELETE http://your_domain.com/session/1/   -H "Authorization: Token your_token_here"
-```
+**Request:**
+
+- Method: `POST`
+- URL: `/api/chat`
+- Headers:
+  - `Content-Type: application/json`
+- Body:
+  ```json
+  {
+    "user_input": "I'm feeling anxious about my exams."
+  }
+  ```
+
+**Response:**
+
+- Success: `200 OK`
+  ```json
+  {
+    "response": "It's completely natural to feel anxious about exams. Remember to take deep breaths and take breaks while studying."
+  }
+  ```
+- Error: `500 Internal Server Error`
+  ```json
+  {
+    "error": "Error message describing what went wrong."
+  }
+  ```
+
+## Environment Variables
+
+The application requires the following environment variables to be set:
+
+- `API_KEY`: Your OpenAI API key.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+
+## Author
+
+- **@waltertaya**
