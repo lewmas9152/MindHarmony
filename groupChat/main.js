@@ -27,13 +27,13 @@ const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
     cors: {
-        origin: process.env.FRONTEND_URL,
+        origin: "*",
     }
 });
 const cors = require('cors');
 
 cors.options = {
-    origin: process.env.FRONTEND_URL,
+    origin: "*",
 };
 
 app.use(cors());
