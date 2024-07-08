@@ -1,56 +1,58 @@
-$ripple-color: rgba(255, 255, 255, 0.7);
-$button-color: #0070f3;
-
 .rippleButton {
   position: relative;
-  display: inline-block;
-  padding: 5px;
-  width: 50px;
-  height: 50px;
-  font-size: 16px;
-  color: #fff;
-  background-color: $button-color;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  outline: none;
   overflow: hidden;
+  height: 40px;
+  transition: background 400ms;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: $ripple-color;
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: 50%;
-    animation: ripple 2s infinite;
+  &:hover {
+    background-color: #5000d6;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: $ripple-color;
-    transform: translate(-50%, -50%) scale(0);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: ripple 2s infinite;
-    animation-delay: 1s; /* Delay for the second ripple */
+    transform: scale(0);
+    transition: transform 0.5s;
+  }
+
+  &:active::after {
+    transform: scale(2);
+    opacity: 0;
+    transition: transform 0s, opacity 0.5s;
   }
 }
 
-@keyframes ripple {
+.jumpButton {
+  animation: jump 0.5s ease infinite alternate;
+}
+
+@keyframes jump {
   0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
+    transform: translateY(0);
   }
   100% {
-    transform: translate(-50%, -50%) scale(3);
-    opacity: 0;
+    transform: translateY(-10px);
   }
+}
+
+.lottieContainer {
+  width: 90px;
+  height: 90px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
 }

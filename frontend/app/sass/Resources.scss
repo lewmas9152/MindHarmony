@@ -1,9 +1,11 @@
+
 $font-rubik : 'Rubik', sans-serif;
 $font-josefin : 'Josefin Sans', sans-serif;
 $font-island : 'Island Moments', cursive;
 $font-ropa : 'Ropa Sans', sans-serif;
 $font-jost : 'Jost', sans-serif;
 $font-playwrite : 'Playwrite IT Moderna', sans-serif;
+$nightowl-border: #1d3b53;
 $col-1: #222746;
 $col-2: #b9c1cf;
 $col-3: #4a5070;
@@ -24,150 +26,280 @@ $col-17: #1aa66f;
 $col-18: #323553;
 $col-19: #afb5c1;
 $col-20: #604f5c;
-@mixin card-tool{
-    display: flex;
-    width: 400px;
-    border-left: 2px solid $col-7;
-    height:250px;
-    flex-direction: column;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    background-color:$col-18;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    &:hover{
-        animation: all 3s ease-in-out;
-        transform:scale(1.05);
-    }
-    .tool-content{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        h3{
-            font-family: $font-rubik;
-            font-size: 20px;
-            font-weight: 700;
-            color: $col-18;
-        }
-        p{
-            font-family: $font-rubik;
-            font-size: 16px;
-            color:#000;
-            font-weight: 500;
-            text-align: center;
-            margin-top: 30px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-        }
-    }
-   
-    
+
+$primary-color: #4a90e2;
+$secondary-color: #f5a623;
+$background-color: #f8f9fa;
+$text-color: #333;
+$border-radius: 8px;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.content-container{
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    
-    .sidebar{
-        position: sticky;
-        width: 20%;
-    }
-    .content{
-        width: 80%;
-        background-color: $col-1;
-        .stress-management-container{
-            .tools{
-                display: flex;
-                flex-wrap: wrap;
-                gap: 30px;
-                padding: 20px;
-                .mindfulness{
-                    @include card-tool;
-                    background: url("../images/vector.jpg");
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-                .cbt{
-                    @include card-tool;
-                    background: url("../images/vector2.jpg");
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                }
-                .mindful-eating{
-                    @include card-tool;
-                }
-                .self-care{
-                    @include card-tool;
-                }
-            }
-        }
-    }
+@mixin card-style {
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
 }
+
+// Main container
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: $background-color;
+}
+
+.content-container {
+  display: flex;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.sidebar {
+  flex: 0 0 250px;
+
+  @media (max-width: 768px) {
+    flex: 1;
+  }
+}
+
+.content {
+  flex: 1;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: $primary-color;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  color: $secondary-color;
+  margin-bottom: 1.5rem;
+}
+
+// Sections
+section {
+  margin-bottom: 3rem;
+}
+
+// Mood Tracker
+.mood-tracker-anger-management {
+  @include card-style;
+  padding: 2rem;
+  text-align: center;
+
+  .mood-tracker {
+    margin-top: 1rem;
+  }
+}
+
+// Mental Health Articles
 .mental-health-articles {
-    margin-bottom: 40px;
-  
-    .articles-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-  
-      .article {
-        flex-basis: calc(25% - 15px);
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  
-        img {
-          width: 100%;
-          height: auto;
-          border-radius: 5px;
-          margin-bottom: 10px;
-        }
-  
-        h3 {
-          font-size: 1.2em;
-          margin-bottom: 10px;
-        }
-  
-        p {
-          font-size: 0.9em;
-          margin-bottom: 15px;
-        }
-      }
+  .articles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .article {
+    @include card-style;
+    padding: 1rem;
+    text-align: center;
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
   }
-  .videos {
-    margin-bottom: 40px;
-  
-    .videos-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-  
-      .video {
-        flex-basis: calc(25% - 15px);
-  
-        .video-thumbnail {
-          border-radius: 10px;
-          overflow: hidden;
-          margin-bottom: 10px;
-  
-          img {
-            width: 100%;
-            height: auto;
-          }
-        }
-  
-        h3 {
-          font-size: 1em;
-        }
+}
+
+// Videos
+.videos {
+  .videos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .video {
+    @include card-style;
+    text-align: center;
+
+    .video-thumbnail {
+      position: relative;
+      overflow: hidden;
+      border-radius: $border-radius $border-radius 0 0;
+
+      &::after {
+        content: '▶';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover::after {
+        opacity: 1;
       }
     }
+
+    h3 {
+      font-size: 1.2rem;
+      margin: 1rem;
+    }
   }
+}
+
+// Stress Reduction Tools
+.stress-reduction-tools {
+  @include card-style;
+  padding: 2rem;
+  text-align: center;
+
+  .breathing-timer {
+    .timer {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+  }
+}
+
+// Stress Management
+.stress-management-container {
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .mindfulness,
+  .cbt,
+  .mindful-eating,
+  .self-care {
+    @include card-style;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+
+    .tool-content {
+      position: relative;
+      z-index: 1;
+      padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    &:hover .overlay {
+      opacity: 0.5;
+    }
+  }
+
+  .mindfulness .overlay {
+    background-image: url('/images/mindfulness.jpg');
+  }
+
+  .cbt .overlay {
+    background-image: url('/images/cbt.jpg');
+  }
+
+  .mindful-eating .overlay {
+    background-image: url('/images/mindful-eating.jpg');
+  }
+
+  .self-care .overlay {
+    background-image: url('/images/self-care.jpg');
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+section {
+  animation: fadeIn 1s ease-out;
+}
+
+.article,
+.video,
+.mindfulness,
+.cbt,
+.mindful-eating,
+.self-care {
+  animation: slideIn 0.5s ease-out;
+}
+
+// Responsive design
+@media (max-width: 1280px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .articles-container,
+  .videos-container,
+  .tools {
+    grid-template-columns: 1fr;
+  }
+}

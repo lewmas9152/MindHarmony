@@ -1,12 +1,32 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import Sidenav from '../components/sideNav'
 import "../sass/Resources.scss"
 import Vector from "../images/vector.jpg"
 import Image from 'next/image'
 import styles from '../sass/RippleButton.module.scss';
 import MoodTracker from '../components/mood-tracker'
+import Lottie from 'lottie-react';
+import playAnimationData from '../lottie/lotie1.json';
 
-export default function page() {
+const AnimatedButton = ({ onClick, children }) => {
+  return (
+    <button className={`${styles.rippleButton} ${styles.jumpButton}`} onClick={onClick}>
+      <div className={styles.lottieContainer}>
+        <Lottie animationData={playAnimationData} loop={true} />
+      </div>
+      {children}
+    </button>
+  );
+};
+
+const Resources = () => {
+  const [moodTrackerVisible, setMoodTrackerVisible] = useState(false);
+
+  const toggleMoodTracker = () => {
+    setMoodTrackerVisible(!moodTrackerVisible);
+  };
+
   return (
     <main className='container'>
       <div className="content-container">
@@ -18,9 +38,15 @@ export default function page() {
           
           <section className='mood-tracker-anger-management'>
             <h2>Mood Tracker</h2>
-            <div className="mood-tracker">
-            <MoodTracker />
-            </div>
+            <AnimatedButton onClick={toggleMoodTracker}>
+              Track your mood now!
+            </AnimatedButton>
+            {moodTrackerVisible && (
+              <div className="mood-tracker">
+                <MoodTracker />
+                <p>Understanding your emotions is the first step towards better mental health. Use this tool daily to track your mood and identify patterns.</p>
+              </div>
+            )}
           </section>
           
           <section className='mental-health-articles'>
@@ -142,3 +168,5 @@ export default function page() {
     </main>
   )
 }
+
+export default Resources;
