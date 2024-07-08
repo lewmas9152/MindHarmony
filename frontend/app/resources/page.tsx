@@ -4,6 +4,7 @@ import "../sass/Resources.scss"
 import Vector from "../images/vector.jpg"
 import Image from 'next/image'
 import styles from '../sass/RippleButton.module.scss';
+import MoodTracker from '../components/mood-tracker'
 
 export default function page() {
   return (
@@ -18,11 +19,7 @@ export default function page() {
           <section className='mood-tracker-anger-management'>
             <h2>Mood Tracker</h2>
             <div className="mood-tracker">
-              <div className="mood-item">😊 Happy</div>
-              <div className="mood-item">😐 Neutral</div>
-              <div className="mood-item">😢 Sad</div>
-              <div className="mood-item">😠 Angry</div>
-              <div className="mood-item">😰 Anxious</div>
+            <MoodTracker />
             </div>
           </section>
           
