@@ -60,7 +60,6 @@ async function auth(req , res , next){
                 Authorization: `Token ${token}`
             }
         }).then((response)=>{
-            console.log("Response received");
             req.user = response.data.user;
             next();
         }).catch((err)=>{return res.sendStatus(401)});
