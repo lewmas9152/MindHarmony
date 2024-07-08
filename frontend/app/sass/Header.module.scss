@@ -25,128 +25,308 @@ $col-17: #1aa66f;
 $col-18: #323553;
 $col-19: #afb5c1;
 $col-20: #604f5c;
+
 .header {
-    display: flex;
-    gap: 120px;
-    align-items: center;
-    height: 138px;
-    padding: 10px 20px;
-    background-color: #011627;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 120px;
+  align-items: center;
+  height: 138px;
+  padding: 10px 20px;
+  background-color: #011627;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  input {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    width: 400px;
+    font-family: $font-jost;
     @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: flex-start;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
-  
-  .searchBar {
-    display: flex;
-    align-items: center;
-    position: relative;
-    input {
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        width: 400px;
-        font-family: $font-jost;
-        @media (max-width: 768px) {
-            width: 100%;
-            margin-bottom: 10px;
-          }
 
-        &:focus {
-          outline: none;
-        }
-      }
-  
-    .searchIcon {
+  .searchIcon {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.notifications, .reminders {
+  position: relative;
+  cursor: pointer;
+
+  .notificationIcon, .reminderIcon {
+    position: relative;
+    img {
+      filter: hue-rotate(290deg);
+    }
+
+    .notificationCount, .reminderCount {
       position: absolute;
-      right: 10px;
+      top: -3px;
+      right: -3px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
     }
   }
-  
-  .notifications, .reminders {
-    position: relative;
-    cursor: pointer;
-  
-    .notificationIcon, .reminderIcon {
-      position: relative;
-      img{
-        filter: hue-rotate(290deg);
 
-      }
-  
-      .notificationCount, .reminderCount {
-        position: absolute;
-        top: -3px;
-        right: -3px;
-        background-color: red;
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-      }
-    }
-  
-    .notificationPopup, .reminderPopup {
-      position: absolute;
-      top: 35px;
-      right: 0;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .notificationPopup, .reminderPopup {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 100;
+    width: 300px;
+    font-family: $font-rubik;
+    max-height: 400px;
+    overflow-y: auto;
+
+    .notificationItem, .reminderItem {
       padding: 10px;
-      z-index: 100;
-      width: 200px;
-      font-family: $font-rubik;
-      border-left: 3px solid $col-7;
-  
-      p {
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.3s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      .message {
         margin: 0;
-        padding: 5px 0;
-        border-bottom: 1px solid #eee;
-        &:last-child {
-          border-bottom: none;
-        }
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .timestamp {
+        margin: 5px 0 0;
+        font-size: 12px;
+        color: #777;
       }
     }
+  }
+}
+
+.highPriority {
+  border-left: 4px solid #ff4d4d;
+}
+
+.mediumPriority {
+  border-left: 4px solid #ffa500;
+}
+
+.lowPriority {
+  border-left: 4px solid #4caf50;
+}
+
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .userImage {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 4px solid #10709a;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .userName {
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+      font-family: $font-rubik;
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+}
+// Add these keyframes at the top of your file if not already present
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
   }
   
   .userProfile {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
   
-    .userImage {
-      border-radius: 50%;
-      overflow: hidden;
-      margin-right: 10px;
-      border: 4px solid #10709a;
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-      }
-      img{
+    .userImageWrapper {
+      position: relative;
+      cursor: pointer;
+      
+      .userImage {
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid $col-9;
+        transition: all 0.3s ease;
         width: 60px;
         height: 60px;
+  
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 15px rgba($col-9, 0.5);
+        }
+  
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+  
+      .userStatus {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #4caf50;
+        border: 2px solid white;
+        animation: pulse 2s infinite;
       }
     }
   
     .userName {
       p {
-        margin: 0;
+        margin: 5px 0 0;
         font-size: 14px;
         color: white;
         font-weight: 600;
         font-family: $font-rubik;
         text-align: center;
-        margin-top: 5px;
+      }
+    }
+  
+    .userMenu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 8px 0;
+      z-index: 100;
+      width: 180px;
+      animation: slideIn 0.3s ease-out;
+  
+      &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        right: 20px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid white;
+      }
+  
+      .userMenuItem {
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+  
+        &:hover {
+          background-color: #f5f5f5;
+        }
+  
+        .icon {
+          margin-right: 12px;
+          font-size: 18px;
+        }
+  
+        span {
+          font-family: $font-rubik;
+          font-size: 14px;
+          color: $col-1;
+        }
       }
     }
   }
   
+  // Add these styles if you want to animate the entire header
+  .header {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  // You can add these styles to enhance the overall look of the header
+  .notifications, .reminders {
+    .notificationIcon, .reminderIcon {
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: scale(1.1);
+      }
+  
+      img {
+        filter: hue-rotate(290deg);
+        transition: filter 0.3s ease;
+  
+        &:hover {
+          filter: hue-rotate(320deg);
+        }
+      }
+    }
+  
+    .notificationPopup, .reminderPopup {
+      animation: slideIn 0.3s ease-out;
+    }
+  }
