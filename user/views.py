@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from rest_framework.decorators import authentication_classes, permission_classes,api_view
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from django.contrib.auth.models import User
 
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication, SessionAuthentication])
@@ -56,17 +57,29 @@ class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
-        user = authenticate(username=username, password=password)
 
-        if user is not None:
-            token, created = Token.objects.get_or_create(user=user)
-            user_profile = UserProfile.objects.get(user=user)
+        try:
+            user = User.objects.get(username=username)
+            if not user.is_active:
+                return Response({
+                    "error": "User account is inactive"
+                }, status = status.HTTP_400_BAD_REQUEST)
+            if not user.check_password(password):
+                return Response({
+                    "error": "Invalid credentials"
+                }, status = status.HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
             return Response({
-                'token': token.key,
-                'user': UserProfileSerializer(user_profile).data
-            }, status=status.HTTP_200_OK)
-        else:
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+                "error": "User does not exist"
+            }, status = status.HTTP_400_BAD_REQUEST)
+    
+        
+        token, created = Token.objects.get_or_create(user=user)
+        user_profile = UserProfile.objects.get(user=user)
+        return Response({
+            'token': token.key,
+            'user': UserProfileSerializer(user_profile).data
+        }, status=status.HTTP_200_OK)
 class ProfileAPIView(APIView):
     permission_classes = [IsAuthenticated]
     def get_object(self,pk):
