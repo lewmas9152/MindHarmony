@@ -57,12 +57,12 @@
             console.log('Disconnected');
         });
         function sendMessage(){
-            var message = [username , document.getElementById('chat').value];
+            var message = document.getElementById('chat').value;
             document.getElementById('chat').value = '';
             socket.emit('new-message', JSON.stringify(message));
         }
         function typing(){
-            socket.emit('typing', username);
+            socket.emit('typing');
         }
     </script>
 </body>

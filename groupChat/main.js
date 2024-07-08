@@ -115,6 +115,7 @@ io.on('connection', (socket) => {
 
     socket.on('typing', () => {
         io.except(socket.id).emit('typing', socket.user.username);
+        console.log(`${socket.user.username} is typing...`);
     });
 });
 
