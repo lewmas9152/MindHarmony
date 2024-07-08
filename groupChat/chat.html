@@ -13,10 +13,29 @@
     <p id="messages"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        let username = prompt('Enter your username');
-        var socket = io("https://mindharmony-sdm1.onrender.com");
+        var token = prompt("Enter your token");
+        fetch("https://groupchat-zg7d.onrender.com/messages", {
+            method: "GET",
+            headers: {
+                authorization: `Token ${token}`,
+            },
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            data.forEach((message) => {
+                document.getElementById("messages").innerText+=(`${message.user}: ${message.message}\n`);
+            });
+        });
+        var socket = io("https://groupchat-zg7d.onrender.com", {
+            auth: {
+                token: token
+            }
+        });
+        socket.on("connect_error", (err) => {
+            alert(`connect_error due to ${err.message}`)
+        });
         socket.on('connect', function() {
-            socket.emit('new-user', username);
+            console.log('Connected to socket.io server');
         });
         // socket.on('info', function(data) {
         //     alert('Info: ' + data + "\n");
@@ -26,10 +45,9 @@
         });
         socket.on('message', function(data) {
             data = JSON.parse(data);
-            document.getElementById("messages").innerText+=(`${data[0]}: ${data[1]}\n`);
+            document.getElementById("messages").innerText+=(`${data.user}: ${data.message}\n`);
         });
         socket.on('typing', function(data) {
-            if(data == username) return;
             document.getElementById("typing").innerText=(`${data} is typing...\n`);
             setTimeout(function(){
                 document.getElementById("typing").innerText = 'Online';
@@ -39,12 +57,12 @@
             console.log('Disconnected');
         });
         function sendMessage(){
-            var message = [username , document.getElementById('chat').value];
+            var message = document.getElementById('chat').value;
             document.getElementById('chat').value = '';
             socket.emit('new-message', JSON.stringify(message));
         }
         function typing(){
-            socket.emit('typing', username);
+            socket.emit('typing');
         }
     </script>
 </body>
