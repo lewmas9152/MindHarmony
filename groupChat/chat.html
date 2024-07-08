@@ -13,9 +13,22 @@
     <p id="messages"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
+        var token = prompt("Enter your token");
+        fetch("http://localhost:3000/messages", {
+            method: "GET",
+            headers: {
+                authorization: `Token ${token}`,
+            },
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            data.forEach((message) => {
+                document.getElementById("messages").innerText+=(`${message.user}: ${message.message}\n`);
+            });
+        });
         var socket = io("http://localhost:3000", {
             auth: {
-                token: `fa4c7a0e2a9719f6b8150c0f2e891a1c4c0d7961`
+                token: token
             }
         });
         socket.on("connect_error", (err) => {
@@ -32,10 +45,9 @@
         });
         socket.on('message', function(data) {
             data = JSON.parse(data);
-            document.getElementById("messages").innerText+=(`${data[0]}: ${data[1]}\n`);
+            document.getElementById("messages").innerText+=(`${data.user}: ${data.message}\n`);
         });
         socket.on('typing', function(data) {
-            if(data == username) return;
             document.getElementById("typing").innerText=(`${data} is typing...\n`);
             setTimeout(function(){
                 document.getElementById("typing").innerText = 'Online';

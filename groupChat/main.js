@@ -114,7 +114,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('typing', () => {
-        io.emit('typing', socket.user.username);
+        io.except(socket.id).emit('typing', socket.user.username);
     });
 });
 
