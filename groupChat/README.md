@@ -185,12 +185,12 @@ Authorization: Token <token>
 ```
 
 ### WebSocket Setup
-For WebSocket connections, include the token in the `extraHeaders` option:
+For WebSocket connections, include the token in the `auth` option:
 ```javascript
 const socket = io(process.env.BACKEND_URL, {
-  extraHeaders: {
-    Authorization: `Token ${localStorage.getItem('token')}`
-  }
+  auth: {
+          token: `fa4c7a0e2a9719f6b8150c0f2e891a1c4c0d7961`
+        }
 });
 ```
 
@@ -219,9 +219,9 @@ To establish a WebSocket connection and handle events:
 import io from 'socket.io-client';
 
 const socket = io(process.env.BACKEND_URL, {
-  extraHeaders: {
-    Authorization: `Token ${localStorage.getItem('token')}`
-  }
+  auth: {
+          token: `fa4c7a0e2a9719f6b8150c0f2e891a1c4c0d7961`
+        }
 });
 
 socket.on('info', (data) => {

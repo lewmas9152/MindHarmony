@@ -40,7 +40,8 @@ app.use(cors());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.redirect(process.env.FRONTEND_URL);
+    // res.redirect(process.env.FRONTEND_URL);
+    res.sendFile(__dirname + '/chat.html');
 });
 
 app.get("/messages", auth , (req , res)=>{
@@ -53,51 +54,45 @@ async function auth(req , res , next){
     if(!req.headers.authorization) return res.status(401).send("Unauthorized");
     var token = req.headers.authorization.split(" ")[1];
     if(!token) return res.status(401);
-    let response;
     try {
         axios.get(`${process.env.AUTH_URL}/user/user-details`, {
             headers: {
                 Authorization: `Token ${token}`
             }
-        }).then((res)=>{
-            req.user = res.data.user;
-        next();
-        }).catch((err)=>{return res.status(401)});
+        }).then((response)=>{
+            console.log("Response received");
+            req.user = response.data.user;
+            next();
+        }).catch((err)=>{return res.sendStatus(401)});
     } catch (error) {
-        return res.status(401);
+        return res.sendStatus(401);
     }
 }
 
 // Middleware for socket to verify the token
 io.use(async (socket, next) => {
+    const token = socket.handshake.auth.token || socket.handshake.headers.authorization.split(" ")[1] || null;
+    if (!token) {
+        return next(new Error('Authentication error'));
+    }
+    console.log(`token: "${token}"`);
     try {
-        const token = socket.handshake.headers.authorization.split(" ")[1];
-        if (!token) {
-            return next(new Error('Authentication error'));
-        }
-        
-        try {
-            const response = await axios.get(`${process.env.AUTH_URL}/user/user-details`, {
-                headers: {
-                    Authorization: `Token ${token}`
-                }
-            });     
-        } catch (error) {
-            return next(new Error('Authentication error'));
-        }
-
-        if (response.status === 200) {
+        axios.get(`${process.env.AUTH_URL}/user/user-details`, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        }).then((response)=>{
+            console.log("Response received");
             socket.user = response.data.user;
             next();
-        } else {
-            next(new Error('Authentication error'));
-        }
+        }).catch((err)=>{return next(new Error('Authentication error'))});
     } catch (error) {
-        next(new Error('Authentication error'));
+        return next(new Error('Authentication error'));
     }
 });
 
 io.on('connection', (socket) => {
+    console.log('New connection:' + socket.user);
     const user = new User(socket.id, socket.user.username);
     users.push(user);
     io.emit('info', `${user.uname} joined`);

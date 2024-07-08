@@ -13,10 +13,16 @@
     <p id="messages"></p>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        let username = prompt('Enter your username');
-        var socket = io("https://mindharmony-sdm1.onrender.com");
+        var socket = io("http://localhost:3000", {
+            auth: {
+                token: `fa4c7a0e2a9719f6b8150c0f2e891a1c4c0d7961`
+            }
+        });
+        socket.on("connect_error", (err) => {
+            alert(`connect_error due to ${err.message}`)
+        });
         socket.on('connect', function() {
-            socket.emit('new-user', username);
+            console.log('Connected to socket.io server');
         });
         // socket.on('info', function(data) {
         //     alert('Info: ' + data + "\n");
