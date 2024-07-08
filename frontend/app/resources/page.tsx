@@ -179,15 +179,6 @@ const Resources: React.FC = () => {
             </div>
           </section>
           
-          <section className='stress-reduction-tools'>
-            <h2>Stress Reduction Tools</h2>
-            <div className="breathing-timer">
-              <h3>Breathing Exercise</h3>
-              <div className="timer">5:00</div>
-              <button className={styles.rippleButton}>Start Timer</button>
-            </div>
-          </section>
-          
           <section className='stress-management-container'>
             <h2>Stress Management</h2>
             <div className="tools">
