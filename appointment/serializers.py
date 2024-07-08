@@ -6,11 +6,12 @@ class ProfessionalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Professional
         fields = [
-            'user',
+            'name',
+            'prof_id',
             'specialization',
             'bio',
             'profile',
-            'created_at',
+            'created_at'
         ]
 
 
