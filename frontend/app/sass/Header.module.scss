@@ -1,0 +1,152 @@
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
+$nightowl-border: #1d3b53;
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
+.header {
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    height: 138px;
+    padding: 10px 20px;
+    background-color: #011627;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    input {
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        width: 400px;
+        font-family: $font-jost;
+        @media (max-width: 768px) {
+            width: 100%;
+            margin-bottom: 10px;
+          }
+
+        &:focus {
+          outline: none;
+        }
+      }
+  
+    .searchIcon {
+      position: absolute;
+      right: 10px;
+    }
+  }
+  
+  .notifications, .reminders {
+    position: relative;
+    cursor: pointer;
+  
+    .notificationIcon, .reminderIcon {
+      position: relative;
+      img{
+        filter: hue-rotate(290deg);
+
+      }
+  
+      .notificationCount, .reminderCount {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+    }
+  
+    .notificationPopup, .reminderPopup {
+      position: absolute;
+      top: 35px;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      z-index: 100;
+      width: 200px;
+      font-family: $font-rubik;
+      border-left: 3px solid $col-7;
+  
+      p {
+        margin: 0;
+        padding: 5px 0;
+        border-bottom: 1px solid #eee;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  
+  .userProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    .userImage {
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+      border: 4px solid #10709a;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+      img{
+        width: 60px;
+        height: 60px;
+      }
+    }
+  
+    .userName {
+      p {
+        margin: 0;
+        font-size: 14px;
+        color: white;
+        font-weight: 600;
+        font-family: $font-rubik;
+        text-align: center;
+        margin-top: 5px;
+      }
+    }
+  }
+  

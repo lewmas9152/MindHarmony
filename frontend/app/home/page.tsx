@@ -1,21 +1,17 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Sidenav from '../components/sideNav';
+import Header from '../components/Header';
 import "../sass/Home.scss";
-import NotificationIcon from "../images/notification.svg";
-import ReminderIcon from "../images/reminder.svg";
-import Image from 'next/image';
-import SearchIcon from "../images/search.svg";
-import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
-import Welcome from "../images/welc.png";
 import AppointmentIcon from "../images/appointment.svg";
 import ProgressIcon from "../images/progress (2).svg";
 import MentalHealth from '../images/brain.svg';
-import TherapyIcon from "../images/therapy.svg"
+import TherapyIcon from "../images/therapy.svg";
 import CountUp from 'react-countup';
 import AppointmentSection from '../components/AppointmentSection';
 import MentalExercisesProgress from '../components/MentalExercisesProgress';
 import CombinedCharts from '../components/CombinedCharts';
+import Image from 'next/image';
 
 const HomePage = () => {
   const [greeting, setGreeting] = useState("");
@@ -38,74 +34,10 @@ const HomePage = () => {
       </div>
       <div className="content-container">
         <div className="content">
-          <div className="header">
-            <div className="search-bar">
-              <div className="search-icon">
-                <Image
-                  src={SearchIcon}
-                  alt="Search Icon"
-                  width={30}
-                  height={30}
-                  quality={100}
-                />
-              </div>
-              <input type="text" placeholder="Search anything here.." />
-            </div>
-            <div className="notifications">
-              <div className="notification-icon">
-                <Image
-                  src={NotificationIcon}
-                  alt="Notification Icon"
-                  width={30}
-                  height={30}
-                  quality={100}
-                />
-              </div>
-              <div className="notification-content">
-                <p>Notifications</p>
-              </div>
-            </div>
-            <div className="reminders">
-              <div className="reminder-icon">
-                <Image
-                  src={ReminderIcon}
-                  alt="Reminder Icon"
-                  width={30}
-                  height={30}
-                  quality={100}
-                />
-              </div>
-              <div className="reminder-content">
-                <p>Reminders</p>
-              </div>
-            </div>
-            <div className="user-profile">
-              <div className="user-image">
-                <Image
-                  src={UserProfile}
-                  alt="User Profile"
-                  width={50}
-                  height={50}
-                  quality={100}
-                />
-              </div>
-              <div className="user-name">
-                <p>John Doe</p>
-                <p>JohnDoe@gmail.com</p>
-              </div>
-            </div>
-          </div>
+          <Header />
           <div className="welcome-message">
             <div className="image-welcome">
-              <iframe src="https://lottie.host/embed/78f7a603-9cc6-4213-8698-a595c5ca7005/fENvQNEzhn.json "></iframe>
-              {/* <Image
-                src={Welcome}
-                alt="Welcome Image"
-                width={1920}
-                height={1080}
-                quality={100}
-                className="object-contain w-full h-full zooming-image"
-              /> */}
+              <iframe src="https://lottie.host/embed/78f7a603-9cc6-4213-8698-a595c5ca7005/fENvQNEzhn.json"></iframe>
             </div>
             <div className="message">
               <h1>Good {greeting} John Doe!</h1>
