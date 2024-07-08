@@ -1,4 +1,7 @@
 from pathlib import Path
+import django_heroku
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +31,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
 ]
 
 REST_FRAMEWORK = {
@@ -117,12 +123,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
+STATIC_ROOT = os.path.join(BASE_DIR / "staticfiles")
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
