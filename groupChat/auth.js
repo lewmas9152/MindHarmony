@@ -27,6 +27,7 @@ module.exports = (req , res , next)=>{
             next();
         }).catch((err)=>{return res.status(401).send("Unauthorized by auth server")});
     } catch (error) {
+        console.log(error);
         return res.sendStatus(500);
     }
 }
