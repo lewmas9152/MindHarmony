@@ -28,7 +28,7 @@ const Profile = () => {
             </div>
             {/* <div className="underline w-full"></div> */}
             <p className="text-pretty">
-            🌟 On a transformative journey to better mental health with Mind Harmony. Embracing balance, positivity, and personal growth every day. 🌱 Passionate about self-care and mental wellness, I'm here to share my experiences, learn from others, and build a supportive community. Together, we can thrive and create a harmonious mind! 💪✨
+            🌟On a transformative journey to better mental health with Mind Harmony. Embracing balance, positivity, and personal growth every day. 🌱 Passionate about self-care and mental wellness, i am here to share my experiences, learn from others, and build a supportive community. Together, we can thrive and create a harmonious mind! 💪✨
             </p>
           </div>
           <footer className="  text-center">
