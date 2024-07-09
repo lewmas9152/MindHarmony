@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 
 import "../sass/Auth.scss";
@@ -14,58 +14,68 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
-import { Redirect } from "next";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function TabsDemo() {
-  const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
+const router = useRouter()
 
 
-    const [usernameLogin, setUsernameLogin] = useState('');
-    const [passwordLogin, setPasswordLogin] = useState('');
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = async (e:any) => {
-      e?.preventDefault();
-      
-      try {
-        const response = await axios.post('https://mindharmony-be9e466ec301.herokuapp.com/user/register/', {
+  const [usernameLogin, setUsernameLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
+
+  const handleSubmit = async (e: any) => {
+    e?.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "https://mindharmony-be9e466ec301.herokuapp.com/user/register/",
+        {
           email,
           username,
-          password
-        });
-        
-        // Handle successful response
-        console.log('Sign-up successful:', response.data);
-        // Redirect('/dashboard')
-      } catch (error) {
-        // Handle error
-        console.error('Sign-up failed:', error);
-        // You might want to show an error message to the user
-      }
-    };
-
-    const handleLogin=async (e:any)=>{
-      e?.preventDefault();
-      
-      try {
-        const response = await axios.post('https://mindharmony-be9e466ec301.herokuapp.com/user/login/', {
-          username,
           password,
-        });
-        
-        // Handle successful response
-        console.log('Sign-in successful:', response.data);
-        alert("Signed in successfully.")
-        // Redirect('/dashboard')
-      } catch (error) {
-        
-        console.error('Sign-up failed:', error);
-        alert("An error occurred while signing in.")
-         
-      }
+        }
+      );
+
+      // Handle successful response
+      console.log("Sign-up successful:", response.data);
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Sign-up failed:", error);
+      alert("An error occurred while signing up.");
     }
+  };
+
+  const handleLogin = async (e: any) => {
+    e?.preventDefault();
+
+    try {
+      const credentials = { username: usernameLogin, password: passwordLogin };
+      const response = await axios.post(
+        "https://mindharmony-be9e466ec301.herokuapp.com/user/login/",
+
+        JSON.stringify(credentials),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Handle successful response
+      console.log("Sign-in successful:", response.data);
+      // alert("Signed in successfully.");
+      router.push("/dashboard");
+    } catch (error) {
+      console.error("Sign-in failed:", error);
+      // alert("An error occurred while signing in.");
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f0f4f8]">
       <Tabs defaultValue="sign-up">
@@ -73,8 +83,7 @@ export default function TabsDemo() {
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
-
-        {/* //#region Sign up */}
+        //#region Sign up
         <TabsContent value="sign-up">
           <form onSubmit={handleSubmit}>
             <Card className="w-[380px] max-w-sm shadow-lg">
@@ -86,6 +95,7 @@ export default function TabsDemo() {
                   {/* Enter your email below to login to your account. */}
                 </CardDescription>
               </CardHeader>
+
               <CardContent className="grid gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
@@ -95,20 +105,37 @@ export default function TabsDemo() {
                     placeholder="johndoe@example.com"
                     required
                     value={email}
-                    onChange={(e)=> setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="text">Username</Label>
-                  <Input id="username" type="text" placeholder="" value={username} onChange={(e)=> setUsername(e.target.value)} required />
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder=""
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="password">Password</Label>
-                  <Input id="password" type="password" value={password} onChange={(e)=> {setPassword(e.target.value)}} required />
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                    required
+                  />
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col  pt-1">
-                <Button type="submit" className="w-full bg-[#2ebbad] ">Sign up</Button>
+                <Button type="submit" className="w-full bg-[#2ebbad] ">
+                  Sign up
+                </Button>
                 <div className="mt-4 text-center text-sm">
                   Already have an account?{" "}
                   <TabsList className=" bg-white">
@@ -124,52 +151,58 @@ export default function TabsDemo() {
             </Card>
           </form>
         </TabsContent>
-
-        {/* //#region Login */}
+        //#region Sign in
         <TabsContent value="login">
           <form onSubmit={handleLogin}>
-          <Card className="w-[380px] max-w-sm shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-2xl">Login</CardTitle>
-              <CardDescription>
-                Enter your email below to login to your account.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="username-login">Email</Label>
-                <Input
-                  id="username-login"
-                  type="text"
-                  placeholder=""
-                  value={usernameLogin}
-                    onChange={(e)=> setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password-login">Password</Label>
-                <Input id="password-login" type="password" required value={passwordLogin} onChange={(e)=> {setPasswordLogin(e.target.value)}} />
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col pt-1">
-              <Button type="submit" className="w-full bg-[#2ebbad]">Sign in</Button>
-              <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{" "}
-                {/* <Link href="#" className="underline">
-                  Sign up
-                </Link> */}
-                <TabsList className="bg-white">
-                  <TabsTrigger
-                    value="sign-up"
-                    className="underline text-[#2ebbad] p-0"
-                  >
-                    Sign up
-                  </TabsTrigger>
-                </TabsList>
-              </div>
-            </CardFooter>
-          </Card>
+            <Card className="w-[380px] max-w-sm shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl">Login</CardTitle>
+                <CardDescription>
+                  Enter your credentials below to login to your account.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="grid gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="username-login">Username</Label>
+                  <Input
+                    id="username-login"
+                    type="text"
+                    placeholder=""
+                    value={usernameLogin}
+                    onChange={(e) => setUsernameLogin(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="password-login">Password</Label>
+                  <Input
+                    id="password-login"
+                    type="password"
+                    required
+                    value={passwordLogin}
+                    onChange={(e) => {
+                      setPasswordLogin(e.target.value);
+                    }}
+                  />
+                </div>
+              </CardContent>
+              <CardFooter className="flex flex-col pt-1">
+                <Button type="submit" className="w-full bg-[#2ebbad]">
+                  Sign in
+                </Button>
+                <div className="mt-4 text-center text-sm">
+                  Don&apos;t have an account?{" "}
+                  <TabsList className="bg-white">
+                    <TabsTrigger
+                      value="sign-up"
+                      className="underline text-[#2ebbad] p-0"
+                    >
+                      Sign up
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+              </CardFooter>
+            </Card>
           </form>
         </TabsContent>
       </Tabs>
