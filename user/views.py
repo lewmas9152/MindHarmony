@@ -79,10 +79,9 @@ class LoginView(APIView):
     
         
         token, created = Token.objects.get_or_create(user=user)
-        user_profile = UserProfile.objects.get(user=user)
         return Response({
             'token': token.key,
-            'user': UserProfileSerializer(user_profile).data
+            'user': UserSerializer(user).data
         }, status=status.HTTP_200_OK)
 class ProfileAPIView(APIView):
     permission_classes = [IsAuthenticated]
