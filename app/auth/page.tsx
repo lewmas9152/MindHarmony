@@ -81,7 +81,6 @@ export default function TabsDemo() {
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
-        //#region Sign up
         <TabsContent value="sign-up">
           <form onSubmit={handleSubmit}>
             <Card className="w-[380px] max-w-sm shadow-lg">
@@ -149,7 +148,6 @@ export default function TabsDemo() {
             </Card>
           </form>
         </TabsContent>
-        //#region Sign in
         <TabsContent value="login">
           <form onSubmit={handleLogin}>
             <Card className="w-[380px] max-w-sm shadow-lg">

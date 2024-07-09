@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import Image from "next/image";
 import ChatIcon from "../images/chatscon.svg";
@@ -186,7 +186,12 @@ export default function ChatApp() {
 
   function handleChatSelect(chat) {
     setSelectedChat(chat);
-    const [messages, setMessages] = useState<{ id: number; sender: number | string; text: string; timestamp: Date }[]>([]);
+    // Example of initializing messages state when chat is selected
+    const initialMessages = [
+      { id: 1, sender: 2, text: "Hello!", timestamp: new Date() },
+      { id: 2, sender: "currentUser", text: "Hi there!", timestamp: new Date() }
+    ];
+    setMessages(initialMessages);
   }
 
   function handleCreateGroup() {
@@ -280,304 +285,192 @@ export default function ChatApp() {
               />
               <span className="slider"></span>
             </label>
-            <span className="tooltip">Switch Theme</span>
+            <span className="tooltip">Toggle theme</span>
           </div>
           <div
-            className="nav-item user-profile"
-            onClick={() => setShowProfileMenu(!showProfileMenu)}
+            className="nav-item profile-menu"
+            onClick={() => setShowProfileMenu((prevState) => !prevState)}
           >
             <Image
-              src={User1}
-              alt="User Profile"
+              src={ThemeIcon}
+              alt="Profile Icon"
               width={30}
               height={30}
               quality={100}
             />
             <span className="tooltip">Profile</span>
+            {showProfileMenu && (
+              <ul className="profile-dropdown">
+                <li>Settings</li>
+                <li>Log Out</li>
+              </ul>
+            )}
           </div>
-          {showProfileMenu && (
-            <div className="profile-menu">
-              <div className="menu-item">Profile</div>
-              <div className="menu-item">Settings</div>
-              <div className="menu-item">Logout</div>
-            </div>
-          )}
         </div>
       </div>
-      <div className="content-container">
-        <div className="top">
-          <div className="top-content">
-            <h1>
-              {activeTab === "chats"
-                ? "All Chats"
-                : activeTab === "groups"
-                ? "Support Groups"
-                : "Community Members"}
-            </h1>
-          </div>
-          <div className="search-bar">
-            <input type="text" placeholder="Search" />
-          </div>
-        </div>
+      <div className="chats">
         {activeTab === "chats" && (
           <>
-            <div className="active-users">
-              {users
-                .filter((user) => user.online)
-                .map((user) => (
-                  <div key={user.id} className="active-user">
-                    <Image
-                      src={user.avatar}
-                      alt={user.name}
-                      width={40}
-                      height={40}
-                      quality={100}
-                    />
-                    {user.typing && <div className="typing-indicator">...</div>}
-                  </div>
-                ))}
-            </div>
-            <div className="chat-list">
-              {users.map((user) => (
-                <div
-                  key={user.id}
-                  className={`chat-item ${
-                    selectedChat?.id === user.id ? "active" : ""
-                  }`}
-                  onClick={() => handleChatSelect(user)}
-                >
-                  <div className="chat-profile">
-                    <Image
-                      src={user.avatar}
-                      alt={`User ${user.id}`}
-                      width={50}
-                      height={50}
-                      quality={100}
-                    />
-                    <div
-                      className={`status-indicator ${
-                        user.online ? "online" : "offline"
-                      }`}
-                    ></div>
-                  </div>
-                  <div className="chat-info">
-                    <div className="chat-name">{user.name}</div>
-                    <div className="last-message">{user.lastMessage}</div>
-                    {user.typing && (
-                      <div className="typing-indicator">typing...</div>
-                    )}
-                  </div>
+            {users.map((user) => (
+              <div
+                className={`chat ${selectedChat === user.id ? "active" : ""}`}
+                key={user.id}
+                onClick={() => handleChatSelect(user.id)}
+              >
+                <div className="avatar">
+                  <Image
+                    src={user.avatar}
+                    alt={`${user.name} Avatar`}
+                    width={50}
+                    height={50}
+                    quality={100}
+                  />
+                  {user.online && <div className="status online"></div>}
                 </div>
-              ))}
-            </div>
+                <div className="details">
+                  <span className="name">{user.name}</span>
+                  <span className="last-message">{user.lastMessage}</span>
+                  {user.typing && <span className="typing-indicator">Typing...</span>}
+                </div>
+              </div>
+            ))}
           </>
         )}
         {activeTab === "groups" && (
-          <div className="groups-list">
-            <button className="create-group" onClick={handleCreateGroup}>
-              Create New Support Group
-            </button>
+          <>
             {groups.map((group) => (
               <div
+                className={`chat ${selectedChat === group.id ? "active" : ""}`}
                 key={group.id}
-                className={`group-item ${
-                  selectedChat?.id === group.id ? "active" : ""
-                }`}
+                onClick={() => handleChatSelect(group.id)}
               >
-                <div
-                  className="group-icon"
-                  onClick={() => handleChatSelect(group)}
-                >
-                  <div className="group-members-avatars">
-                    {group.members.slice(0, 3).map((memberId) => (
-                      <Image
-                        key={memberId}
-                        src={users.find((u) => u.id === memberId).avatar}
-                        alt={`Member ${memberId}`}
-                        width={20}
-                        height={20}
-                        quality={100}
-                      />
-                    ))}
-                    {group.members.length > 3 && (
-                      <span>+{group.members.length - 3}</span>
-                    )}
-                  </div>
+                <div className="avatar">
+                  <Image
+                    src={Groupcon}
+                    alt={`${group.name} Avatar`}
+                    width={50}
+                    height={50}
+                    quality={100}
+                  />
                 </div>
-                <div
-                  className="group-info"
-                  onClick={() => handleChatSelect(group)}
-                >
-                  <div className="group-name">{group.name}</div>
-                  <div className="group-members">
-                    {group.members.length} members
-                  </div>
-                  <div className="last-message">{group.lastMessage}</div>
+                <div className="details">
+                  <span className="name">{group.name}</span>
+                  <span className="last-message">{group.lastMessage}</span>
                   {group.typing.length > 0 && (
-                    <div className="typing-indicator">
-                      {group.typing
-                        .map((id) => users.find((u) => u.id === id).name)
-                        .join(", ")}{" "}
-                      {group.typing.length === 1 ? "is" : "are"} typing...
-                    </div>
+                    <span className="typing-indicator">Typing...</span>
                   )}
                 </div>
                 <div className="group-actions">
-                  <button
-                    className="add-user"
-                    onClick={() => handleAddUserToGroup(group.id)}
-                  >
-                    Add Member
-                  </button>
                   <button
                     className="delete-group"
                     onClick={() => handleDeleteGroup(group.id)}
                   >
                     Delete
                   </button>
+                  <button
+                    className="add-user"
+                    onClick={() => handleAddUserToGroup(group.id)}
+                  >
+                    Add User
+                  </button>
                 </div>
               </div>
             ))}
-          </div>
+            <div className="create-group">
+              <button onClick={handleCreateGroup}>Create Group</button>
+            </div>
+          </>
         )}
         {activeTab === "users" && (
-          <div className="users-list">
-            {users.map((user) => (
-              <div
-                key={user.id}
-                className={`user-item ${user.online ? "online" : "offline"}`}
-                onClick={() => handleChatSelect(user)}
-              >
-                <div className="user-profile">
-                  <Image
-                    src={user.avatar}
-                    alt={`User ${user.id}`}
-                    width={50}
-                    height={50}
-                    quality={100}
-                  />
-                  <div
-                    className={`status-indicator ${
-                      user.online ? "online" : "offline"
-                    }`}
-                  ></div>
-                </div>
-                <div className="user-info">
-                  <div className="user-name">{user.name}</div>
-                  <div className="user-status">
-                    {user.online ? "Online" : "Offline"}
+          <div className="users">
+            <h2>Users</h2>
+            <ul>
+              {users.map((user) => (
+                <li key={user.id}>
+                  <div className="user-avatar">
+                    <Image
+                      src={user.avatar}
+                      alt={`${user.name} Avatar`}
+                      width={50}
+                      height={50}
+                      quality={100}
+                    />
                   </div>
-                </div>
-              </div>
-            ))}
+                  <span className="user-name">{user.name}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
-      <div className="chat-area">
-        <div className="chat-header">
-          {selectedChat && (
-            <>
-              <div className="chat-profile">
-                {"members" in selectedChat ? (
-                  <div className="group-members-avatars">
-                    {selectedChat.members.slice(0, 3).map((memberId) => (
-                      <Image
-                        key={memberId}
-                        src={users.find((u) => u.id === memberId).avatar}
-                        alt={`Member ${memberId}`}
-                        width={20}
-                        height={20}
-                        quality={100}
-                      />
-                    ))}
-                    {selectedChat.members.length > 3 && (
-                      <span>+{selectedChat.members.length - 3}</span>
-                    )}
-                  </div>
-                ) : (
-                  <Image
-                    src={selectedChat.avatar}
-                    alt={selectedChat.name}
-                    width={40}
-                    height={40}
-                    quality={100}
-                  />
-                )}
-              </div>
-              <div className="chat-info">
-                <h2>{selectedChat.name}</h2>
-                {"members" in selectedChat ? (
-                  <div className="group-members">
-                    {selectedChat.members.length} members
-                  </div>
-                ) : (
-                  <div
-                    className={`user-status ${
-                      selectedChat.online ? "online" : "offline"
-                    }`}
-                  >
-                    {selectedChat.online ? "Online" : "Offline"}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
-        <div className="conversation">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`message ${
-                message.sender === "currentUser" ? "user" : "other"
-              }`}
-            >
-              {"members" in selectedChat &&
-                message.sender !== "currentUser" && (
-                  <div className="message-avatar">
-                    {users.find((u) => u.id === message.sender)?.avatar && (
-                      <Image
-                        src={users.find((u) => u.id === message.sender).avatar}
-                        alt={`User ${message.sender}`}
-                        width={30}
-                        height={30}
-                        quality={100}
-                      />
-                    )}
-                  </div>
-                )}
-              <div
-                className="message-content"
-                style={{
-                  backgroundColor: `hsl(${message.sender * 267},53%, 58%)`
-                }}
-              >
-                {"members" in selectedChat &&
-                  message.sender !== "currentUser" && (
-                    <div className="message-sender">
-                      {users.find((u) => u.id === message.sender)?.name}
-                    </div>
-                  )}
-                <div className="message-text">{message.text}</div>
-                <div className="message-time">
-                  {message.timestamp.toLocaleTimeString()}
-                </div>
-              </div>
+      {selectedChat && (
+        <div className="chat-window">
+          <div className="chat-header">
+            <div className="avatar">
+              <Image
+                src={
+                  selectedChat.avatar
+                    ? selectedChat.avatar
+                    : Groupcon
+                }
+                alt={`${selectedChat.name} Avatar`}
+                width={50}
+                height={50}
+                quality={100}
+              />
+              {selectedChat.online && (
+                <div className="status online"></div>
+              )}
             </div>
-          ))}
+            <div className="details">
+              <span className="name">{selectedChat.name}</span>
+              <span className="last-seen">
+                {selectedChat.online ? "Online" : "Offline"}
+              </span>
+            </div>
+          </div>
+          <div className="chat-messages">
+            {messages.map((message) => (
+              <div
+                className={`message ${
+                  message.sender === "currentUser" ? "sent" : "received"
+                }`}
+                key={message.id}
+              >
+                <p>{message.text}</p>
+                <span className="timestamp">
+                  {new Date(message.timestamp).toLocaleTimeString([], {
+                    hour: "numeric",
+                    minute: "numeric"
+                  })}
+                </span>
+              </div>
+            ))}
+            {isTyping && (
+              <div className="message typing">
+                <p>Typing...</p>
+              </div>
+            )}
+          </div>
+          <form className="chat-input" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Type your message..."
+              value={userInput}
+              onChange={handleInputChange}
+            />
+            <button type="submit">
+              <Image
+                src={SendIcon}
+                alt="Send Icon"
+                width={30}
+                height={30}
+                quality={100}
+              />
+            </button>
+          </form>
         </div>
-        <form onSubmit={handleSubmit} className="message-input">
-          <input
-            type="text"
-            value={userInput}
-            onChange={handleInputChange}
-            placeholder="Type a message..."
-          />
-          <button type="submit">
-            <Image src={SendIcon} alt="Send" width={24} height={24} />
-          </button>
-        </form>
-        {error && <p className="error">{error}</p>}
-      </div>
+      )}
     </div>
   );
 }
