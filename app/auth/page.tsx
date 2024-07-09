@@ -18,9 +18,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function TabsDemo() {
-
-const router = useRouter()
-
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -44,7 +42,7 @@ const router = useRouter()
 
       // Handle successful response
       console.log("Sign-up successful:", response.data);
-      router.push("/dashboard");
+      router.push("/home");
     } catch (error) {
       console.error("Sign-up failed:", error);
       alert("An error occurred while signing up.");
@@ -69,8 +67,8 @@ const router = useRouter()
 
       // Handle successful response
       console.log("Sign-in successful:", response.data);
-      // alert("Signed in successfully.");
-      router.push("/dashboard");
+      
+      router.push("/home");
     } catch (error) {
       console.error("Sign-in failed:", error);
       // alert("An error occurred while signing in.");
