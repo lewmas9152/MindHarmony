@@ -97,9 +97,13 @@ app.post('/groups', auth, async (req, res) => {
             members: [req.user._id],
             admins: [req.user._id]
         });
+        const chat = new Chat();
+        await chat.save();
+        group.chat = chat._id;
         await group.save();
         const user = await User.findById(req.user._id);
         user.groups.push(group._id);
+        user.chats.push(chat._id);
         await user.save();
         res.json(group);
     } catch (error) {
@@ -129,33 +133,27 @@ app.delete('/groups/:id', auth, async (req, res) => {
     }
 });
 
-app.post('/groups/:id/message', auth, async (req, res) => {
-    try {
-        const chat = new Chat({ group: req.params.id });
-        await chat.save();
-        const group = await Group.findById(req.params.id);
-        group.chats.push(chat._id);
+app.get("/groups/:id/join/" , auth , async (req , res)=>{
+    try{
+        let group = await Group.findById(req.params.id);
+        if(!group) return res.sendStatus(404);
+        group.members.push(req.user._id);
         await group.save();
-        res.json(chat);
-    } catch (error) {
+        let chat = await Chat.findById(group.chat);
+        chat.participants.push(req.user._id);
+        await chat.save();
+        let user = await User.findById(req.user._id);
+        user.chats.push(chat._id);
+    } catch(err){
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 
-app.get('/chats/:id/messages', auth, async (req, res) => {
-    try {
-        const { page = 1, limit = 20 } = req.query;
-        const chat = await Chat.findById(req.params.id)
-            .populate({
-                path: 'messages',
-                options: {
-                    sort: { date: -1 },
-                    skip: (page - 1) * limit,
-                    limit: parseInt(limit)
-                }
-            });
-        res.json(chat.messages);
-    } catch (error) {
+app.get("/chats" , auth , async (req , res)=>{
+    try{
+        const user = await User.find(req.user._id).populate("chats");
+        res.json(user.chats);
+    } catch(err){
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
@@ -186,12 +184,20 @@ io.use((socket, next) => {
     }).catch((err)=>{return next(new Error("Unauthorized"))});
 });
 
-io.on('connection', (socket) => {
-    socket.user.online = true;
-    socket.user.socketId = socket.id;
-    socket.user.save();
+let onlineUsers = [];
 
-    socket.emit('user', socket.user);
+io.on('connection', (socket) => {
+    const user = User.findByID(socket.user._id);
+    user.online = true;
+    user.socketId = socket.id;
+    user.save();
+    user.chats.forEach((chat)=>{
+        socket.join(chat);
+    });
+
+    onlineUsers.push(user);
+
+    io.emit('users', onlineUsers);
 
     socket.on('disconnect', async () => {
         const user = await User.findById(socket.user._id);
@@ -227,16 +233,14 @@ io.on('connection', (socket) => {
             console.error(error);
         }
     });
-
-    socket.on('join', (chatId) => {
-        Chat.findById(chatId).then((chat) => {
-            if (!chat || !chat.participants.includes(socket.user._id)) return;
-            socket.join(chatId);
-        });
-    });
-
-    socket.on('leave', (chatId) => {
-        socket.leave(chatId);
+    socket.on('new-chat' , (chat)=>{
+        try{
+            let newChat = new Chat({
+                participants : chat.participants
+            })
+        } catch(err){
+            console.error(err)
+        }
     });
 });
 
