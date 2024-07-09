@@ -19,6 +19,8 @@ import { useInView } from "react-intersection-observer";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { services } from "@/lib/services";
 import { Button } from "./components/ui/button";
+import { MenuIcon, XIcon } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
   const [aboutRef, aboutInView] = useInView({
@@ -36,6 +38,9 @@ export default function Home() {
     threshold: 0.1,
   });
 
+
+  const [active, setActive] = useState(false)
+ 
   return (
     <main className="w-full space-y-8">
       <div className="relative h-screen bg-center bg-cover image-container">
@@ -64,8 +69,8 @@ export default function Home() {
                 <h3 className="p-1 text-2xl font-bold ">MindHarmony</h3>
               </div>
             </div>
-            <div className="nav-menu">
-              <nav className="flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
+            <div className="nav-menu ">
+              <nav className="hidden sm:flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
                 {[
                   "Home",
                   "About",
@@ -92,9 +97,47 @@ export default function Home() {
                       </span>
                       <span className="absolute bottom-0 left-0 h-0.5 w-full bg-[#40e0d0] transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
                     </div>
+
                   </Link>
                 ))}
               </nav>
+            <nav className="sm:hidden pr-8">
+            <button onClick={()=> setActive(prev => !prev)} className="bg-none border-none transition-transform duration-300 transform">
+              {active? <XIcon className="text-white size-10" />: <MenuIcon className="text-white size-10"/>}
+            </button>
+            {active && <div  className=" fixed right-0 top-20 text-lg"> {[
+                  "Home", "About",
+                  "Services",
+                  "Contact",
+                  "Sign In | Sign Up",
+                ].map((item, index) => (
+                  <Link
+                    key={index}
+                    href={
+                      item === "Home"
+                        ? "/"
+                        : item === "Sign In | Sign Up"
+                        ? "/auth"
+                        : `#${item.toLowerCase()}`
+                    }
+                  >
+                    <div className="relative overflow-hidden cursor-pointer group">
+                      <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                        {item}
+                      </span>
+                      <span className="absolute top-0 left-0 inline-block text-[#40e0d0]  transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
+                        {item}
+                      </span>
+                      <span className="absolute bottom-0 left-0 h-0.5 w-full bg-[#40e0d0] transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
+                    </div>
+
+                  </Link>
+                ))}
+                </div>
+            }
+
+
+            </nav>
             </div>
           </div>
           <motion.div
