@@ -20,8 +20,32 @@ import ThemeIcon from "../images/theme.svg";
 import "../sass/Chats.scss";
 import io from 'socket.io-client';
 
+interface User {
+  id: number;
+  name: string;
+  avatar: StaticImageData;
+  online: boolean;
+  lastMessage: string;
+  typing: boolean;
+}
+
+interface Group {
+  id: number;
+  name: string;
+  members: number[];
+  lastMessage: string;
+  typing: number[];
+}
+
+interface Message {
+  id: number;
+  sender: string;
+  text: string;
+  timestamp: Date;
+}
+
 export default function ChatApp() {
-  const [users, setUsers] = useState([
+  const [users, setUsers] = useState<User[]>([
     {
       id: 1,
       name: "Alex (Anxiety)",
@@ -56,7 +80,7 @@ export default function ChatApp() {
     },
     {
       id: 5,
-      name: "Dr. James (Psychiatrist)",
+      name: "Dr. Jamie (Psychiatrist)",
       avatar: User5,
       online: false,
       lastMessage: "How's the new medication working?",
@@ -104,7 +128,7 @@ export default function ChatApp() {
     }
   ]);
 
-  const [groups, setGroups] = useState([
+  const [groups, setGroups] = useState<Group[]>([
     {
       id: 1,
       name: "Anxiety Support",
@@ -145,13 +169,14 @@ export default function ChatApp() {
   }).then((res) => {
     console.log(res.json());
   });
-  const [selectedChat, setSelectedChat] = useState(null);
-  const [messages, setMessages] = useState([]);
+
+  const [selectedChat, setSelectedChat] = useState<User | Group | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
   const [error, setError] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [activeTab, setActiveTab] = useState("chats");
-  const [theme, setTheme] = useState("dark");
+  const [activeTab, setActiveTab] = useState<"chats" | "groups" | "users">("chats");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   useEffect(() => {
@@ -168,7 +193,7 @@ export default function ChatApp() {
       setError("Please enter a message");
       return;
     }
-    const newMessage = {
+    const newMessage: Message = {
       id: messages.length + 1,
       sender: "currentUser",
       text: userInput,
@@ -184,20 +209,20 @@ export default function ChatApp() {
     setIsTyping(true);
   }
 
-  function handleChatSelect(chat) {
+  function handleChatSelect(chat: User | Group): void {
     setSelectedChat(chat);
     // Example of initializing messages state when chat is selected
-    const initialMessages = [
-      { id: 1, sender: 2, text: "Hello!", timestamp: new Date() },
-      { id: 2, sender: "currentUser", text: "Hi there!", timestamp: new Date() }
+    const initialMessages: Message[] = [
+      { id: 1, sender: "currentUser", text: "Hello!", timestamp: new Date() },
+      { id: 2, sender: chat.name, text: "Hi there!", timestamp: new Date() }
     ];
     setMessages(initialMessages);
   }
 
-  function handleCreateGroup() {
+  function handleCreateGroup(): void {
     const groupName = prompt("Enter support group name:");
     if (groupName) {
-      const newGroup = {
+      const newGroup: Group = {
         id: groups.length + 1,
         name: groupName,
         members: [1],
@@ -208,11 +233,11 @@ export default function ChatApp() {
     }
   }
 
-  function handleDeleteGroup(groupId) {
+  function handleDeleteGroup(groupId: number): void {
     setGroups(groups.filter((group) => group.id !== groupId));
   }
 
-  function handleAddUserToGroup(groupId) {
+  function handleAddUserToGroup(groupId: number): void {
     const userId = prompt("Enter user ID to add to the support group:");
     if (userId) {
       setGroups(
@@ -313,9 +338,9 @@ export default function ChatApp() {
           <>
             {users.map((user) => (
               <div
-                className={`chat ${selectedChat === user.id ? "active" : ""}`}
+                className={`chat ${selectedChat === user ? "active" : ""}`}
                 key={user.id}
-                onClick={() => handleChatSelect(user.id)}
+                onClick={() => handleChatSelect(user)}
               >
                 <div className="avatar">
                   <Image
@@ -340,9 +365,9 @@ export default function ChatApp() {
           <>
             {groups.map((group) => (
               <div
-                className={`chat ${selectedChat === group.id ? "active" : ""}`}
+                className={`chat ${selectedChat === group ? "active" : ""}`}
                 key={group.id}
-                onClick={() => handleChatSelect(group.id)}
+                onClick={() => handleChatSelect(group)}
               >
                 <div className="avatar">
                   <Image
