@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
-from .serializers import UserProfileSerializer
+from .serializers import UserProfileSerializer,UserSerializer
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authtoken.models import Token
@@ -39,18 +39,18 @@ class UserDetailView(APIView):
         serializer = UserProfileSerializer(user_profile)
         return Response(serializer.data)
 class RegisterView(generics.CreateAPIView):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
     def create(self,request,*args,**kwargs):
         logger.info(f"Registration attempt with data: {request.data}")
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user_profile = serializer.save()
-        token,created = Token.objects.get_or_create(user=user_profile.user)
+        user = serializer.save()
+        token,created = Token.objects.get_or_create(user=user.user)
         return Response({
-            'user': UserProfileSerializer(user_profile, context=self.get_serializer_context()).data,
+            'user': UserSerializer(user, context=self.get_serializer_context()).data,
             'token': token.key
         }, status=status.HTTP_201_CREATED)
     
