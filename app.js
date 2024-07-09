@@ -6,6 +6,8 @@ const routes = require('./Routes/api');
 const app = express();
 app.use(bodyParser.json());
 
+app.use(cors());
+
 app.all('/', (req, res) => {
     res.json({'Error': 'Working Endpoint is /api/chat'})
 })
