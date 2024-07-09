@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "../sass/Chatbot.module.scss";
 
 interface Message {
-  text: string;
+  user_input: string;
   isUser: boolean;
 }
 
@@ -67,7 +67,7 @@ const Chatbot: React.FC = () => {
       {isOpen && (
         <div className={styles.chatbotDialog}>
           <div className={styles.chatHeader}>
-            <h3>MindHarmony Chat</h3>
+            <h3>MindHarmony Virtual Assistant</h3>
             <button onClick={toggleChat}>
               <i className="fas fa-times"></i>
             </button>

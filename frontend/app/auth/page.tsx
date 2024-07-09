@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import "../sass/Auth.scss";
 import {
   Card,
@@ -7,15 +7,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 export default function TabsDemo() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f0f4f8]">
+    <div className="flex items-center justify-center min-h-screen container-main">
+      <div className="overlay"></div>
       <Tabs defaultValue="sign-up">
-        <TabsList className="grid w-full grid-cols-2 drop-shadow-lg">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
@@ -46,14 +47,14 @@ export default function TabsDemo() {
                 <Input id="password" type="password" required />
               </div>
             </CardContent>
-            <CardFooter className="flex flex-col  pt-1">
-              <Button className="w-full bg-[#2ebbad] ">Sign up</Button>
-              <div className="mt-4 text-center text-sm">
+            <CardFooter className="flex flex-col pt-1">
+              <Button className="w-full">Sign up</Button>
+              <div className="mt-4 text-sm text-center">
                 Already have an account?{" "}
-                <TabsList className=" bg-white">
+                <TabsList>
                   <TabsTrigger
                     value="login"
-                    className="underline text-[#2ebbad] p-0"
+                    className="p-0 text-black underline"
                   >
                     Login
                   </TabsTrigger>
@@ -88,16 +89,16 @@ export default function TabsDemo() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col pt-1">
-              <Button className="w-full bg-[#2ebbad]">Sign in</Button>
-              <div className="mt-4 text-center text-sm">
+              <Button className="w-full">Sign in</Button>
+              <div className="mt-4 text-sm text-center">
                 Don&apos;t have an account?{" "}
                 {/* <Link href="#" className="underline">
                   Sign up
                 </Link> */}
-                <TabsList className="bg-white">
+                <TabsList>
                   <TabsTrigger
                     value="sign-up"
-                    className="underline text-[#2ebbad] p-0"
+                    className="p-0 text-green-400 underline"
                   >
                     Sign up
                   </TabsTrigger>
