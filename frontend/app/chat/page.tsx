@@ -135,21 +135,16 @@ export default function ChatApp() {
     }
   ]);
 
-  // const socket= io('https://groupchat-zg7d.onrender.com/',{
-  //   auth:{
-  //     token:"667c164b7b527576b0d0dccc1c37b587713b5853"
-  //   }
-  // } )
-  
-  // fetch('https://groupchat-zg7d.onrender.com/', {
-  //   method: 'GET',
-  //   headers: {
-  //     'Authorization': `Token 667c164b7b527576b0d0dccc1c37b587713b5853`
-  //   }
-  // })
-  // .then (response => response.json())
-  // .then (data => console.log(data))
-
+  const url = 'https://mindharmony-chat.onrender.com';
+  const token : String = '63c5e488b8001b9aba990f6162642452018e754c';
+  fetch(url+'/auth-backend', {
+    method: 'GET',
+    headers:{
+      'Authorization': `Token ${token}`
+    }
+  }).then((res) => {
+    console.log(res.json());
+  });
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");

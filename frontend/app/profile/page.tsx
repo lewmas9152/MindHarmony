@@ -13,8 +13,8 @@ const Profile = () => {
               <CircleUserIcon className="size-20 text-neutral-600 mb-3 cursor-pointer" />
               <h2 className="text-2xl space-x-2 flex items-center">
                 <span>User name</span>{" "}
-                <span>
-                  <PenIcon className="icon size-5" />
+                <span className="user-profile">
+        
                 </span>
               </h2>
               <h3 className="text-lg text-neutral-800">johndoe@email.com</h3>

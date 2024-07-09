@@ -7,3 +7,19 @@
 body{
     overflow-x: hidden;
 }
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+  
+  [data-theme='dark'] {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  // Add other global styles here

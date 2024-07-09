@@ -26,7 +26,7 @@ const iconMapping = {
 
 const Appointments = () => {
   return (
-    <div className="container max-w-screen-2xl min-h-screen flex flex-col items-center pt-20 bg-[#f0f4f9] mt-16">
+    <div className="container-appoint max-w-screen-2xl min-h-screen flex flex-col items-center pt-20 bg-[#f0f4f9] mt-16">
       <Navbar />
       <div className="flex flex-col items-center w-full px-1 ">
         <Tabs defaultValue="all" className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
