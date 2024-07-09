@@ -31,7 +31,15 @@ $col-20: #604f5c;
     right: 20px;
     z-index: 1000;
   }
-  
+  .chatIntro{
+    P{
+      font-size: $font-rubik;
+      padding: 20px;
+      color: #333;
+      font-size: 16px;
+    }
+
+  }
   .chatbotToggle {
     background-color:$col-7;
     color: white;
@@ -55,11 +63,11 @@ $col-20: #604f5c;
     bottom: 90px;
     right: 20px;
     width: 60%;
-    max-width: 400px;
-    height: 500px;
+    max-width: 500px;
+    height: 600px;
     background-color:$col-19;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
     border-bottom: 4px solid $col-11;
@@ -92,7 +100,6 @@ $col-20: #604f5c;
       cursor: pointer;
     }
   }
-  
   .chatMessages {
     flex-grow: 1;
     overflow-y: auto;
@@ -127,7 +134,7 @@ $col-20: #604f5c;
     }
   
     p {
-      background-color:#4ae2da;
+      background-color:#0b5aa3;
       color: white;
     }
   }
