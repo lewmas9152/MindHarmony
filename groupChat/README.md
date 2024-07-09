@@ -1,247 +1,376 @@
-# Chat Service Documentation
+### REST API Endpoints
 
-## Overview
-This documentation provides a comprehensive guide to the HTTP endpoints and WebSocket events available for the chat service. Additionally, it includes instructions for installing `socket.io` in a Node.js and React environment, setting up authorization, sending requests to the server, and emitting events to the server.
-
-## Table of Contents
-- [Chat Service Documentation](#chat-service-documentation)
-  - [Overview](#overview)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-    - [Node.js](#nodejs)
-    - [React](#react)
-  - [HTTP Endpoints](#http-endpoints)
-    - [GET /](#get-)
-    - [GET /messages](#get-messages)
-  - [WebSocket Events](#websocket-events)
-    - [Connection](#connection)
-    - [Disconnection](#disconnection)
-    - [New Message](#new-message)
-  - [Client-Side Events](#client-side-events)
-    - [Info](#info)
-    - [Stat](#stat)
-    - [Typing](#typing)
-  - [Client-Emitted Events](#client-emitted-events)
-    - [New Message](#new-message-1)
-    - [Typing](#typing-1)
-  - [Authorization](#authorization)
-    - [HTTP Requests](#http-requests)
-    - [WebSocket Setup](#websocket-setup)
-  - [Sending Requests](#sending-requests)
-    - [HTTP Requests](#http-requests-1)
-    - [WebSocket Setup](#websocket-setup-1)
-
-## Installation
-
-### Node.js
-To install `socket.io` in a Node.js environment:
-```bash
-npm install socket.io-client
+#### Base URL
+```
+https://mindharmony-chat.onrender.com
 ```
 
-### React
-To install `socket.io` in a React project:
-```bash
-npm install socket.io-client
-```
-Usage:
-```javascript
-import io from 'socket.io-client';
+#### 1. Get API Welcome Message
+**Endpoint:** `GET /`
 
-const socket = io(process.env.REACT_APP_BACKEND_URL, {
-  extraHeaders: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`
-  }
-});
+**Description:** Returns a welcome message.
+
+**Response:**
+```json
+{
+    "message": "Hello User! This is an api :)"
+}
 ```
 
-## HTTP Endpoints
+#### 2. Get Current User Info
+**Endpoint:** `GET /me`
 
-### GET /
-Redirects to the frontend URL specified in the environment variables.
+**Description:** Returns the current authenticated user's information.
 
-**Request:**
-```http
-GET /
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
 ```
 
 **Response:**
-Redirects to `process.env.FRONTEND_URL`.
+```json
+{
+    "_id": "user-id",
+    "username": "user-name",
+    "groups": [...],
+    "chats": [...]
+}
+```
 
-### GET /messages
-Retrieves the list of chat messages. Requires authentication.
+#### 3. Update Current User Info
+**Endpoint:** `PUT /me`
 
-**Request:**
-```http
-GET /messages
-Authorization: Bearer <token>
+**Description:** Updates the current authenticated user's information.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Body:**
+```json
+{
+    "username": "new-username"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "user-id",
+    "username": "new-username",
+    ...
+}
+```
+
+#### 4. Delete Current User
+**Endpoint:** `DELETE /me`
+
+**Description:** Deletes the current authenticated user.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "message": "User deleted successfully"
+}
+```
+
+#### 5. Get User by ID
+**Endpoint:** `GET /users/:id`
+
+**Description:** Returns the user information for a specific user by ID.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "user-id",
+    "username": "user-name",
+    ...
+}
+```
+
+#### 6. Get Groups for Current User
+**Endpoint:** `GET /groups`
+
+**Description:** Returns all groups that the current authenticated user is a member of.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
 ```
 
 **Response:**
 ```json
 [
-  {
-    "user": {
-      "id": "user_id",
-      "uname": "username"
+    {
+        "_id": "group-id",
+        "name": "group-name",
+        ...
     },
-    "message": "message_content"
-  },
-  ...
+    ...
 ]
 ```
 
-## WebSocket Events
+#### 7. Create New Group
+**Endpoint:** `POST /groups`
 
-### Connection
-Emitted when a new user connects to the WebSocket server.
+**Description:** Creates a new group and adds the current authenticated user as a member and admin.
 
-**Event:**
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Body:**
+```json
+{
+    "name": "new-group-name"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "group-id",
+    "name": "new-group-name",
+    "members": [...],
+    "admins": [...],
+    "chat": "chat-id"
+}
+```
+
+#### 8. Get Group by ID
+**Endpoint:** `GET /groups/:id`
+
+**Description:** Returns the details of a specific group by ID.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "group-id",
+    "name": "group-name",
+    "members": [...],
+    "chat": {...}
+}
+```
+
+#### 9. Delete Group by ID
+**Endpoint:** `DELETE /groups/:id`
+
+**Description:** Deletes a specific group by ID if the current user is an admin.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "message": "Group Deleted"
+}
+```
+
+#### 10. Join Group by ID
+**Endpoint:** `GET /groups/:id/join`
+
+**Description:** Adds the current authenticated user to a specific group by ID.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "message": "Joined group successfully"
+}
+```
+
+#### 11. Get Chats for Current User
+**Endpoint:** `GET /chats`
+
+**Description:** Returns all chats that the current authenticated user is a participant of.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+[
+    {
+        "_id": "chat-id",
+        "participants": [...],
+        "messages": [...]
+    },
+    ...
+]
+```
+
+### Socket.io Events
+
+#### Connecting to the Server
 ```javascript
-socket.on('connection', (data) => {
-  console.log(data); // `{user} joined`
+const socket = io('http://localhost:3001', {
+    auth: {
+        token: "your-token"
+    }
 });
 ```
 
-### Disconnection
-Emitted when a user disconnects from the WebSocket server.
-
-**Event:**
+#### Receiving User Data
 ```javascript
-socket.on('disconnect', (data) => {
-  console.log(data); // `{user} disconnected`
+socket.on('user', (data) => {
+    console.log('User data:', data);
 });
 ```
 
-### New Message
-Emitted when a new message is received.
-
-**Event:**
+#### Typing Indicator
 ```javascript
+// Emitting typing event
+socket.emit('typing', chatId);
+
+// Receiving typing event
+socket.on('typing', (username) => {
+    console.log(`${username} is typing...`);
+});
+
+// Emitting stop typing event
+socket.emit('stopTyping', chatId);
+
+// Receiving stop typing event
+socket.on('stopTyping', (username) => {
+    console.log(`${username} stopped typing.`);
+});
+```
+
+#### Sending and Receiving Messages
+```javascript
+// Emitting a new message
+socket.emit('message', {
+    chat: chatId,
+    message: 'Hello, World!'
+});
+
+// Receiving new messages
 socket.on('message', (data) => {
-  const message = JSON.parse(data);
-  console.log(message); // `{user, message}`
+    console.log('New message:', data);
 });
 ```
 
-## Client-Side Events
-
-### Info
-Emitted to provide information about user connection and disconnection.
-
-**Event:**
+#### Joining and Leaving Chats
 ```javascript
-socket.on('info', (data) => {
-  console.log(data); // `{user} joined/disconnected`
+// Joining a chat
+socket.emit('join', chatId);
+
+// Leaving a chat
+socket.emit('leave', chatId);
+```
+
+#### Creating New Chat
+```javascript
+socket.emit('new-chat', {
+    participants: ["user-id1", "user-id2"]
 });
 ```
 
-### Stat
-Emitted to provide the current number of connected users.
-
-**Event:**
+#### Handling Disconnect
 ```javascript
-socket.on('stat', (data) => {
-  console.log(`Number of users: ${data}`);
+socket.on('disconnect', () => {
+    console.log('User disconnected');
 });
 ```
 
-### Typing
-Emitted when a user is typing.
+### Example of Usage in a Frontend Application
 
-**Event:**
 ```javascript
-socket.on('typing', (user) => {
-  console.log(`${user} is typing...`);
-});
-```
-
-## Client-Emitted Events
-
-### New Message
-Emits a new message to the server.
-
-**Event:**
-```javascript
-socket.emit('new-message', 'Your message here');
-```
-
-### Typing
-Notifies the server that the user is typing.
-
-**Event:**
-```javascript
-socket.emit('typing');
-```
-
-## Authorization
-
-The server uses token-based authentication. The token must be included in the `Authorization` header as `Token <token>` for both HTTP requests and WebSocket connections.
-
-### HTTP Requests
-For HTTP requests, include the token in the `Authorization` header:
-```http
-Authorization: Token <token>
-```
-
-### WebSocket Setup
-For WebSocket connections, include the token in the `auth` option:
-```javascript
-const socket = io(process.env.BACKEND_URL, {
-  auth: {
-          token: `fa4c7a0e2a9719f6b8150c0f2e891a1c4c0d7961`
-        }
-});
-```
-
-## Sending Requests
-
-### HTTP Requests
-To send an authenticated request to the server:
-
-**Example: Fetching messages**
-```javascript
-fetch(`${process.env.BACKEND_URL}/messages`, {
-  headers: {
-    'Authorization': `Token ${localStorage.getItem('token')}`
-  }
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
-```
-
-### WebSocket Setup
-To establish a WebSocket connection and handle events:
-
-**Example: Setting up socket connection and listening to events**
-```javascript
-import io from 'socket.io-client';
-
-const socket = io(process.env.BACKEND_URL, {
-  auth: {
-          token: `fa4c7a0e2a9719f6b8150c0f2e891a1c4c0d7961`
-        }
+// Connect to the server
+const socket = io('http://localhost:3001', {
+    auth: {
+        token: 'your-auth-token'
+    }
 });
 
-socket.on('info', (data) => {
-  console.log(data); // `{user} joined/disconnected`
+// Get current user info
+socket.on('user', (data) => {
+    console.log('User data:', data);
 });
 
-socket.on('stat', (data) => {
-  console.log(`Number of users: ${data}`);
+// Handle typing indicator
+function startTyping(chatId) {
+    socket.emit('typing', chatId);
+}
+
+function stopTyping(chatId) {
+    socket.emit('stopTyping', chatId);
+}
+
+socket.on('typing', (username) => {
+    console.log(`${username} is typing...`);
 });
+
+socket.on('stopTyping', (username) => {
+    console.log(`${username} stopped typing.`);
+});
+
+// Send and receive messages
+function sendMessage(chatId, message) {
+    socket.emit('message', { chat: chatId, message: message });
+}
 
 socket.on('message', (data) => {
-  const message = JSON.parse(data);
-  console.log(message); // `{user, message}`
+    console.log('New message:', data);
 });
 
-socket.on('typing', (user) => {
-  console.log(`${user} is typing...`);
-});
+// Join and leave chats
+function joinChat(chatId) {
+    socket.emit('join', chatId);
+}
 
-// Emitting events to the server
-socket.emit('new-message', 'Your message here');
-socket.emit('typing', 'username');
+function leaveChat(chatId) {
+    socket.emit('leave', chatId);
+}
+
+// Create new chat
+function createNewChat(participants) {
+    socket.emit('new-chat', { participants: participants });
+}
 ```

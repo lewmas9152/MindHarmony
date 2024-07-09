@@ -58,7 +58,7 @@ const messageSchema = new mongoose.Schema({
     },
 });
 
-const message = mongoose.model("Message", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
 
 const chatSchema = new mongoose.Schema({
     messages: [
@@ -114,4 +114,5 @@ module.exports = {
     User,
     Message,
     Group,
+    Chat
 };
