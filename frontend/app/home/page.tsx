@@ -12,6 +12,7 @@ import AppointmentSection from '../components/AppointmentSection';
 import MentalExercisesProgress from '../components/MentalExercisesProgress';
 import CombinedCharts from '../components/CombinedCharts';
 import Image from 'next/image';
+import Chatbot from '../components/Chatbot';
 
 const HomePage = () => {
   const [greeting, setGreeting] = useState("");
@@ -116,6 +117,9 @@ const HomePage = () => {
             </div>
             <div className="my-mental-exercises-progress">
               <MentalExercisesProgress />
+            </div>
+            <div className="chatbot">
+              <Chatbot />
             </div>
           </div>
         </div>
