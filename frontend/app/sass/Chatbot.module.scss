@@ -57,7 +57,7 @@ $col-20: #604f5c;
     width: 60%;
     max-width: 400px;
     height: 500px;
-    background-color:$col-19;
+    background-color:rgba(23, 26, 39, 0.8);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     display: flex;
@@ -127,7 +127,7 @@ $col-20: #604f5c;
     }
   
     p {
-      background-color:#4ae2da;
+      background-color:rgba(72, 20, 134, 0.2);
       color: white;
     }
   }
