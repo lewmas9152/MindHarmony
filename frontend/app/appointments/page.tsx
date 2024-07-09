@@ -16,6 +16,7 @@ import {
 } from "../components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
+import "../sass/appoint.scss"
 
 const iconMapping = {
   confirmed: <CircleCheck />,
@@ -25,7 +26,7 @@ const iconMapping = {
 
 const Appointments = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center pt-20 bg-[#f0f4f9] mt-16">
+    <div className="container max-w-screen-2xl min-h-screen flex flex-col items-center pt-20 bg-[#f0f4f9] mt-16">
       <Navbar />
       <div className="flex flex-col items-center w-full px-1 ">
         <Tabs defaultValue="all" className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -71,7 +72,7 @@ export default Appointments;
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 shadow-md bg-slate-600">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Left side: Title */}

@@ -33,7 +33,7 @@ $col-20: #604f5c;
   }
   
   .chatbotToggle {
-    background-color: #4a90e2;
+    background-color:$col-7;
     color: white;
     border: none;
     border-radius: 50%;
@@ -43,6 +43,7 @@ $col-20: #604f5c;
     cursor: pointer;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    animation: bounce 2s infinite;
   
     &:hover {
       transform: scale(1.1);
@@ -56,15 +57,16 @@ $col-20: #604f5c;
     width: 60%;
     max-width: 400px;
     height: 500px;
-    background-color: white;
+    background-color:$col-19;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
+    border-bottom: 4px solid $col-11;
   }
   
   .chatHeader {
-    background-color: #4a90e2;
+    background-color: $col-11;
     color: white;
     padding: 10px;
     border-top-left-radius: 10px;
@@ -72,9 +74,14 @@ $col-20: #604f5c;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: $font-rubik;
   
     h3 {
       margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      font-family: $font-rubik;
     }
   
     button {
@@ -107,6 +114,7 @@ $col-20: #604f5c;
       border-radius: 10px;
       padding: 8px 12px;
       margin: 0;
+      font-family: $font-jost;
     }
   }
   
@@ -119,7 +127,7 @@ $col-20: #604f5c;
     }
   
     p {
-      background-color: #4a90e2;
+      background-color:#4ae2da;
       color: white;
     }
   }
