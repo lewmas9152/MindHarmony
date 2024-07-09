@@ -3,9 +3,9 @@
 // "use client";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from "hookform/resolvers/zod";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 // import {Button } from "@/components/ui/button"
 
 import {
@@ -15,15 +15,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "../components/ui/form";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "../components/ui/card";
 
 // import { questions } from "@/lib/questions";
 import {questions} from "@/lib/questions"
