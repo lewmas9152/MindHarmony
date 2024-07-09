@@ -2,43 +2,38 @@
 # MINDHARMONY   API 
 
 ## Overview
-This documentation provides an overview of the endpoints available in the MINDHARMONY  API. The API includes functionality for user registration, login, profile management, and session management.
+This documentation provides an overview of the endpoints available in the MINDHARMONY  API endpoints. The API includes functionality for user registration, login, profile management, and session management.
 
 ## Endpoints
 
 ### User Endpoints
 
 #### Register
-- **URL:** `/register/`
+- **URL:** `https://mindharmony-be9e466ec301.herokuapp.com/user/register/`
 - **Method:** `POST`
 - **Description:** Register a new user.
 - **Request Body:**
   ```json
   {
     "username": "string",
-    "password": "string",
-    "email": "string"
-  }
+    "email": "string",
+    "password": "string"
+}
   ```
 - **Response:**
   ```json
   {
     "user": {
-      "id": "integer",
-      "username": "string",
-      "email": "string",
-      "profile": {
-        "id": "integer",
-        "bio": "string",
-        "location": "string"
-      }
+        "id": "interger",
+        "username": "string",
+        "email": ""
     },
-    "token": "string"
-  }
+    "token": "sring"
+}
   ```
 
 #### Login
-- **URL:** `/login/`
+- **URL:** `https://mindharmony-be9e466ec301.herokuapp.com/user/login/`
 - **Method:** `POST`
 - **Description:** Login a user and return a token.
 - **Request Body:**
@@ -66,7 +61,7 @@ This documentation provides an overview of the endpoints available in the MINDHA
   ```
 
 #### User Details
-- **URL:** `/user-details/`
+- **URL:** `https://mindharmony-be9e466ec301.herokuapp.com/user/user-details/`
 - **Method:** `GET`
 - **Description:** Retrieve the details of the authenticated user.
 - **Headers:**
@@ -75,20 +70,21 @@ This documentation provides an overview of the endpoints available in the MINDHA
   ```
 - **Response:**
   ```json
-  {
-    "id": "integer",
-    "username": "string",
-    "email": "string",
-    "profile": {
-      "id": "integer",
-      "bio": "string",
-      "location": "string"
-    }
-  }
+  
+{
+    "user": {
+        "id": "interger",
+        "username": "string",
+        "email": "string"
+    },
+    "bio": "",
+    "profile_picture": null,
+    "created_at": "string"
+}
   ```
 
 #### Profile
-- **URL:** `/profile/<int:pk>/`
+- **URL:** `https://mindharmony-be9e466ec301.herokuapp.com/user/profile/1`
 - **Methods:** `GET`, `PUT`
 - **Description:** Retrieve or update a user's profile.
 - **Headers:**
