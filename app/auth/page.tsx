@@ -13,9 +13,9 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function TabsDemo() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center bg-[#f0f4f8]">
       <Tabs defaultValue="sign-up">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-2 drop-shadow-lg">
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
@@ -47,13 +47,13 @@ export default function TabsDemo() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col  pt-1">
-              <Button className="w-full">Sign up</Button>
+              <Button className="w-full bg-[#2ebbad] ">Sign up</Button>
               <div className="mt-4 text-center text-sm">
                 Already have an account?{" "}
-                <TabsList>
+                <TabsList className=" bg-white">
                   <TabsTrigger
                     value="login"
-                    className="underline text-black p-0"
+                    className="underline text-[#2ebbad] p-0"
                   >
                     Login
                   </TabsTrigger>
@@ -88,16 +88,16 @@ export default function TabsDemo() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col pt-1">
-              <Button className="w-full">Sign in</Button>
+              <Button className="w-full bg-[#2ebbad]">Sign in</Button>
               <div className="mt-4 text-center text-sm">
                 Don&apos;t have an account?{" "}
                 {/* <Link href="#" className="underline">
                   Sign up
                 </Link> */}
-                <TabsList>
+                <TabsList className="bg-white">
                   <TabsTrigger
                     value="sign-up"
-                    className="underline text-black p-0"
+                    className="underline text-[#2ebbad] p-0"
                   >
                     Sign up
                   </TabsTrigger>

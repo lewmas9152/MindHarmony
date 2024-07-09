@@ -25,18 +25,18 @@ let messages = [];
 
 const app = express();
 const server = http.createServer(app);
+const cors = require('cors');
 const io = require('socket.io')(server, {
     cors: {
         origin: "*",
     }
 });
-const cors = require('cors');
 
-cors.options = {
+corsOptions = {
     origin: "*",
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
