@@ -1,5 +1,5 @@
 "use client"
-import React, { useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidenav from '../components/sideNav'
 import { useRouter } from 'next/navigation';
 import "../sass/Resources.scss"
@@ -47,7 +47,7 @@ const Resources: React.FC = () => {
   const [moodTrackerVisible, setMoodTrackerVisible] = useState<boolean>(false);
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
   const [journalEntry, setJournalEntry] = useState<string>('');
-const [journalEntries, setJournalEntries] = useState<string[]>([]);
+  const [journalEntries, setJournalEntries] = useState<string[]>([]);
   const [showJournal, setShowJournal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -60,11 +60,11 @@ const [journalEntries, setJournalEntries] = useState<string[]>([]);
   const toggleMoodTracker = () => {
     setMoodTrackerVisible(!moodTrackerVisible);
   };
+
   const toggleVideo = (videoId: number) => {
     setActiveVideo(activeVideo === videoId ? null : videoId);
   };
 
-  
   const handleJournalChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJournalEntry(e.target.value);
   };
@@ -93,10 +93,10 @@ const [journalEntries, setJournalEntries] = useState<string[]>([]);
   ];
 
   const videos = [
-    { id: 1, thumbnail: videoThumbnail1, title: "Guided Meditation for Beginners", path: "/videos/meditation.mp4" },
-    { id: 2, thumbnail: videoThumbnail2, title: "Understanding Depression", path: "/videos/depression.mp4" },
-    { id: 3, thumbnail: videoThumbnail3, title: "Coping with Panic Attacks", path: "/videos/panic.mp4" },
-    { id: 4, thumbnail: videoThumbnail4, title: "Improving Self-Esteem", path: "/videos/self-esteem.mp4" },
+    { id: 1, thumbnail: videoThumbnail1, title: "Guided Meditation for Beginners" },
+    { id: 2, thumbnail: videoThumbnail2, title: "Understanding Depression" },
+    { id: 3, thumbnail: videoThumbnail3, title: "Coping with Panic Attacks" },
+    { id: 4, thumbnail: videoThumbnail4, title: "Improving Self-Esteem" },
   ];
 
   const tools = [
@@ -153,8 +153,9 @@ const [journalEntries, setJournalEntries] = useState<string[]>([]);
                     <Image 
                       src={video.thumbnail} 
                       alt={`Video ${video.id}`} 
-                      layout="fill"
-                      objectFit="cover"
+                      width={200}
+                      height={150}
+                      layout="responsive"
                     />
                     <button className={styles.rippleButton} onClick={() => toggleVideo(video.id)}>
                       {activeVideo === video.id ? 'Pause' : 'Play'}
@@ -162,22 +163,19 @@ const [journalEntries, setJournalEntries] = useState<string[]>([]);
                   </div>
                   <h3>{video.title}</h3>
                   {activeVideo === video.id && (
-                    <video controls width="100%" height="auto">
-                      <source src={video.path} type="video/mp4" />
+                    <video 
+                      controls 
+                      width="100%" 
+                      height="auto" 
+                      autoPlay
+                      onError={(e) => console.error("Video error:", e.currentTarget.error)}
+                    >
+                      <source src="../videos/vid1.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   )}
                 </div>
               ))}
-            </div>
-          </section>
-          
-          <section className='stress-reduction-tools'>
-            <h2>Stress Reduction Tools</h2>
-            <div className="breathing-timer">
-              <h3>Breathing Exercise</h3>
-              <div className="timer">5:00</div>
-              <button className={styles.rippleButton}>Start Timer</button>
             </div>
           </section>
           

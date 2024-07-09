@@ -5,7 +5,6 @@ $color-celestial-dusk: #315d89;
 $color-celestial-night: #1d3a56;
 $nightowl-info: #21c7a8;
 
-
 $color-slate-gray: #708090;
 $color-slate-blue: #6a5acd;
 $color-slate-light: #b0c4de;
@@ -24,12 +23,12 @@ $color-light-pastel: #e6e6fa;
 $color-light-mint: #f5fffa;
 $color-light-snow: #fffafa;
 $color-forest-jungle: #29ab87;
-$font-rubik : 'Rubik', sans-serif;
-$font-josefin : 'Josefin Sans', sans-serif;
-$font-island : 'Island Moments', cursive;
-$font-ropa : 'Ropa Sans', sans-serif;
-$font-jost : 'Jost', sans-serif;
-$font-playwrite : 'Playwrite IT Moderna', sans-serif;
+$font-rubik: 'Rubik', sans-serif;
+$font-josefin: 'Josefin Sans', sans-serif;
+$font-island: 'Island Moments', cursive;
+$font-ropa: 'Ropa Sans', sans-serif;
+$font-jost: 'Jost', sans-serif;
+$font-playwrite: 'Playwrite IT Moderna', sans-serif;
 $nightowl-border: #1d3b53;
 $col-1: #222746;
 $col-2: #b9c1cf;
@@ -52,18 +51,17 @@ $col-18: #323553;
 $col-19: #afb5c1;
 $col-20: #604f5c;
 
-
-@mixin info-card{
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    background-color:$col-18;
-    border-radius: 8px;
-    gap: 20px;
-    width: 300px;
-    max-height: 300px;
-    height: 102px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+@mixin info-card {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  background-color: $col-18;
+  border-radius: 8px;
+  gap: 20px;
+  width: 300px;
+  max-height: 300px;
+  height: 102px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard {
@@ -123,28 +121,17 @@ $col-20: #604f5c;
         .search-icon {
           margin-right: 10px;
         }
-
-        input {
-          padding: 10px;
-          border: none;
-          border-radius: 8px;
-          width: 200px;
-
-          &:focus {
-            outline: none;
-          }
-        }
       }
     }
 
     .welcome-message {
-        display: flex;
-        flex-direction: row;
+      display: flex;
+      flex-direction: row;
       padding: 20px;
       position: relative;
       z-index: 3;
       gap: 20px;
-      background-color:$col-2;
+      background-color: $col-2;
       max-height: 200px;
       margin: 50px 50px;
       border-radius: 12px;
@@ -152,23 +139,31 @@ $col-20: #604f5c;
       border-bottom-right-radius: 60px;
       border-bottom: 2px solid #fa8072;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      .image-welcome{
-        iframe{
+      .image-welcome {
+        iframe {
           width: 100%;
           height: 100%;
         }
-        img{
-            width: 500px;
-            height: 400px;
+        img {
+          width: 500px;
+          height: 400px;
         }
       }
-      .message{
-        h1{
-            font-family: $font-rubik;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            margin-top: 40px;
-            text-align: left;
+      .message {
+        p {
+          font-family: $font-jost;
+          font-size: 18px;
+          font-weight: 500;
+          text-align: left;
+          color: #333333;
+          margin-top: -20px;
+        }
+        h1 {
+          font-family: $font-rubik;
+          font-size: 2rem;
+          margin-bottom: 20px;
+          margin-top: 40px;
+          text-align: left;
         }
       }
       h1 {
@@ -176,139 +171,138 @@ $col-20: #604f5c;
         text-align: left;
       }
     }
-    .info-container{
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        padding: 20px;
-        .appoint-container{
-            @include info-card;
-            .img-cont{
-                background-color:rgba(249, 100, 7, 0.3);
-                border-radius: 8px;
-                width: 80px;
-                height: 80px;
-                display: flex;
-                justify-content: center;
-            }
-            .content{
-                margin-top: 10px;
-                margin-left: -3px;
-                h2{
-                    font-family: $font-rubik;
-                    font-size: 18px;
-                    font-weight: 500;
-                    text-align: left;
-                    color:$color-light-snow;
-                }
-                p{
-                    font-family: $font-rubik;
-                    font-size: 23px;
-                    font-weight: 600;
-                    margin-bottom: 20px;
-                    text-align: left;
-                    margin-left: 2px;
-                    color:orangered;
-                }
-            }
+    .info-container {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      padding: 20px;
+      .appoint-container {
+        @include info-card;
+        .img-cont {
+          background-color: rgba(249, 100, 7, 0.3);
+          border-radius: 8px;
+          width: 80px;
+          height: 80px;
+          display: flex;
+          justify-content: center;
         }
-        .progress{
-            @include info-card;
-            .img-cont{
-                background-color:rgba(152, 249, 7, 0.3);
-                border-radius: 8px;
-                width: 80px;
-                height: 80px;
-                display: flex;
-                justify-content: center;
-            }
-            .content{
-                margin-top: 10px;
-                margin-left: -3px;
-                h2{
-                    font-family: $font-rubik;
-                    font-size: 18px;
-                    font-weight: 500;
-                    text-align: left;
-                    color:$color-light-snow;
-                }
-                p{
-                    font-family: $font-rubik;
-                    font-size: 23px;
-                    font-weight: 600;
-                    margin-bottom: 20px;
-                    text-align: left;
-                    margin-left: 2px;
-                    color:#addb67;
-                }
-            }
-
+        .content {
+          margin-top: 10px;
+          margin-left: -3px;
+          h2 {
+            font-family: $font-rubik;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+            color: $color-light-snow;
+          }
+          p {
+            font-family: $font-rubik;
+            font-size: 23px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: left;
+            margin-left: 2px;
+            color: orangered;
+          }
         }
-        .therapy-sessions{
-            @include info-card;
-            width: 350px;
-            .img-cont{
-                background-color:rgba(93, 40, 142, 0.3);
-                border-radius: 8px;
-                width: 100px;
-                height: 80px;
-                display: flex;
-                justify-content: center;
-            }
-            .content{
-                margin-top: 10px;
-                margin-left: -3px;
-                h2{
-                    font-family: $font-rubik;
-                    font-size: 18px;
-                    font-weight: 500;
-                    text-align: left;
-                    color:$color-light-snow;
-                }
-                p{
-                    font-family: $font-rubik;
-                    font-size: 23px;
-                    font-weight: 600;
-                    margin-bottom: 20px;
-                    text-align: left;
-                    margin-left: 2px;
-                    color:#8616d2;
-                }
-            }
+      }
+      .progress {
+        @include info-card;
+        .img-cont {
+          background-color: rgba(152, 249, 7, 0.3);
+          border-radius: 8px;
+          width: 80px;
+          height: 80px;
+          display: flex;
+          justify-content: center;
         }
-        .mental-exercises{
-            @include info-card;
-            .img-cont{
-                background-color:rgba(5, 5, 5, 0.3);
-                border-radius: 8px;
-                width: 100px;
-                height: 80px;
-                display: flex;
-                justify-content: center;
-            }
-            .content{
-                margin-top: 10px;
-                margin-left: -3px;
-                h2{
-                    font-family: $font-rubik;
-                    font-size: 18px;
-                    font-weight: 500;
-                    text-align: left;
-                    color:$color-light-snow;
-                }
-                p{
-                    font-family: $font-rubik;
-                    font-size: 23px;
-                    font-weight: 600;
-                    margin-bottom: 20px;
-                    text-align: left;
-                    margin-left: 2px;
-                    color:#1378dd;
-                }
-            }
+        .content {
+          margin-top: 10px;
+          margin-left: -3px;
+          h2 {
+            font-family: $font-rubik;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+            color: $color-light-snow;
+          }
+          p {
+            font-family: $font-rubik;
+            font-size: 23px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: left;
+            margin-left: 2px;
+            color: #addb67;
+          }
         }
+      }
+      .therapy-sessions {
+        @include info-card;
+        width: 350px;
+        .img-cont {
+          background-color: rgba(93, 40, 142, 0.3);
+          border-radius: 8px;
+          width: 100px;
+          height: 80px;
+          display: flex;
+          justify-content: center;
+        }
+        .content {
+          margin-top: 10px;
+          margin-left: -3px;
+          h2 {
+            font-family: $font-rubik;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+            color: $color-light-snow;
+          }
+          p {
+            font-family: $font-rubik;
+            font-size: 23px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: left;
+            margin-left: 2px;
+            color: #8616d2;
+          }
+        }
+      }
+      .mental-exercises {
+        @include info-card;
+        .img-cont {
+          background-color: rgba(5, 5, 5, 0.3);
+          border-radius: 8px;
+          width: 100px;
+          height: 80px;
+          display: flex;
+          justify-content: center;
+        }
+        .content {
+          margin-top: 10px;
+          margin-left: -3px;
+          h2 {
+            font-family: $font-rubik;
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+            color: $color-light-snow;
+          }
+          p {
+            font-family: $font-rubik;
+            font-size: 23px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: left;
+            margin-left: 2px;
+            color: #1378dd;
+          }
+        }
+      }
     }
-    .user-mental-data{
+    .user-mental-data {
       display: flex;
       flex-direction: row;
       gap: 10px;

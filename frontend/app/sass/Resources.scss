@@ -72,23 +72,25 @@ $border-radius: 8px;
   flex: 1;
 
   h1 {
-    font-size: 2.5rem;
-    color: $primary-color;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: $col-16;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
-    font-family: $font-josefin;
+    font-family: $font-ropa;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   }
 
   h2 {
     font-size: 2rem;
-    color: $secondary-color;
+    color: $col-7;
     margin-bottom: 1.5rem;
-    font-family: $font-jost;
+    font-family: $font-rubik;
   }
 
   section {
     margin-bottom: 3rem;
-    animation: fadeIn 1s ease-out;
+    animation: fadeIn 3s ease-out;
   }
 }
 
@@ -124,7 +126,7 @@ $border-radius: 8px;
     h3 {
       font-size: 1.2rem;
       margin: 1rem 0;
-      color: $col-9;
+      color:$col-8;
     }
 
     p {
@@ -151,7 +153,7 @@ $border-radius: 8px;
       position: relative;
       width: 100%;
       height: 0;
-      padding-bottom: 56.25%; // 16:9 aspect ratio
+      padding-bottom: 56.25%;
       overflow: hidden;
       border-radius: $border-radius $border-radius 0 0;
 
@@ -169,13 +171,14 @@ $border-radius: 8px;
         bottom: 10px;
         right: 10px;
         z-index: 2;
+        background-color: $col-10;
       }
     }
 
     h3 {
       font-size: 1.2rem;
       margin: 1rem;
-      color: $col-9;
+      color: $col-19;
     }
 
     video {
@@ -231,7 +234,7 @@ $border-radius: 8px;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.2);
       transition: opacity 0.3s ease;
     }
 
@@ -251,18 +254,22 @@ $border-radius: 8px;
       }
 
       .overlay {
-        opacity: 0.7;
+        opacity: 0.3;
       }
     }
 
     h3 {
       font-size: 1.2rem;
-      color: $col-9;
+      color: black;
+      font-weight: 700;
     }
 
     p {
       font-size: 0.9rem;
-      color: $col-5;
+      color: #333;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      display: none;
     }
   }
 }
