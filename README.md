@@ -69,8 +69,8 @@ This documentation provides an overview of the endpoints available in the MINDHA
   Authorization: Token your_token_here
   ```
 - **Response:**
-  ```json
   
+```json  
 {
     "user": {
         "id": "interger",
