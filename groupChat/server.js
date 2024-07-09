@@ -44,97 +44,120 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hello User! This is an api :)' });
 });
 
-app.get("/me", auth , (req , res)=>{
-    User.findById(req.user._id).populate("groups").populate("chats").exec().then((err , user)=>{
-        if (err) return res.status(500).send("Internal Server Error");
-        res.send(user);
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
-});
-
-app.delete("/me", auth , (req , res)=>{
-    User.findByIdAndDelete(req.user._id).then((err , user)=>{
-        if (err) return res.status(500).send("Internal Server Error");
-        res.send(user);
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
-});
-
-app.get("/users/:id", auth , (req , res)=>{
-    User.findById(req.params.id).then((err , user)=>{
-        if (err) return res.status(500).send("Internal Server Error");
-        res.send(user);
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
-});
-
-app.get("/groups", auth , (req , res)=>{
-    User.findById(req.user._id).populate('groups').exec().then((err , user)=>{
-        if (err) return res.status(500).send("Internal Server Error");
-        res.send(user.groups);
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
-});
-
-app.post("/groups", auth , (req , res)=>{
-    let group = new Group({
-        name: req.body.name,
-        members: [req.user._id]
-    });
-    group.save().then((group)=>{
-        User.findById(req.user._id).then((user)=>{
-            user.groups.push(group._id);
-            user.save().then(()=>{
-                res.send(group);
-            });
-        });
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
-});
-
-app.get("/groups/:id", auth , (req , res)=>{
-    Group.findById(req.params.id).populate('members').populate("chat").exec().then((group)=>{
-        res.send(group);
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
-});
-
-app.delete("/groups/:id", auth , (req , res)=>{
-    let group = Group.findById(req.params.id);
-    if (group.admins.includes(req.user._id)){
-        group.delete().then(()=>{
-            res.send("Group Deleted");
-        }).catch((error)=>{
-            res.status(500).send("Internal Server Error");
-        });
-    } else {
-        res.status(401).send("Unauthorized");
+app.get('/me', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).populate('groups').populate('chats');
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 
+app.delete('/me', auth, async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.user._id);
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
-app.post("/groups/:id/message", auth , (req , res)=>{
-    let chat = new Chat({
-        group: req.params.id,
-        messages: [],
-    });
-    chat.save().then((chat)=>{
-        Group.findById(req.params.id).then((group)=>{
-            group.chats.push(chat._id);
-            group.save().then(()=>{
-                chat.participants = group.members;
-                res.send(chat);
-            });
+app.get('/users/:id', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.put('/me', auth, async (req, res) => {
+    try {
+        const updates = req.body;
+        const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true });
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.get('/groups', auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).populate('groups');
+        res.json(user.groups);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.post('/groups', auth, async (req, res) => {
+    try {
+        const group = new Group({
+            name: req.body.name,
+            members: [req.user._id],
+            admins: [req.user._id]
         });
-    }).catch((error)=>{
-        res.status(500).send("Internal Server Error");
-    });
+        await group.save();
+        const user = await User.findById(req.user._id);
+        user.groups.push(group._id);
+        await user.save();
+        res.json(group);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.get('/groups/:id', auth, async (req, res) => {
+    try {
+        const group = await Group.findById(req.params.id).populate('members').populate('chat');
+        res.json(group);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.delete('/groups/:id', auth, async (req, res) => {
+    try {
+        const group = await Group.findById(req.params.id);
+        if (!group.admins.includes(req.user._id)) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        await group.delete();
+        res.json({ message: 'Group Deleted' });
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.post('/groups/:id/message', auth, async (req, res) => {
+    try {
+        const chat = new Chat({ group: req.params.id });
+        await chat.save();
+        const group = await Group.findById(req.params.id);
+        group.chats.push(chat._id);
+        await group.save();
+        res.json(chat);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+app.get('/chats/:id/messages', auth, async (req, res) => {
+    try {
+        const { page = 1, limit = 20 } = req.query;
+        const chat = await Chat.findById(req.params.id)
+            .populate({
+                path: 'messages',
+                options: {
+                    sort: { date: -1 },
+                    skip: (page - 1) * limit,
+                    limit: parseInt(limit)
+                }
+            });
+        res.json(chat.messages);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
 
 io.use((socket, next) => {
@@ -164,63 +187,59 @@ io.use((socket, next) => {
 });
 
 io.on('connection', (socket) => {
-    User.find({id : socket.user.id}).then((user)=>{
-        if(user == null){
-            user = new User({
-                id: socket.user.id,
-                username: socket.user.username,
-                profileImage: socket.user.profileImage,
-                lastOnline: Date.now(),
-                groups: [],
-                chats: []
-            });
-        }
-        user.online = true;
-        user.socketId = socket.id;
-        user.save().then(()=>{
-            socket.emit("user", user);
-        });
+    socket.user.online = true;
+    socket.user.socketId = socket.id;
+    socket.user.save();
+
+    socket.emit('user', socket.user);
+
+    socket.on('disconnect', async () => {
+        const user = await User.findById(socket.user._id);
+        user.online = false;
+        user.socketId = null;
+        user.lastOnline = Date.now();
+        await user.save();
     });
-    socket.on('disconnect', () => {
-        User.find({id : socket.user.id}).then((user)=>{
-            user.online = false;
-            user.socketId = null;
-            user.lastOnline = Date.now();
-            user.save();
-        });
+
+    socket.on('typing', (chatId) => {
+        socket.to(chatId).emit('typing', socket.user.username);
     });
+
+    socket.on('stopTyping', (chatId) => {
+        socket.to(chatId).emit('stopTyping', socket.user.username);
+    });
+
     socket.on('message', async (msg) => {
-        let chat = await Chat.findById(msg.chat);
-        if(chat == null) return;
-        if(!chat.members.includes(socket.user._id)) return;
-        let message = new Message({
-            message: msg.message,
-            sender: socket.user._id,
-            chat: msg.chat,
-            date: Date.now()
-        });
-        message.save().then((message)=>{
-            Chat.findById(msg.chat).then((chat)=>{
-                chat.messages.push(message._id);
-                chat.save().then(()=>{
-                    io.to(msg.chat).emit('message', message);
-                });
+        try {
+            const chat = await Chat.findById(msg.chat);
+            if (!chat || !chat.participants.includes(socket.user._id)) return;
+            const message = new Message({
+                message: msg.message,
+                sender: socket.user._id,
+                chat: msg.chat,
+                date: Date.now()
             });
-        });
+            await message.save();
+            chat.messages.push(message._id);
+            await chat.save();
+            io.to(msg.chat).emit('message', message);
+        } catch (error) {
+            console.error(error);
+        }
     });
+
     socket.on('join', (chatId) => {
-        Chat.findById(chatId).then((chat)=>{
-            if(chat == null) return;
-            if(!chat.members.includes(socket.user._id)) return;
+        Chat.findById(chatId).then((chat) => {
+            if (!chat || !chat.participants.includes(socket.user._id)) return;
             socket.join(chatId);
         });
     });
+
     socket.on('leave', (chatId) => {
         socket.leave(chatId);
     });
 });
 
-
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
