@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/MoodTracker.module.scss';
+import styles from '../sass/MoodTracker.module.scss';
 
 type Mood = '😊' | '😐' | '😢' | '😠' | '😰';
 

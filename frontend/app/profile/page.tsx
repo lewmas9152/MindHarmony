@@ -1,24 +1,25 @@
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { CircleUserIcon, Pencil, PenIcon, PenSquareIcon, UserIcon } from "lucide-react";
 import React from "react";
+import "../sass/Profile.scss"
 
 const Profile = () => {
   return (
-    <div className="min-h-screen relative bg-[#f0f4f9]">
+    <div className="container-profile min-h-screen relative bg-[#f0f4f9]">
       <div className="w-full flex flex-col items-center  h-screen p-12">
         <div className="flex flex-col space-y-6   sm:w-[80%] md:w-[70%]">
 
-          <div className="flex flex-col items-center space-y-1">
+          <div className=" user-container flex flex-col items-center space-y-1">
               <CircleUserIcon className="size-20 text-neutral-600 mb-3 cursor-pointer" />
               <h2 className="text-2xl space-x-2 flex items-center">
                 <span>User name</span>{" "}
                 <span>
-                  <PenIcon className="size-5" />
+                  <PenIcon className="icon size-5" />
                 </span>
               </h2>
               <h3 className="text-lg text-neutral-800">johndoe@email.com</h3>
           </div>
-          <div className=" w-full bg-white space-y-2 px-4 py-6 rounded-lg">
+          <div className=" bio-container w-full bg-white space-y-2 px-4 py-6 rounded-lg">
             <div className="flex justify-between">
                 <h3 className="text-xl">Bio</h3>
                 <span className="text-neutral-600 cursor-pointer hover:text-black">
@@ -27,9 +28,7 @@ const Profile = () => {
             </div>
             {/* <div className="underline w-full"></div> */}
             <p className="text-pretty">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iusto
-              perferendis officiis. Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Natus, atque!
+            🌟 On a transformative journey to better mental health with Mind Harmony. Embracing balance, positivity, and personal growth every day. 🌱 Passionate about self-care and mental wellness, I'm here to share my experiences, learn from others, and build a supportive community. Together, we can thrive and create a harmonious mind! 💪✨
             </p>
           </div>
           <footer className="  text-center">
