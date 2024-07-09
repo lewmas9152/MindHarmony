@@ -74,7 +74,7 @@ const Chatbot: React.FC = () => {
           </div>
           <div className={styles.chatIntro}>
             <p>
-            😊 Hi! I'm Harmony virtual assistant. How can I help you today?
+            😊 Hi! I am  Harmony virtual assistant. How can I help you today?
             </p>
           </div>
           <div className={styles.chatMessages}>
