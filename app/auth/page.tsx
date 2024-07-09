@@ -66,7 +66,8 @@ export default function TabsDemo() {
       );
 
       // Handle successful response
-      console.log("Sign-in successful:", response.data);
+      console.log("Sign-in successful:");
+      localStorage.setItem("token", `${response.data.token}`)
       
       router.push("/home");
     } catch (error) {
@@ -74,6 +75,8 @@ export default function TabsDemo() {
       // alert("An error occurred while signing in.");
     }
   };
+
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f0f4f8]">
       <Tabs defaultValue="sign-up">
@@ -81,7 +84,7 @@ export default function TabsDemo() {
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
-        //#region Sign up
+      
         <TabsContent value="sign-up">
           <form onSubmit={handleSubmit}>
             <Card className="w-[380px] max-w-sm shadow-lg">
@@ -149,7 +152,7 @@ export default function TabsDemo() {
             </Card>
           </form>
         </TabsContent>
-        //#region Sign in
+        
         <TabsContent value="login">
           <form onSubmit={handleLogin}>
             <Card className="w-[380px] max-w-sm shadow-lg">
