@@ -44,6 +44,10 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hello User! This is an api :)' });
 });
 
+app.get('/auth-backend' , auth , (req , res)=>{
+    res.json(req.user);
+});
+
 app.get('/me', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user._id).populate('groups').populate('chats');
@@ -166,7 +170,7 @@ io.use((socket, next) => {
             Authorization: `Token ${token}`
         }
     }).then((response)=>{
-        User.findById(response.data.user.id).then((err , user)=>{
+        User.findById(response.data.user.id).then(async (err , user)=>{
             if (err) return next(new Error("Unauthorized"));
             if(user == null){
                 user = new User({
@@ -177,6 +181,7 @@ io.use((socket, next) => {
                     groups: [],
                     chats: []
                 });
+                await user.save();
             }
             socket.user = user;
             next();
