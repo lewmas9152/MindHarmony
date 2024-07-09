@@ -48,9 +48,9 @@ class RegisterView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        token,created = Token.objects.get_or_create(user=user.user)
+        token,created = Token.objects.get_or_create(user=user)
         return Response({
-            'user': UserSerializer(user, context=self.get_serializer_context()).data,
+            'user': UserProfileSerializer(user, context=self.get_serializer_context()).data,
             'token': token.key
         }, status=status.HTTP_201_CREATED)
     
