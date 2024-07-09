@@ -14,8 +14,9 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
+import "../sass/appoint.scss"
 
 const iconMapping = {
   confirmed: <CircleCheck />,
@@ -25,9 +26,9 @@ const iconMapping = {
 
 const Appointments = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center pt-20 bg-[#f0f4f9] mt-16">
+    <div className="container-appoint max-w-screen-2xl min-h-screen flex flex-col items-center pt-20 bg-[#f0f4f9] mt-16">
       <Navbar />
-      <div className="flex flex-col items-center px-1 w-full ">
+      <div className="flex flex-col items-center w-full px-1 ">
         <Tabs defaultValue="all" className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
           <TabsList
             
@@ -71,12 +72,12 @@ export default Appointments;
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 shadow-md bg-slate-600">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Left side: Title */}
-          <div className="flex-shrink-0 flex items-center">
-            <h1 className="text-xl font-bold  ">Appointments</h1>
+          <div className="flex items-center flex-shrink-0">
+            <h1 className="text-xl font-bold ">Appointments</h1>
           </div>
 
           <div className="flex items-center">
@@ -91,8 +92,8 @@ const Navbar = () => {
 const AppointmentCard = ({ icon }: { icon: string }) => {
   // const Icon= iconMapping[icon];
   return (
-    <Card className="shadow-md space-x-0">
-      <CardHeader className="flex flex-row justify-between items-center">
+    <Card className="space-x-0 shadow-md">
+      <CardHeader className="flex flex-row items-center justify-between">
         <div>
           <CardTitle>
             <h2 className="text-xl">Appointment 1</h2>

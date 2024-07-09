@@ -19,37 +19,32 @@ import { useInView } from "react-intersection-observer";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { services } from "@/lib/services";
 import { Button } from "./components/ui/button";
-import { MenuIcon, XIcon } from "lucide-react";
-import { useState } from "react";
 
 export default function Home() {
   const [aboutRef, aboutInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   const [contactRef, contactInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
   const [servicesRef, servicesInView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.1
   });
 
-
-  const [active, setActive] = useState(false)
- 
   return (
-    <main className="w-full space-y-8">
+    <main className="w-full space-y-4 ">
       <div className="relative h-screen bg-center bg-cover image-container">
         <div
           className="absolute inset-0 header zooming-image"
           style={{
             backgroundImage: `url(/2.jpg)`,
             backgroundPosition: "center",
-            backgroundSize: "cover",
+            backgroundSize: "cover"
           }}
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -69,74 +64,36 @@ export default function Home() {
                 <h3 className="p-1 text-2xl font-bold ">MindHarmony</h3>
               </div>
             </div>
-            <div className="nav-menu ">
-              <nav className="hidden sm:flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
-                {[
-                  "Home",
-                  "About",
-                  "Services",
-                  "Contact",
-                  "Sign In | Sign Up",
-                ].map((item, index) => (
-                  <Link
-                    key={index}
-                    href={
-                      item === "Home"
-                        ? "/"
-                        : item === "Sign In | Sign Up"
-                        ? "/auth"
-                        : `#${item.toLowerCase()}`
-                    }
-                  >
-                    <div className="relative overflow-hidden cursor-pointer group">
-                      <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-                        {item}
-                      </span>
-                      <span className="absolute top-0 left-0 inline-block text-[#40e0d0]  transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
-                        {item}
-                      </span>
-                      <span className="absolute bottom-0 left-0 h-0.5 w-full bg-[#40e0d0] transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
-                    </div>
-
-                  </Link>
-                ))}
-              </nav>
-            <nav className="sm:hidden pr-8">
-            <button onClick={()=> setActive(prev => !prev)} className="bg-none border-none transition-transform duration-300 transform">
-              {active? <XIcon className="text-white size-10" />: <MenuIcon className="text-white size-10"/>}
-            </button>
-            {active && <div  className=" fixed right-0 top-20 text-lg"> {[
-                  "Home", "About",
-                  "Services",
-                  "Contact",
-                  "Sign In | Sign Up",
-                ].map((item, index) => (
-                  <Link
-                    key={index}
-                    href={
-                      item === "Home"
-                        ? "/"
-                        : item === "Sign In | Sign Up"
-                        ? "/auth"
-                        : `#${item.toLowerCase()}`
-                    }
-                  >
-                    <div className="relative overflow-hidden cursor-pointer group">
-                      <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-                        {item}
-                      </span>
-                      <span className="absolute top-0 left-0 inline-block text-[#40e0d0]  transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
-                        {item}
-                      </span>
-                      <span className="absolute bottom-0 left-0 h-0.5 w-full bg-[#40e0d0] transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
-                    </div>
-
-                  </Link>
-                ))}
-                </div>
-            }
-
-
+          <div className="nav-menu">
+            <nav className="flex justify-end mr-10 space-x-6 text-sm text-white sm:text-base">
+              {[
+                "Home",
+                "About",
+                "Services",
+                "Contact",
+                "Sign In | Sign Up"
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  href={
+                    item === "Home"
+                      ? "/"
+                      : item === "Sign In | Sign Up"
+                      ? "/auth"
+                      : `#${item.toLowerCase()}`
+                  }
+                >
+                  <div className="relative overflow-hidden cursor-pointer group">
+                    <span className="inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+                      {item}
+                    </span>
+                    <span className="absolute top-0 left-0 inline-block text-red-400 transition-transform duration-300 ease-in-out -translate-y-full group-hover:translate-y-0">
+                      {item}
+                    </span>
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-red-400 transform scale-x-0 transition-transform duration-300 ease-in-out group-hover:scale-x-100"></span>
+                  </div>
+                </Link>
+              ))}
             </nav>
             </div>
           </div>
@@ -149,14 +106,14 @@ export default function Home() {
             <h1 className="text-4xl font-bold text-center text-gray-300">
               MindHarmony - Mental health
             </h1>
-            <div className="max-w-3xl mx-auto mt-4 text-center text-gray-300 text-lg text-wrap">
+            <div className="max-w-3xl mx-auto mt-4 text-center text-gray-300">
               <h2>Embark on a journey to mental well-being with MindHarmony</h2>
             </div>
             <div className="relative h-5 shadow-lg rectangle bg-noctis-fg top-80 rounded-5 w-500 animate-slide"></div>
             <div className="">
-              <button className="flex items-center justify-center px-8 py-3 mt-6 text-xl font-bold text-white transition-transform duration-300 transform border border-white rounded-3xl hover:border-none hover:text-[#40e0d0] hover:bg-gray-200 focus:outline-none focus:shadow-outline">
+              <button className="flex items-center justify-center px-8 py-3 mt-6 text-xl font-bold text-white transition-transform duration-300 transform border border-white rounded-3xl hover:border-white hover:bg-black focus:outline-none focus:shadow-outline">
                 <span>Learn More</span>
-                <ChevronDownIcon className="size-8"/>
+                <ChevronDownIcon className="text-white size-8" />
               </button>
             </div>
           </motion.div>
@@ -231,7 +188,7 @@ export default function Home() {
             />
 
             <div className="flex flex-col items-center justify-center text-center sm:text-left sm:px-3">
-              <p className="text-lg text-neutral-700  text-pretty">
+              <p className="text-lg ">
                 At MindHarmony, we are dedicated to transforming lives through
                 care and compassion. Our mission is to promote mental wellness,
                 empower individuals, and support personal growth.
@@ -279,7 +236,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="contact-section mt-12" id="contact" ref={contactRef}>
+      <section className="contact-section" id="contact" ref={contactRef}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={contactInView ? { opacity: 1, y: 0 } : {}}
@@ -360,10 +317,9 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <footer className="bg-slate-950 py-5">
-        <div className="text-white text-center">
+      <footer className="bg-slate-950 footer">
+        <div className="container">
           <p>©Copyright 2024 MindHarmony. All rights reserved.</p>
-          
         </div>
       </footer>
     </main>

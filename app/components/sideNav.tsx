@@ -7,6 +7,7 @@ import ResourcesIcon from "../images/resources.svg";
 import GroupsIcon from "../images/groups.svg";
 import Image from "next/image";
 import BrainIcon from "../images/fluent--brain-circuit-20-filled.svg";
+import { ThemeToggle } from "./ThemeToggle";
 
 export default function Sidenav(){
     return (
@@ -95,6 +96,9 @@ export default function Sidenav(){
             </div>
             <div className="nav-item">
         <Link href="chat">Live Chat</Link>
+        </div>
+        <div className="theme-switcher">
+            <ThemeToggle />
         </div>
         </div>
         </div>

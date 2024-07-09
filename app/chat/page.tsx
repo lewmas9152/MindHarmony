@@ -135,21 +135,16 @@ export default function ChatApp() {
     }
   ]);
 
-  const socket= io('https://groupchat-zg7d.onrender.com/',{
-    auth:{
-      token:"667c164b7b527576b0d0dccc1c37b587713b5853"
-    }
-  } )
-  
-  fetch('https://groupchat-zg7d.onrender.com/', {
+  const url = 'https://mindharmony-chat.onrender.com';
+  const token : String = '63c5e488b8001b9aba990f6162642452018e754c';
+  fetch(url+'/auth-backend', {
     method: 'GET',
-    headers: {
-      'Authorization': `Token 667c164b7b527576b0d0dccc1c37b587713b5853`
+    headers:{
+      'Authorization': `Token ${token}`
     }
-  })
-  .then (response => response.json())
-  .then (data => console.log(data))
-
+  }).then((res) => {
+    console.log(res.json());
+  });
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
@@ -191,63 +186,7 @@ export default function ChatApp() {
 
   function handleChatSelect(chat) {
     setSelectedChat(chat);
-    if ("members" in chat) {
-      // It's a group chat
-      setMessages([
-        {
-          id: 1,
-          sender: 2,
-          text: "Welcome everyone. How are you all feeling today?",
-          timestamp: new Date(Date.now() - 100000)
-        },
-        {
-          id: 4,
-          text: "I've been having a tough week with my anxiety.",
-          timestamp: new Date(Date.now() - 80000)
-        },
-        {
-          id: 1,
-          text: "I'm here if anyone needs to talk. We're all in this together.",
-          timestamp: new Date(Date.now() - 60000)
-        },
-        {
-          id: 3,
-          text: "Thanks for the support. It means a lot to have this group.",
-          timestamp: new Date(Date.now() - 40000)
-        }
-      ]);
-    } else {
-      // It's a one-on-one chat
-      if (selectedChat) {
-        const chat = selectedChat as { id: number; avatar: string };
-        setMessages([
-          {
-            id: 1,
-            sender: chat.id,
-            text: "Hi there. How are you feeling today?",
-            timestamp: new Date(Date.now() - 100000)
-          },
-          {
-            id: 2,
-            sender: "currentUser",
-            text: "I'm struggling a bit with my symptoms.",
-            timestamp: new Date(Date.now() - 80000)
-          },
-          {
-            id: 3,
-            sender: chat.id,
-            text: "I'm sorry to hear that. Can you tell me more about what's going on?",
-            timestamp: new Date(Date.now() - 60000)
-          },
-          {
-            id: 4,
-            sender: "currentUser",
-            text: "I've been feeling more anxious than usual and it's affecting my sleep.",
-            timestamp: new Date(Date.now() - 40000)
-          }
-        ]);
-      }
-    }
+    const [messages, setMessages] = useState<{ id: number; sender: number | string; text: string; timestamp: Date }[]>([]);
   }
 
   function handleCreateGroup() {

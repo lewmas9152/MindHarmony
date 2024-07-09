@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 
 import "../sass/Auth.scss";
 import {
@@ -9,10 +9,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -66,8 +66,7 @@ export default function TabsDemo() {
       );
 
       // Handle successful response
-      console.log("Sign-in successful:");
-      localStorage.setItem("token", `${response.data.token}`)
+      console.log("Sign-in successful:", response.data);
       
       router.push("/home");
     } catch (error) {
@@ -75,8 +74,6 @@ export default function TabsDemo() {
       // alert("An error occurred while signing in.");
     }
   };
-
-  
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f0f4f8]">
       <Tabs defaultValue="sign-up">
@@ -84,7 +81,7 @@ export default function TabsDemo() {
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>
           <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
-      
+        //#region Sign up
         <TabsContent value="sign-up">
           <form onSubmit={handleSubmit}>
             <Card className="w-[380px] max-w-sm shadow-lg">
@@ -152,7 +149,7 @@ export default function TabsDemo() {
             </Card>
           </form>
         </TabsContent>
-        
+        //#region Sign in
         <TabsContent value="login">
           <form onSubmit={handleLogin}>
             <Card className="w-[380px] max-w-sm shadow-lg">
