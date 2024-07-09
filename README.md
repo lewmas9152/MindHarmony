@@ -48,16 +48,11 @@ This documentation provides an overview of the endpoints available in the MINDHA
   {
     "token": "string",
     "user": {
-      "id": "integer",
-      "username": "string",
-      "email": "string",
-      "profile": {
-        "id": "integer",
-        "bio": "string",
-        "location": "string"
-      }
+        "id": "interger",
+        "username": "string",
+        "email": "string"
     }
-  }
+}
   ```
 
 #### User Details
