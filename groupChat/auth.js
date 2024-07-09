@@ -1,4 +1,5 @@
 const { User } = require("./db/schema.js");
+const axios = require("axios");
 
 module.exports = (req , res , next)=>{
     if(!req.headers.authorization) return res.status(401).send("Unauthorized by chat server");
