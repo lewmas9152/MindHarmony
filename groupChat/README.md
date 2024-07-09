@@ -1,123 +1,376 @@
-# Backend API and WebSocket Usage Guide
+### REST API Endpoints
 
-## Base URL
-All API endpoints 6are accessible under the base URL:
+#### Base URL
 ```
-http://<your-server-domain>:<port>
-```
-
-## API Endpoints
-
-### Authentication
-All requests requiring authentication must include the `Authorization` header:
-```
-Authorization: Token <your-token>
+https://mindharmony-chat.onrender.com
 ```
 
-### Endpoints Overview
+#### 1. Get API Welcome Message
+**Endpoint:** `GET /`
 
-1. **Root Endpoint**
-   - **GET `/`**
-     - Response: `{ message: 'Hello User! This is an api :)' }`
+**Description:** Returns a welcome message.
 
-2. **User Endpoints**
-   - **GET `/me`**
-     - Requires authentication.
-     - Response: User details along with populated `groups` and `chats`.
-     
-   - **DELETE `/me`**
-     - Requires authentication.
-     - Deletes the authenticated user.
-     - Response: Deleted user details.
-   
-   - **GET `/users/:id`**
-     - Requires authentication.
-     - Response: User details for the specified user ID.
+**Response:**
+```json
+{
+    "message": "Hello User! This is an api :)"
+}
+```
 
-3. **Group Endpoints**
-   - **GET `/groups`**
-     - Requires authentication.
-     - Response: Groups the authenticated user is a member of.
-   
-   - **POST `/groups`**
-     - Requires authentication.
-     - Request Body: `{ name: 'Group Name' }`
-     - Response: Created group details.
-   
-   - **GET `/groups/:id`**
-     - Requires authentication.
-     - Response: Group details for the specified group ID.
-   
-   - **DELETE `/groups/:id`**
-     - Requires authentication.
-     - Deletes the group if the authenticated user is an admin.
-     - Response: "Group Deleted" or "Unauthorized".
+#### 2. Get Current User Info
+**Endpoint:** `GET /me`
 
-4. **Message Endpoints**
-   - **POST `/groups/:id/message`**
-     - Requires authentication.
-     - Request Body: `{ message: 'Your Message' }`
-     - Response: Created chat details associated with the group.
+**Description:** Returns the current authenticated user's information.
 
-## WebSocket Integration
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
 
-### Connection
-Establish a WebSocket connection to the server using Socket.IO:
+**Response:**
+```json
+{
+    "_id": "user-id",
+    "username": "user-name",
+    "groups": [...],
+    "chats": [...]
+}
+```
+
+#### 3. Update Current User Info
+**Endpoint:** `PUT /me`
+
+**Description:** Updates the current authenticated user's information.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Body:**
+```json
+{
+    "username": "new-username"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "user-id",
+    "username": "new-username",
+    ...
+}
+```
+
+#### 4. Delete Current User
+**Endpoint:** `DELETE /me`
+
+**Description:** Deletes the current authenticated user.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "message": "User deleted successfully"
+}
+```
+
+#### 5. Get User by ID
+**Endpoint:** `GET /users/:id`
+
+**Description:** Returns the user information for a specific user by ID.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "user-id",
+    "username": "user-name",
+    ...
+}
+```
+
+#### 6. Get Groups for Current User
+**Endpoint:** `GET /groups`
+
+**Description:** Returns all groups that the current authenticated user is a member of.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+[
+    {
+        "_id": "group-id",
+        "name": "group-name",
+        ...
+    },
+    ...
+]
+```
+
+#### 7. Create New Group
+**Endpoint:** `POST /groups`
+
+**Description:** Creates a new group and adds the current authenticated user as a member and admin.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Body:**
+```json
+{
+    "name": "new-group-name"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "group-id",
+    "name": "new-group-name",
+    "members": [...],
+    "admins": [...],
+    "chat": "chat-id"
+}
+```
+
+#### 8. Get Group by ID
+**Endpoint:** `GET /groups/:id`
+
+**Description:** Returns the details of a specific group by ID.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "_id": "group-id",
+    "name": "group-name",
+    "members": [...],
+    "chat": {...}
+}
+```
+
+#### 9. Delete Group by ID
+**Endpoint:** `DELETE /groups/:id`
+
+**Description:** Deletes a specific group by ID if the current user is an admin.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "message": "Group Deleted"
+}
+```
+
+#### 10. Join Group by ID
+**Endpoint:** `GET /groups/:id/join`
+
+**Description:** Adds the current authenticated user to a specific group by ID.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+{
+    "message": "Joined group successfully"
+}
+```
+
+#### 11. Get Chats for Current User
+**Endpoint:** `GET /chats`
+
+**Description:** Returns all chats that the current authenticated user is a participant of.
+
+**Headers:**
+```json
+{
+    "Authorization": "Token <user-token>"
+}
+```
+
+**Response:**
+```json
+[
+    {
+        "_id": "chat-id",
+        "participants": [...],
+        "messages": [...]
+    },
+    ...
+]
+```
+
+### Socket.io Events
+
+#### Connecting to the Server
 ```javascript
-const socket = io('http://<your-server-domain>:<port>', {
+const socket = io('http://localhost:3001', {
     auth: {
-        token: '<your-token>'
+        token: "your-token"
     }
 });
 ```
 
-### Event Handlers
+#### Receiving User Data
+```javascript
+socket.on('user', (data) => {
+    console.log('User data:', data);
+});
+```
 
-1. **Connection Event**
-   ```javascript
-   socket.on('user', (user) => {
-       console.log('Connected as user:', user);
-   });
-   ```
+#### Typing Indicator
+```javascript
+// Emitting typing event
+socket.emit('typing', chatId);
 
-2. **Disconnection Event**
-   ```javascript
-   socket.on('disconnect', () => {
-       console.log('Disconnected');
-   });
-   ```
+// Receiving typing event
+socket.on('typing', (username) => {
+    console.log(`${username} is typing...`);
+});
 
-3. **Join Chat**
-   ```javascript
-   socket.emit('join', chatId);
-   ```
+// Emitting stop typing event
+socket.emit('stopTyping', chatId);
 
-4. **Leave Chat**
-   ```javascript
-   socket.emit('leave', chatId);
-   ```
+// Receiving stop typing event
+socket.on('stopTyping', (username) => {
+    console.log(`${username} stopped typing.`);
+});
+```
 
-5. **Send Message**
-   ```javascript
-   socket.emit('message', {
-       chat: chatId,
-       message: 'Your message here'
-   });
-   ```
+#### Sending and Receiving Messages
+```javascript
+// Emitting a new message
+socket.emit('message', {
+    chat: chatId,
+    message: 'Hello, World!'
+});
 
-6. **Receive Message**
-   ```javascript
-   socket.on('message', (message) => {
-       console.log('New message:', message);
-   });
-   ```
+// Receiving new messages
+socket.on('message', (data) => {
+    console.log('New message:', data);
+});
+```
 
-### Example Workflow
+#### Joining and Leaving Chats
+```javascript
+// Joining a chat
+socket.emit('join', chatId);
 
-1. **Authenticate the user** and obtain a token.
-2. **Connect to the WebSocket** with the token.
-3. **Fetch user details** using `GET /me`.
-4. **Fetch user groups** using `GET /groups`.
-5. **Join a chat** using the `join` event with the chat ID.
-6. **Send and receive messages** within the joined chat.
-7. **Leave the chat** when done using the `leave` event.
+// Leaving a chat
+socket.emit('leave', chatId);
+```
+
+#### Creating New Chat
+```javascript
+socket.emit('new-chat', {
+    participants: ["user-id1", "user-id2"]
+});
+```
+
+#### Handling Disconnect
+```javascript
+socket.on('disconnect', () => {
+    console.log('User disconnected');
+});
+```
+
+### Example of Usage in a Frontend Application
+
+```javascript
+// Connect to the server
+const socket = io('http://localhost:3001', {
+    auth: {
+        token: 'your-auth-token'
+    }
+});
+
+// Get current user info
+socket.on('user', (data) => {
+    console.log('User data:', data);
+});
+
+// Handle typing indicator
+function startTyping(chatId) {
+    socket.emit('typing', chatId);
+}
+
+function stopTyping(chatId) {
+    socket.emit('stopTyping', chatId);
+}
+
+socket.on('typing', (username) => {
+    console.log(`${username} is typing...`);
+});
+
+socket.on('stopTyping', (username) => {
+    console.log(`${username} stopped typing.`);
+});
+
+// Send and receive messages
+function sendMessage(chatId, message) {
+    socket.emit('message', { chat: chatId, message: message });
+}
+
+socket.on('message', (data) => {
+    console.log('New message:', data);
+});
+
+// Join and leave chats
+function joinChat(chatId) {
+    socket.emit('join', chatId);
+}
+
+function leaveChat(chatId) {
+    socket.emit('leave', chatId);
+}
+
+// Create new chat
+function createNewChat(participants) {
+    socket.emit('new-chat', { participants: participants });
+}
+```
