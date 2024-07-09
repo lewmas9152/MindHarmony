@@ -26,6 +26,7 @@ $nightowl-shadow: rgba(1, 22, 39, 0.7);
     flex-direction: row;
     gap: 20px;
     padding: 10px;
+    font-family: $font-rubik;
     &:hover {
         background-color: $nightowl-hover;
         width: 100%;
