@@ -1,0 +1,100 @@
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+$font-jost : 'Jost', sans-serif;
+$font-playwrite : 'Playwrite IT Moderna', sans-serif;
+
+.mentalExercisesProgress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 50px;
+    background-color:$col-18;
+    border-radius: 8px;
+    width: 500px;
+  
+    h2 {
+      margin-bottom: 10px;
+      font-size: 23px;
+      font-weight: 700;
+      font-family: $font-rubik;
+      color: #fff;
+    }
+    .exercisesList {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 20px;
+    }
+  
+    .exerciseItem {
+      background:$col-3;
+      padding: 20px;
+      border-radius: 10px;
+      border-top: 2px solid $col-17;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      &:hover {
+        transform: translateY(-5px);
+      }
+  
+      h3 {
+        margin-bottom: 5px;
+        font-size: 1.5em;
+        font-weight: 700;
+        font-family: $font-rubik;
+        color: #fff;
+        text-align: center;
+      }
+  
+      p {
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        font-weight: 400;
+        font-family: $font-jost;
+        color: #fff;
+        text-align: center;
+      }
+  
+      .circularProgress {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+  
+  @keyframes progressAnimation {
+    0% {
+      stroke-dashoffset: 100;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  

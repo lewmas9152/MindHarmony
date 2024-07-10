@@ -1,0 +1,359 @@
+$font-rubik: "Rubik", sans-serif;
+$font-josefin: "Josefin Sans", sans-serif;
+$font-island: "Island Moments", cursive;
+$font-ropa: "Ropa Sans", sans-serif;
+$font-jost: "Jost", sans-serif;
+$font-playwrite: "Playwrite IT Moderna", sans-serif;
+$nightowl-border: #1d3b53;
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 138px;
+  padding: 10px 20px;
+  animation: fadeIn 0.5s ease-out;
+  background-color: #011627;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  input {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    width: 400px;
+    font-family: $font-jost;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .searchIcon {
+    position: absolute;
+    right: 10px;
+  }
+}
+
+.notifications,
+.reminders {
+  position: relative;
+  cursor: pointer;
+
+  .notificationIcon,
+  .reminderIcon {
+    position: relative;
+
+    img {
+      filter: hue-rotate(290deg);
+    }
+
+    .notificationCount,
+    .reminderCount {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+  }
+
+  .notificationPopup,
+  .reminderPopup {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 100;
+    width: 300px;
+    font-family: $font-rubik;
+    max-height: 400px;
+    overflow-y: auto;
+
+    .notificationItem,
+    .reminderItem {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.3s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      .message {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .timestamp {
+        margin: 5px 0 0;
+        font-size: 12px;
+        color: #777;
+      }
+    }
+  }
+}
+
+.highPriority {
+  border-left: 4px solid #ff4d4d;
+}
+
+.mediumPriority {
+  border-left: 4px solid #ffa500;
+}
+
+.lowPriority {
+  border-left: 4px solid #4caf50;
+}
+
+.userProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .userImage {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 4px solid #10709a;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .userName {
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+      font-family: $font-rubik;
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.userProfile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .userImageWrapper {
+    position: relative;
+    cursor: pointer;
+
+    .userImage {
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid $col-9;
+      transition: all 0.3s ease;
+      width: 60px;
+      height: 60px;
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba($col-9, 0.5);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .userStatus {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #4caf50;
+      border: 2px solid white;
+      animation: pulse 2s infinite;
+    }
+  }
+
+  .userName {
+    p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+      font-family: $font-rubik;
+      text-align: center;
+    }
+  }
+
+  .userMenu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    z-index: 100;
+    width: 180px;
+    animation: slideIn 0.3s ease-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid white;
+    }
+
+    .userMenuItem {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      .icon {
+        margin-right: 12px;
+        font-size: 18px;
+      }
+
+      span {
+        font-family: $font-rubik;
+        font-size: 14px;
+        color: $col-1;
+      }
+    }
+  }
+}
+
+.notifications,
+.reminders {
+  .notificationIcon,
+  .reminderIcon {
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      filter: hue-rotate(290deg);
+      transition: filter 0.3s ease;
+
+      &:hover {
+        filter: hue-rotate(320deg);
+      }
+    }
+  }
+
+  .notificationPopup,
+  .reminderPopup {
+    animation: slideIn 0.3s ease-out;
+  }
+}

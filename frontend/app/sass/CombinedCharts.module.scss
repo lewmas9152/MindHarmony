@@ -1,0 +1,50 @@
+$col-1: #222746;
+$col-2: #b9c1cf;
+$col-3: #4a5070;
+$col-4: #444058;
+$col-5: #9296a4;
+$col-6: #282d4d;
+$col-7: #ee6173;
+$col-8: #c1c9d7;
+$col-9: #518beb;
+$col-10: #646981;
+$col-11: #843fed;
+$col-12: #7a5d65;
+$col-13: #1d223f;
+$col-14: #274e5b;
+$col-15: #792d3c;
+$col-16: #d2a65e;
+$col-17: #1aa66f;
+$col-18: #323553;
+$col-19: #afb5c1;
+$col-20: #604f5c;
+$font-rubik : 'Rubik', sans-serif;
+$font-josefin : 'Josefin Sans', sans-serif;
+$font-island : 'Island Moments', cursive;
+$font-ropa : 'Ropa Sans', sans-serif;
+.container {
+    display: flex;
+    margin: 20px auto;
+    gap: 20px;
+    padding: 20px;
+}
+
+.chartWrapper {
+    width: 450px;
+    height: 400px;
+    margin-bottom: 20px;
+    border: 1px solid $col-18;
+    border-radius: 8px;
+    background-color:$col-13;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    h2{
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-family: $font-rubik;
+        color:$col-19;
+        font-weight:600 ;
+    }
+    
+}
+

@@ -1,0 +1,58 @@
+.rippleButton {
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  transition: background 400ms;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #5000d6;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.5s;
+  }
+
+  &:active::after {
+    transform: scale(2);
+    opacity: 0;
+    transition: transform 0s, opacity 0.5s;
+  }
+}
+
+.jumpButton {
+  animation: jump 0.5s ease infinite alternate;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.lottieContainer {
+  width: 90px;
+  height: 90px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
