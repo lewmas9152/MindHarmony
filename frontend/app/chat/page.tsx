@@ -227,8 +227,8 @@ export default function ChatApp() {
   }
 
   return (
-    <div className="container">
-      <div className="nav-bar">
+    <div className="container-chats">
+      <div className="nav-bar-chats">
         <div className="nav-logo">
           <div className="img-logo">
             <Image src={ChatLogo} alt="logo" width={40} quality={100} />
