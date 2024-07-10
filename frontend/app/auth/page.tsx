@@ -75,7 +75,8 @@ export default function TabsDemo() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f0f4f8]">
+    <div className="container-main min-h-screen flex items-center justify-center bg-[#f0f4f8]">
+      <div className="overlay"></div>
       <Tabs defaultValue="sign-up">
         <TabsList className="grid w-full grid-cols-2 drop-shadow-lg">
           <TabsTrigger value="sign-up">Sign up</TabsTrigger>

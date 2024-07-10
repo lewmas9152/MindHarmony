@@ -67,10 +67,15 @@ const Chatbot: React.FC = () => {
       {isOpen && (
         <div className={styles.chatbotDialog}>
           <div className={styles.chatHeader}>
-            <h3>MindHarmony Virtual Assistant</h3>
+            <h3>Harmony Virtual Assistant</h3>
             <button onClick={toggleChat}>
               <i className="fas fa-times"></i>
             </button>
+          </div>
+          <div className={styles.chatIntro}>
+            <p>
+            😊 Hi! I am Harmony virtual assistant. How can I help you today?
+            </p>
           </div>
           <div className={styles.chatMessages}>
             {messages.map((message, index) => (
