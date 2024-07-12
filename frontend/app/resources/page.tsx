@@ -231,7 +231,7 @@ const Resources: React.FC = () => {
 
           <section className='crisis-helpline'>
             <h2>Crisis Helpline</h2>
-            <p>If you're in crisis, don't hesitate to reach out for immediate support.</p>
+            <p>If you are in crisis, do not hesitate to reach out for immediate support.</p>
             <button className={styles.rippleButton}>Call Now</button>
           </section>
         </div>

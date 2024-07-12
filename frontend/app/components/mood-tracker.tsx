@@ -41,7 +41,9 @@ const MoodTracker: React.FC = () => {
       return acc;
     }, {} as Record<Mood, number>);
 
-    return Object.entries(moodCounts).reduce((a, b) => moodCounts[a as Mood] > moodCounts[b[0] as Mood] ? a : b[0]) as Mood;
+    return Object.entries(moodCounts).reduce((a, b) => 
+      moodCounts[a[0] as Mood] > moodCounts[b[0] as Mood] ? a : b
+    )[0] as Mood;
   };
 
   if (moodResults.length === questions.length) {
@@ -76,14 +78,14 @@ const MoodTracker: React.FC = () => {
       <div className={styles.questionContainer}>
         <p className={styles.question}>{questions[currentQuestion]}</p>
         <div className={styles.moodOptions}>
-          {Object.keys(moodDescriptions).map((mood) => (
+          {(Object.keys(moodDescriptions) as Mood[]).map((mood) => (
             <button
               key={mood}
-              onClick={() => handleMoodSelection(mood as Mood)}
+              onClick={() => handleMoodSelection(mood)}
               className={styles.moodButton}
             >
               <span className={styles.emoji}>{mood}</span>
-              <span className={styles.moodDescription}>{moodDescriptions[mood as Mood]}</span>
+              <span className={styles.moodDescription}>{moodDescriptions[mood]}</span>
             </button>
           ))}
         </div>

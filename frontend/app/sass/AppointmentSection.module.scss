@@ -32,7 +32,7 @@ $col-20: #604f5c;
   background-color:$col-18;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  width: 600px;
+  width: 650px;
   margin: 0 20px auto;
   margin-top: 50px;
 
@@ -140,6 +140,73 @@ $col-20: #604f5c;
           margin-right: 5px;
           font-family: $font-rubik;
           color: $col-17;
+        }
+      }
+    }
+  }
+}
+.appointmentSection {
+  .toggleButtons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background-color: $col-7;
+      cursor: pointer;
+
+      &.active {
+        background-color: #228B22;
+        color: white;
+      }
+    }
+  }
+
+  .appointmentsList {
+    .appointmentRow {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+
+      .doctorInfo {
+        display: flex;
+        align-items: center;
+        width: 40%;
+
+        .doctorIcon {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background-color: #228B22;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 15px;
+
+          svg {
+            color: white;
+            font-size: 30px;
+          }
+        }
+
+        .doctorDetails {
+          p {
+            margin: 0;
+            &:first-child {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .appointmentDetails {
+        width: 60%;
+
+        p {
+          margin: 5px 0;
         }
       }
     }

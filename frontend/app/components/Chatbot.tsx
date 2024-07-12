@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "../sass/Chatbot.module.scss";
 
 interface Message {
-  user_input: string;
+  text: string;
   isUser: boolean;
 }
 
@@ -50,7 +50,7 @@ const Chatbot: React.FC = () => {
   };
 
   const addMessage = (text: string, isUser: boolean) => {
-    setMessages((prev) => [...prev, { text, isUser }]);
+    setMessages(prev => [...prev, { text, isUser }]);
   };
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const Chatbot: React.FC = () => {
           </div>
           <div className={styles.chatIntro}>
             <p>
-            😊 Hi! I am Harmony virtual assistant. How can I help you today?
+              😊 Hi! I am Harmony virtual assistant. How can I help you today?
             </p>
           </div>
           <div className={styles.chatMessages}>

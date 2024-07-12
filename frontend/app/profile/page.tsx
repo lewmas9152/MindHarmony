@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '../sass/Profile.module.scss';
-import User1 from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
+import User1 from "../images/sarah.jpg";
 import therapist1 from "../images/user1.jpg";
 import therapist2 from "../images/user2.jpg";
 import therapist3 from "../images/user3.jpg";
@@ -28,6 +28,7 @@ const MentalHealthProfile: React.FC = () => {
   ];
 
   return (
+    <main className='bg-slate-700 profile-container max-[width:1920]:'>
     <div className=" max-w-screen-2xl main-container">
       <div className={styles.profileContainer}>
         <div className={styles.personalDetails}>
@@ -37,8 +38,9 @@ const MentalHealthProfile: React.FC = () => {
               <Image
                 src={User1}
                 alt="User Avatar"
-                width={100}
-                height={100}
+                width={50}
+                height={50}
+                quality={100}
                 className={styles.avatar}
               />
             </div>
@@ -198,6 +200,7 @@ const MentalHealthProfile: React.FC = () => {
         </div>
       </div>
     </div>
+    </main>
   );
 };
 

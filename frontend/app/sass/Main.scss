@@ -53,7 +53,6 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
   .image-container {
     width: 100vw;
     height: 100vh;
-
   }.top{
     display: flex;
     width: 100%;
@@ -226,7 +225,11 @@ $font-playwrite : 'Playwrite IT Moderna', sans-serif;
     overflow: hidden;  
     
     .zooming-image {
-      animation: zoom 7s infinite; 
+      animation: zoom 5s infinite;
+      background-color: #4f46e5;
+      background: url("../images/hero.jpg");
+      background-size: cover;
+      background-position: center;
     }
   }
   @keyframes slide {

@@ -1,21 +1,9 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import AppointmentIcon from '../images/appointment.svg';
-import ProgressIcon from '../images/progress (2).svg';
-import MentalHealth from '../images/brain.svg';
-import TherapyIcon from '../images/therapy.svg';
-import CountUp from 'react-countup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserMd } from '@fortawesome/free-solid-svg-icons';
 import styles from '../sass/AppointmentSection.module.scss';
-import DocRaj from "../images/raj.jpg";
-import DocBrown from "../images/doc1.jpg";
-import DocJohnson from "../images/user3.jpg";
-import DocWilson from "../images/wilson.jpg";
-import DocWilliams from "../images/user1.jpg";
-import DocKapoor from "../images/kapoor.jpg";
-import DocAnderson from "../images/doc2.jpg";
-import Thomas from '../images/dp.jpg';
+
 interface Doctor {
-  image: string;
   name: string;
   role: string;
 }
@@ -31,13 +19,13 @@ interface Appointment {
 }
 
 const AppointmentSection: React.FC = () => {
-  const [showUpcoming, setShowUpcoming] = useState(true); 
+  const [showUpcoming, setShowUpcoming] = useState(true);
+
   const appointments: Appointment[] = [
     {
       id: 1,
       type: 'Upcoming',
       doctor: {
-        image: DocRaj,
         name: 'Dr. Smith',
         role: 'Psychiatrist',
       },
@@ -50,7 +38,6 @@ const AppointmentSection: React.FC = () => {
       id: 2,
       type: 'Missed',
       doctor: {
-        image: DocBrown,
         name: 'Dr. Brown',
         role: 'Therapist',
       },
@@ -63,7 +50,6 @@ const AppointmentSection: React.FC = () => {
       id: 3,
       type: 'Upcoming',
       doctor: {
-        image: DocJohnson,
         name: 'Dr. Johnson',
         role: 'Psychologist',
       },
@@ -76,7 +62,6 @@ const AppointmentSection: React.FC = () => {
       id: 4,
       type: 'Missed',
       doctor: {
-        image: DocWilson,
         name: 'Dr. Wilson',
         role: 'Counselor',
       },
@@ -89,7 +74,6 @@ const AppointmentSection: React.FC = () => {
       id: 5,
       type: 'Upcoming',
       doctor: {
-        image: DocWilliams,
         name: 'Dr. Williams',
         role: 'Psychiatrist',
       },
@@ -102,7 +86,6 @@ const AppointmentSection: React.FC = () => {
       id: 6,
       type: 'Missed',
       doctor: {
-        image: DocKapoor,
         name: 'Dr. Kapoor',
         role: 'Therapist',
       },
@@ -115,7 +98,6 @@ const AppointmentSection: React.FC = () => {
       id: 7,
       type: 'Upcoming',
       doctor: {
-        image: DocAnderson,
         name: 'Dr. Anderson',
         role: 'Psychologist',
       },
@@ -128,7 +110,6 @@ const AppointmentSection: React.FC = () => {
       id: 8,
       type: 'Missed',
       doctor: {
-        image: Thomas,
         name: 'Dr. Thomas',
         role: 'Counselor',
       },
@@ -164,14 +145,8 @@ const AppointmentSection: React.FC = () => {
           .map((appointment) => (
             <div className={styles.appointmentRow} key={appointment.id}>
               <div className={styles.doctorInfo}>
-                <div className={styles.doctorImage}>
-                  <Image
-                    src={appointment.doctor.image}
-                    alt={appointment.doctor.name}
-                    width={60}
-                    height={60}
-                    quality={100}
-                  />
+                <div className={styles.doctorIcon}>
+                  <FontAwesomeIcon icon={faUserMd} />
                 </div>
                 <div className={styles.doctorDetails}>
                   <p>{appointment.doctor.name}</p>

@@ -40,12 +40,7 @@ export default function Home() {
     <main className="w-full space-y-4 ">
       <div className="relative h-screen bg-center bg-cover image-container">
         <div
-          className="absolute inset-0 header zooming-image"
-          style={{
-            backgroundImage: `url(/2.jpg)`,
-            backgroundPosition: "center",
-            backgroundSize: "cover"
-          }}
+          className="absolute inset-0 header-landing zooming-image"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         <div className="absolute inset-0 flex flex-col ">

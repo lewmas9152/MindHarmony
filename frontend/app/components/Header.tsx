@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import NotificationIcon from "../images/notification.svg";
 import ReminderIcon from "../images/reminder.svg";
 import SearchIcon from "../images/search.svg";
-import UserProfile from "../images/head-shot-portrait-happy-african-260nw-1541223032.webp";
+import UserProfile from "../images/sarah.jpg";
 import styles from '../sass/Header.module.scss';
 
 interface NotificationItem {
@@ -155,7 +155,7 @@ const Header: React.FC = () => {
           <div className={styles.userStatus}></div>
         </div>
         <div className={styles.userName}>
-          <p>John Doe</p>
+          <p>Sarah Johnson</p>
         </div>
         {showUserMenu && (
           <div className={styles.userMenu}>

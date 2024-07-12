@@ -39,6 +39,13 @@ $col-20: #604f5c;
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    height: auto;
+    padding: 10px;
+  }
+
+  @media (min-width: 1280px) and (max-width: 1920px) {
+    height: 100px;
+    padding: 10px 40px;
   }
 }
 
@@ -57,6 +64,10 @@ $col-20: #604f5c;
     @media (max-width: 768px) {
       width: 100%;
       margin-bottom: 10px;
+    }
+
+    @media (min-width: 1280px) and (max-width: 1920px) {
+      width: 600px;
     }
 
     &:focus {
@@ -191,6 +202,28 @@ $col-20: #604f5c;
       margin-top: 5px;
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    .userName {
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (min-width: 1280px) and (max-width: 1920px) {
+    .userImage {
+      width: 80px;
+      height: 80px;
+    }
+
+    .userName {
+      p {
+        font-size: 16px;
+      }
+    }
+  }
 }
 
 @keyframes fadeIn {
@@ -318,42 +351,61 @@ $col-20: #604f5c;
         background-color: #f5f5f5;
       }
 
-      .icon {
-        margin-right: 12px;
-        font-size: 18px;
+      .menuIcon {
+        margin-right: 8px;
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
       }
 
-      span {
-        font-family: $font-rubik;
+      .menuText {
         font-size: 14px;
-        color: $col-1;
+        color: #333;
+        font-family: $font-rubik;
       }
     }
   }
 }
 
-.notifications,
-.reminders {
-  .notificationIcon,
-  .reminderIcon {
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    img {
-      filter: hue-rotate(290deg);
-      transition: filter 0.3s ease;
-
-      &:hover {
-        filter: hue-rotate(320deg);
-      }
-    }
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
   }
 
-  .notificationPopup,
-  .reminderPopup {
-    animation: slideIn 0.3s ease-out;
+  .searchBar input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .userProfile {
+    flex-direction: row;
+    .userName p {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1920px) {
+  .header {
+    height: 100px;
+    padding: 10px 40px;
+  }
+
+  .searchBar input {
+    width: 600px;
+  }
+
+  .userProfile .userImage {
+    width: 80px;
+    height: 80px;
+  }
+
+  .userProfile .userName p {
+    font-size: 16px;
   }
 }
